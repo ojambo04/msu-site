@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+﻿import React, { useState, useMemo } from 'react';
 import { useMarkdown } from '../hooks/useMarkdown';
 import NoticeList from '../components/NoticeList';
 import TabNavigation from '../components/TabNavigation';
@@ -24,7 +24,7 @@ const Notices = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-[50vh]">
-        <div className="w-10 h-10 border-4 border-slate-200 dark:border-slate-700 border-t-[#20387b] dark:border-t-blue-400 rounded-full animate-spin"></div>
+        <div className="w-10 h-10 border-4 border-slate-200 dark:border-zinc-800 border-t-[#20387b] dark:border-t-blue-400 rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -41,13 +41,13 @@ const Notices = () => {
         placeholder="Search by ref no, title, or keyword..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        className="w-full pl-10 pr-4 py-2.5 rounded-full bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 focus:border-[#20387b] dark:focus:border-blue-500 text-sm focus:outline-none dark:text-white transition-all shadow-inner"
+        className="w-full pl-10 pr-4 py-2.5 rounded-full bg-slate-50 dark:bg-zinc-950/50 border border-slate-200 dark:border-zinc-800 focus:border-[#20387b] dark:focus:border-blue-500 text-sm focus:outline-none dark:text-white transition-all shadow-inner"
       />
     </div>
   );
 
   return (
-    <div className="w-full flex flex-col items-center bg-[#f8fafc] dark:bg-slate-900 min-h-screen fade-in">
+    <div className="w-full flex flex-col items-center bg-[#f8fafc] dark:bg-zinc-950 min-h-screen fade-in">
       
       <HeroBanner 
         title={header?.title || 'Notice and Press Releases'} 

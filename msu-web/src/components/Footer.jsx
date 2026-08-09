@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="mt-auto flex flex-col w-full">
       {/* Top Tier */}
-      <div className="bg-[#20387b] py-6 px-6 border-b border-blue-900/50">
+      <div className="bg-[#20387b] dark:bg-zinc-900 py-6 px-6 border-b border-blue-900/50 dark:border-zinc-800">
         <div className="max-w-7xl mx-auto flex flex-col items-center justify-center gap-6">
           <div className="text-center">
             <h2 className="text-white font-bold text-lg md:text-xl font-serif">Mao Students' Union — Established 1933</h2>
@@ -14,7 +14,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom Tier */}
-      <div className="bg-[#0f172a] py-16 px-6 text-slate-300">
+      <div className="bg-[#0f172a] dark:bg-zinc-950 py-16 px-6 text-slate-300 dark:text-zinc-300">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
 
           {/* Col 1: Navigation */}

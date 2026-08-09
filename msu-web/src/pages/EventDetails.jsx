@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useMarkdown } from '../hooks/useMarkdown';
 
@@ -9,7 +9,7 @@ const EventDetails = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-[50vh]">
-        <div className="w-10 h-10 border-4 border-slate-200 dark:border-slate-700 border-t-[#20387b] dark:border-t-blue-400 rounded-full animate-spin"></div>
+        <div className="w-10 h-10 border-4 border-slate-200 dark:border-zinc-800 border-t-[#20387b] dark:border-t-blue-400 rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -20,19 +20,19 @@ const EventDetails = () => {
   if (!event) {
     return (
       <div className="w-full flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
-        <h2 className="text-3xl font-bold font-serif text-slate-800 dark:text-slate-200 mb-4">Event Not Found</h2>
+        <h2 className="text-3xl font-bold font-serif text-slate-800 dark:text-zinc-200 mb-4">Event Not Found</h2>
         <Link to="/events" className="text-[#20387b] dark:text-blue-400 hover:underline font-bold">Return to Events</Link>
       </div>
     );
   }
 
   return (
-    <div className="w-full flex flex-col items-center bg-[#f8fafc] dark:bg-slate-900 min-h-screen pb-20 fade-in">
+    <div className="w-full flex flex-col items-center bg-[#f8fafc] dark:bg-zinc-950 min-h-screen pb-20 fade-in">
       
       {/* Hero Header */}
       <div className="w-full bg-[#20387b] pt-16 pb-24 px-4 md:px-8 overflow-hidden z-0 shadow-inner relative">
         <div className="absolute inset-0 z-[-1] opacity-20 mix-blend-overlay">
-           <img src="/assets/banner_abstract.png" alt="Texture" className="w-full h-full object-cover" />
+           <img src="/assets/images/banner_abstract.png" alt="Texture" className="w-full h-full object-cover" />
         </div>
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <Link to="/events" state={{ tab: 'past' }} className="inline-flex items-center text-blue-200 hover:text-white transition-colors text-sm font-bold mb-8 group">
@@ -65,17 +65,17 @@ const EventDetails = () => {
 
       {/* Main Content Area */}
       <div className="w-full max-w-4xl mx-auto px-4 md:px-8 mt-[-50px] relative z-10 slide-up" style={{ animationDelay: '150ms' }}>
-        <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] border border-slate-100 dark:border-slate-700 p-8 md:p-14 mb-12">
+        <div className="bg-white dark:bg-zinc-900 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] border border-slate-100 dark:border-zinc-800 p-8 md:p-14 mb-12">
           
           {/* Detailed Writeup */}
           {event.writeup ? (
-            <div className="text-[15px] md:text-lg text-slate-700 dark:text-slate-300 leading-relaxed font-medium space-y-6">
+            <div className="text-[15px] md:text-lg text-slate-700 dark:text-zinc-300 leading-relaxed font-medium space-y-6">
               {event.writeup.split('\n').map((paragraph, idx) => (
                 paragraph.trim() !== '' && <p key={idx}>{paragraph}</p>
               ))}
             </div>
           ) : (
-            <p className="text-[15px] md:text-lg text-slate-700 dark:text-slate-300 leading-relaxed font-medium">{event.description}</p>
+            <p className="text-[15px] md:text-lg text-slate-700 dark:text-zinc-300 leading-relaxed font-medium">{event.description}</p>
           )}
 
         </div>
@@ -84,7 +84,7 @@ const EventDetails = () => {
         {event.youtubeId && (
           <div className="mb-14 fade-in" style={{ animationDelay: '300ms' }}>
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 font-serif border-l-4 border-[#20387b] pl-4">Video Highlights</h3>
-            <div className="rounded-3xl overflow-hidden bg-slate-100 dark:bg-slate-900 aspect-video shadow-lg border border-slate-200 dark:border-slate-700">
+            <div className="rounded-3xl overflow-hidden bg-slate-100 dark:bg-zinc-950 aspect-video shadow-lg border border-slate-200 dark:border-zinc-800">
               <iframe 
                 className="w-full h-full"
                 src={`https://www.youtube.com/embed/${event.youtubeId}`} 
@@ -103,7 +103,7 @@ const EventDetails = () => {
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 font-serif border-l-4 border-amber-500 pl-4">Event Gallery</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {event.images.map((img, idx) => (
-                <div key={idx} className="rounded-2xl overflow-hidden aspect-video bg-slate-100 dark:bg-slate-900 shadow-md border border-slate-200 dark:border-slate-700 group">
+                <div key={idx} className="rounded-2xl overflow-hidden aspect-video bg-slate-100 dark:bg-zinc-950 shadow-md border border-slate-200 dark:border-zinc-800 group">
                   <img src={img} alt={`Gallery image ${idx + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 cursor-pointer" />
                 </div>
               ))}

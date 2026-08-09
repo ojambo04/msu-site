@@ -33,40 +33,85 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Typography base for Markdown - Tightened up */
+/* Premium Editorial Typography for Markdown */
+.markdown-content {
+  @apply text-slate-700 dark:text-zinc-300;
+  font-family: var(--font-sans);
+}
+
 .markdown-content h1 {
-  @apply text-3xl font-extrabold text-primary mb-4 tracking-tight;
+  @apply text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-8 tracking-tight font-serif;
+  background: linear-gradient(to right, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 .markdown-content h2 {
-  @apply text-2xl font-bold text-slate-900 dark:text-slate-100 mt-6 mb-3 border-b border-slate-200 dark:border-slate-700 pb-2;
+  @apply text-3xl font-bold text-slate-800 dark:text-zinc-100 mt-12 mb-6 pb-4 border-b border-slate-200 dark:border-zinc-800 font-serif relative;
+}
+
+.markdown-content h2::after {
+  content: '';
+  @apply absolute left-0 bottom-0 w-20 h-1 bg-amber-500 rounded-full;
 }
 
 .markdown-content h3 {
-  @apply text-xl font-bold text-slate-800 dark:text-slate-200 mt-5 mb-2;
+  @apply text-2xl font-bold text-slate-800 dark:text-zinc-200 mt-8 mb-4 font-serif;
 }
 
 .markdown-content p {
-  @apply text-slate-700 dark:text-slate-300 leading-relaxed mb-4 text-[15px];
+  @apply leading-[1.8] mb-6 text-[17px] text-slate-600 dark:text-zinc-400 font-light tracking-wide;
+}
+
+/* Elegant Drop Cap for the first paragraph */
+.markdown-content > p:first-of-type {
+  @apply text-lg md:text-xl leading-relaxed text-slate-700 dark:text-zinc-300 font-medium;
+}
+
+.markdown-content > p:first-of-type::first-letter {
+  @apply text-6xl md:text-7xl font-black text-amber-500 float-left mr-4 mt-1 leading-[0.8] font-serif;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
 .markdown-content ul {
-  @apply list-disc list-inside mb-4 text-slate-700 dark:text-slate-300 space-y-1 text-[15px];
+  @apply list-none mb-8 text-slate-600 dark:text-zinc-400 space-y-3 text-[17px] pl-2;
+}
+
+.markdown-content ul li {
+  @apply relative pl-6;
+}
+
+.markdown-content ul li::before {
+  content: '✦';
+  @apply absolute left-0 text-amber-500 text-sm top-1;
 }
 
 .markdown-content ol {
-  @apply list-decimal list-inside mb-4 text-slate-700 dark:text-slate-300 space-y-1 text-[15px];
+  @apply list-decimal list-inside mb-8 text-slate-600 dark:text-zinc-400 space-y-3 text-[17px] pl-4 font-serif;
+}
+
+.markdown-content ol li::marker {
+  @apply text-amber-600 font-bold;
 }
 
 .markdown-content blockquote {
-  @apply border-l-4 border-primary pl-4 italic text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/50 p-3 rounded-r-lg mb-4;
+  @apply border-l-4 border-amber-500 pl-6 my-8 italic text-slate-700 dark:text-zinc-300 bg-slate-50/80 dark:bg-zinc-900/50 p-6 rounded-r-2xl text-xl font-serif leading-relaxed relative overflow-hidden shadow-sm;
+}
+
+.markdown-content blockquote::before {
+  content: '"';
+  @apply absolute -top-4 right-2 text-[8rem] text-amber-500/10 font-serif leading-none select-none;
+}
+
+.markdown-content blockquote p {
+  @apply text-xl mb-0;
 }
 
 .markdown-content a {
-  @apply text-primary dark:text-primary-light hover:underline font-medium transition-colors;
+  @apply text-primary-light dark:text-blue-400 hover:text-amber-600 font-medium transition-colors border-b-2 border-amber-500/30 hover:border-amber-500 pb-0.5;
 }
 
 .markdown-content strong {
-  @apply font-bold text-slate-900 dark:text-slate-100;
+  @apply font-bold text-slate-900 dark:text-white;
 }
 

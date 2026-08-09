@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useMarkdown } from '../hooks/useMarkdown';
@@ -7,11 +6,12 @@ import HallOfFame from '../components/HallOfFame';
 
 const About = () => {
   const { content, attributes, loading } = useMarkdown('about.md');
+  const { attributes: hallOfFameAttrs, loading: hallOfFameLoading } = useMarkdown('hallOfFame.md');
 
-  if (loading) {
+  if (loading || hallOfFameLoading) {
     return (
       <div className="flex justify-center items-center min-h-[50vh]">
-        <div className="w-10 h-10 border-4 border-slate-200 dark:border-slate-700 border-t-primary dark:border-t-primary-light rounded-full animate-spin"></div>
+        <div className="w-10 h-10 border-4 border-slate-200 dark:border-zinc-800 border-t-primary dark:border-t-primary-light rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -21,11 +21,11 @@ const About = () => {
       {/* Hero Banner Section */}
       <div className="w-full relative pt-24 pb-20 px-4 md:px-8 overflow-hidden z-0">
         <div className="absolute inset-0 z-[-1]">
-          <img src="/assets/banner_abstract.png" alt="Banner" className="w-full h-full object-cover" />
+          <img src="/assets/images/banner_abstract.png" alt="Banner" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-[#20387b]/85 mix-blend-multiply"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#152554]/90 dark:to-slate-900/95"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#152554]/90 dark:to-zinc-950/95"></div>
         </div>
-        
+
         <div className="max-w-6xl mx-auto relative z-10 text-center md:text-left">
           <h1 className="text-4xl md:text-5xl font-extrabold text-white font-serif mb-4 tracking-tight">
             {attributes.header?.title || 'About Us'}
@@ -37,11 +37,11 @@ const About = () => {
           )}
         </div>
       </div>
-      
+
       {/* Vision & Mission Cards */}
       {attributes.mission && attributes.vision && (
         <div className="relative z-10 w-full max-w-5xl mx-auto px-4 md:px-6 mt-10 mb-4 grid grid-cols-1 md:grid-cols-2 gap-6 slide-up" style={{ animationDelay: '100ms' }}>
-          
+
           {/* Mission Card */}
           <div className="bg-[#0f172a] rounded-2xl p-8 md:p-10 shadow-lg border border-slate-800 flex flex-col items-start">
             <div className="inline-flex items-center bg-[#1e293b] rounded-full px-4 py-1.5 mb-6 border border-slate-700">
@@ -80,14 +80,14 @@ const About = () => {
 
       {/* Main Content Card */}
       <div className="relative z-10 w-full max-w-5xl mx-auto px-4 md:px-6 mt-2 slide-up" style={{ animationDelay: '150ms' }}>
-        <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:shadow-2xl transition-all duration-300 p-8 md:p-14 border border-slate-100 dark:border-slate-700">
+        <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:shadow-2xl transition-all duration-300 p-8 md:p-14 border border-slate-100 dark:border-zinc-800">
           <div className="markdown-content">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {content}
             </ReactMarkdown>
           </div>
         </div>
-        
+
         {/* Page Specific Components */}
         {attributes.timeline && (
           <div className="mt-12 slide-up" style={{ animationDelay: '150ms' }}>
@@ -95,9 +95,9 @@ const About = () => {
           </div>
         )}
 
-        {attributes.hallOfFame && (
+        {hallOfFameAttrs?.hallOfFame && (
           <div className="mt-12 slide-up" style={{ animationDelay: '300ms' }}>
-            <HallOfFame data={attributes.hallOfFame} />
+            <HallOfFame data={hallOfFameAttrs.hallOfFame} />
           </div>
         )}
       </div>

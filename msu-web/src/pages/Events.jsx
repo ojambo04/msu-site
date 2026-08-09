@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useMarkdown } from '../hooks/useMarkdown';
 import EventList from '../components/EventList';
@@ -13,7 +13,7 @@ const Events = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-[50vh]">
-        <div className="w-10 h-10 border-4 border-slate-200 dark:border-slate-700 border-t-[#20387b] dark:border-t-blue-400 rounded-full animate-spin"></div>
+        <div className="w-10 h-10 border-4 border-slate-200 dark:border-zinc-800 border-t-[#20387b] dark:border-t-blue-400 rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -21,7 +21,7 @@ const Events = () => {
   const { header, upcoming, ongoing, past } = attributes;
 
   return (
-    <div className="w-full flex flex-col items-center bg-[#f8fafc] dark:bg-slate-900 min-h-screen fade-in">
+    <div className="w-full flex flex-col items-center bg-[#f8fafc] dark:bg-zinc-950 min-h-screen fade-in">
       
       <HeroBanner 
         title={header?.title || "Events & Programs"} 

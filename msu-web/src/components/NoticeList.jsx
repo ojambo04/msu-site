@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+﻿import React, { useMemo } from 'react';
 
 const NoticeList = ({ notices, filter, searchQuery }) => {
 
@@ -24,7 +24,7 @@ const NoticeList = ({ notices, filter, searchQuery }) => {
       {/* Notice Cards List */}
       <div className="space-y-4">
         {filteredNotices.map((notice, index) => (
-          <div key={index} className="bg-white dark:bg-slate-800 rounded-[20px] p-6 shadow-[0_2px_10px_rgb(0,0,0,0.04)] border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-all duration-300 fade-in flex flex-col md:flex-row justify-between gap-6" style={{ animationDelay: `${index * 50}ms` }}>
+          <div key={index} className="bg-white dark:bg-zinc-900 rounded-[20px] p-6 shadow-[0_2px_10px_rgb(0,0,0,0.04)] border border-slate-100 dark:border-zinc-800 hover:shadow-lg transition-all duration-300 fade-in flex flex-col md:flex-row justify-between gap-6" style={{ animationDelay: `${index * 50}ms` }}>
             
             {/* Left Content */}
             <div className="flex-1 pr-0 md:pr-8">
@@ -33,7 +33,7 @@ const NoticeList = ({ notices, filter, searchQuery }) => {
                 <span className="bg-[#20387b] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-sm">
                   {notice.ref}
                 </span>
-                <span className="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+                <span className="bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-zinc-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
                   {notice.category}
                 </span>
                 {notice.urgent && (
@@ -56,7 +56,7 @@ const NoticeList = ({ notices, filter, searchQuery }) => {
               <h3 className="text-xl md:text-[22px] font-bold font-serif text-[#0f172a] dark:text-white mb-2.5 leading-snug hover:text-[#20387b] dark:hover:text-blue-400 transition-colors cursor-pointer">
                 {notice.title}
               </h3>
-              <p className="text-[15px] text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
+              <p className="text-[15px] text-slate-500 dark:text-zinc-400 font-medium leading-relaxed">
                 {notice.snippet}
               </p>
             </div>
@@ -84,8 +84,8 @@ const NoticeList = ({ notices, filter, searchQuery }) => {
         ))}
 
         {filteredNotices.length === 0 && (
-          <div className="text-center py-20 text-slate-500 bg-white dark:bg-slate-800 rounded-[20px] border border-slate-200 dark:border-slate-700 shadow-sm">
-            <svg className="w-12 h-12 mx-auto mb-4 text-slate-300 dark:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="text-center py-20 text-slate-500 bg-white dark:bg-zinc-900 rounded-[20px] border border-slate-200 dark:border-zinc-800 shadow-sm">
+            <svg className="w-12 h-12 mx-auto mb-4 text-slate-300 dark:text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <h3 className="text-xl font-bold mb-2">No notices found</h3>

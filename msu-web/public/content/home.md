@@ -7,11 +7,9 @@ hero:
   primaryButton:
     text: "Explore Scholarships & Services"
     link: "/students"
-    icon: "🎓"
   secondaryButton:
     text: "Read Union History & Constitution"
     link: "/about"
-    icon: "📖"
 
 secretariat:
   title: "CENTRAL SECRETARIAT"

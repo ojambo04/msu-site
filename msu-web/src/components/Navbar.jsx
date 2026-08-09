@@ -20,7 +20,7 @@ const Navbar = ({ toggleTheme, theme }) => {
   return (
     <header className="w-full flex flex-col z-50 shadow-md relative">
       {/* Top Bar - Very Dark Blue */}
-      <div className="bg-[#0f172a] text-slate-300 py-1.5 px-6 hidden lg:block text-xs border-b border-slate-800">
+      <div className="bg-[#0f172a] dark:bg-zinc-950 text-slate-300 dark:text-zinc-300 py-1.5 px-6 hidden lg:block text-xs border-b border-slate-800 dark:border-zinc-900">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5 text-amber-500">
@@ -51,12 +51,12 @@ const Navbar = ({ toggleTheme, theme }) => {
       </div>
 
       {/* Middle Bar - White/Dark Slate */}
-      <div className="bg-white dark:bg-slate-900 py-4 px-6 border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
+      <div className="bg-white dark:bg-zinc-950 py-4 px-6 border-b border-slate-100 dark:border-zinc-900 transition-colors duration-300">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           {/* Logo & Brand */}
           <NavLink to="/" className="flex items-center gap-4 group">
             <div className="w-14 h-14 md:w-16 md:h-16 bg-transparent shrink-0 flex items-center justify-center relative">
-              <img src="/images/logo.png" alt="MSU Logo" className="w-full h-full object-contain absolute inset-0 z-10" onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
+              <img src="/assets/images/logo.png" alt="MSU Logo" className="w-full h-full object-contain absolute inset-0 z-10" onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
               {/* Fallback generic circular logo if image is missing */}
               <div className="w-full h-full rounded-full border-[3px] border-[#25418b] dark:border-blue-400 hidden flex-col items-center justify-center">
                 <span className="text-[#25418b] dark:text-blue-400 font-bold text-lg leading-none">MSU</span>
@@ -67,7 +67,7 @@ const Navbar = ({ toggleTheme, theme }) => {
               <div className="flex items-center gap-2 mt-0.5">
                 <span className="text-[10px] md:text-sm font-bold text-amber-500 tracking-wider">ESTD - 1933</span>
                 <span className="text-slate-400 text-xs hidden sm:inline">|</span>
-                <span className="text-[10px] md:text-sm italic text-slate-500 dark:text-slate-400 font-serif hidden sm:inline">"Sacrifice and Progress"</span>
+                <span className="text-[10px] md:text-sm italic text-slate-500 dark:text-zinc-400 font-serif hidden sm:inline">"Sacrifice and Progress"</span>
               </div>
             </div>
           </NavLink>
@@ -75,23 +75,20 @@ const Navbar = ({ toggleTheme, theme }) => {
           {/* Right Actions */}
           <div className="hidden lg:flex items-center gap-5">
             <div className="relative">
-              <input type="text" placeholder="Search Portal..." className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full py-2 pl-5 pr-10 text-sm w-64 focus:outline-none focus:border-amber-500 transition-colors dark:text-white placeholder-slate-400" />
+              <input type="text" placeholder="Search Portal..." className="bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-full py-2 pl-5 pr-10 text-sm w-64 focus:outline-none focus:border-amber-500 transition-colors dark:text-white placeholder-slate-400" />
               <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
             </div>
-            <a href="/contact" className="bg-[#5d6042] hover:bg-[#4a4d35] text-white px-6 py-2.5 rounded-full text-sm font-bold flex items-center gap-2 transition-colors shadow-sm">
-              <span className="text-amber-300">📍</span> Contact Desk
-            </a>
-            <button className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors ml-2" onClick={toggleTheme} aria-label="Toggle Theme">
+            <button className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-zinc-300 transition-colors ml-2" onClick={toggleTheme} aria-label="Toggle Theme">
               {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
             </button>
           </div>
 
           {/* Mobile Menu Toggle */}
           <div className="lg:hidden flex items-center gap-3">
-            <button className="p-2 text-slate-700 dark:text-slate-300" onClick={toggleTheme}>
+            <button className="p-2 text-slate-700 dark:text-zinc-300" onClick={toggleTheme}>
               {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
             </button>
-            <button className="text-slate-700 dark:text-slate-300 p-2" onClick={toggleMenu}>
+            <button className="text-slate-700 dark:text-zinc-300 p-2" onClick={toggleMenu}>
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
@@ -99,14 +96,14 @@ const Navbar = ({ toggleTheme, theme }) => {
       </div>
 
       {/* Bottom Nav Bar - Theme Primary (#20387b) */}
-      <div className={`lg:block bg-[#20387b] dark:bg-slate-950 ${isOpen ? 'block absolute top-full left-0 w-full z-50 shadow-xl' : 'hidden'} transition-all duration-300`}>
+      <div className={`lg:block bg-[#20387b] dark:bg-zinc-950 ${isOpen ? 'block absolute top-full left-0 w-full z-50 shadow-xl' : 'hidden'} transition-all duration-300`}>
         <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row lg:justify-center lg:items-center">
           <div className="flex flex-col lg:flex-row w-full lg:w-auto">
             {navLinks.map((link) => (
               <NavLink
                 key={link.name}
                 to={link.path}
-                className={({ isActive }) => `px-5 py-4 lg:py-3.5 text-[13px] font-bold tracking-wider transition-colors border-b lg:border-b-0 border-blue-800/50 dark:border-slate-800 lg:border-r lg:last:border-r-0 lg:first:border-l ${isActive ? 'bg-amber-500 text-slate-900 border-transparent shadow-[inset_0_3px_0_rgba(0,0,0,0.2)]' : 'text-slate-200 hover:bg-blue-800 dark:hover:bg-slate-800 hover:text-white'}`}
+                className={({ isActive }) => `px-5 py-4 lg:py-3.5 text-[13px] font-bold tracking-wider transition-colors border-b lg:border-b-0 border-blue-800/50 dark:border-zinc-900 lg:border-r lg:last:border-r-0 lg:first:border-l ${isActive ? 'bg-amber-500 text-slate-900 border-transparent shadow-[inset_0_3px_0_rgba(0,0,0,0.2)]' : 'text-slate-200 hover:bg-blue-800 dark:hover:bg-slate-800 hover:text-white'}`}
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}

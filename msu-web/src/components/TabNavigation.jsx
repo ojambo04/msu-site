@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 
 const TabNavigation = ({ tabs, activeTab, onTabChange, rightElement }) => {
   // Normalize tabs to always be objects with id and label
@@ -7,7 +7,7 @@ const TabNavigation = ({ tabs, activeTab, onTabChange, rightElement }) => {
   );
 
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-2xl md:rounded-full shadow-lg p-2 mb-10 flex flex-col md:flex-row items-center gap-4 relative z-20 border border-slate-100 dark:border-slate-700">
+    <div className="bg-white dark:bg-zinc-900 rounded-2xl md:rounded-full shadow-lg p-2 mb-10 flex flex-col md:flex-row items-center gap-4 relative z-20 border border-slate-100 dark:border-zinc-800">
       
       {/* Scrollable container for mobile, flex for desktop */}
       <div className={`flex w-full md:w-auto overflow-x-auto no-scrollbar md:pl-2 flex-1 ${rightElement ? 'justify-start' : 'justify-center'}`}>
@@ -19,7 +19,7 @@ const TabNavigation = ({ tabs, activeTab, onTabChange, rightElement }) => {
               className={`px-6 py-2.5 rounded-full text-sm md:text-[15px] font-bold transition-all duration-300 whitespace-nowrap ${
                 activeTab === tab.id
                   ? 'bg-[#20387b] text-white shadow-md'
-                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700/50'
+                  : 'text-slate-600 dark:text-zinc-400 hover:bg-slate-50 dark:hover:bg-slate-700/50'
               }`}
             >
               {tab.label}

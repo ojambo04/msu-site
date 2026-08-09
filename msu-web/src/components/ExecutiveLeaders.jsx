@@ -1,6 +1,9 @@
-import React from 'react';
+﻿import React, { useState } from 'react';
+import ImageModal from './ImageModal';
 
 const ExecutiveLeaders = ({ leaders }) => {
+  const [selectedImage, setSelectedImage] = useState(null);
+
   if (!leaders || leaders.length === 0) return null;
 
   return (
@@ -12,10 +15,13 @@ const ExecutiveLeaders = ({ leaders }) => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {leaders.map((leader, index) => (
-          <div key={index} className="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-xl border border-slate-100 dark:border-slate-700 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300">
+          <div key={index} className="bg-white dark:bg-zinc-900 rounded-3xl overflow-hidden shadow-xl border border-slate-100 dark:border-zinc-800 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300">
             {/* Top Half - Dark Blue */}
             <div className="bg-[#20387b] p-8 flex flex-col md:flex-row items-center md:items-start gap-6">
-              <div className="w-32 h-32 rounded-3xl p-1 border-2 border-yellow-400 shrink-0 overflow-hidden bg-white/10">
+              <div 
+                className="w-32 h-32 rounded-3xl p-1 border-2 border-yellow-400 shrink-0 overflow-hidden bg-white/10 cursor-pointer hover:opacity-80 transition-opacity"
+                onClick={() => setSelectedImage(leader.image)}
+              >
                 <img src={leader.image} alt={leader.name} className="w-full h-full object-cover rounded-[20px]" />
               </div>
               <div className="text-center md:text-left text-white mt-2 md:mt-0">
@@ -26,9 +32,9 @@ const ExecutiveLeaders = ({ leaders }) => {
                 <p className="text-blue-100 text-sm mb-2">{leader.unit}</p>
                 <div className="flex items-center justify-center md:justify-start text-yellow-400 text-xs font-medium">
                   <svg className="w-4 h-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  {leader.hours}
+                  {leader.phone}
                 </div>
               </div>
             </div>
@@ -36,12 +42,12 @@ const ExecutiveLeaders = ({ leaders }) => {
             {/* Bottom Half - White */}
             <div className="p-8">
               <div className="border-l-4 border-orange-500 pl-5 mb-8">
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                <p className="text-slate-600 dark:text-zinc-300 text-sm leading-relaxed">
                   <strong className="text-slate-900 dark:text-white">Term Message: </strong>
                   "{leader.message}"
                 </p>
               </div>
-              <div className="flex items-center text-sm font-medium text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-900 p-4 rounded-xl border border-slate-100 dark:border-slate-700">
+              <div className="flex items-center text-sm font-medium text-slate-700 dark:text-zinc-300 bg-slate-50 dark:bg-zinc-950 p-4 rounded-xl border border-slate-100 dark:border-zinc-800">
                 <svg className="w-5 h-5 mr-3 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
@@ -51,6 +57,11 @@ const ExecutiveLeaders = ({ leaders }) => {
           </div>
         ))}
       </div>
+
+      <ImageModal 
+        imageUrl={selectedImage} 
+        onClose={() => setSelectedImage(null)} 
+      />
     </div>
   );
 };

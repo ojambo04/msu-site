@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { useMarkdown } from '../hooks/useMarkdown';
 import ResourceList from '../components/ResourceList';
 import TabNavigation from '../components/TabNavigation';
@@ -11,7 +11,7 @@ const StudentsCorner = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-[50vh]">
-        <div className="w-10 h-10 border-4 border-slate-200 dark:border-slate-700 border-t-[#20387b] dark:border-t-blue-400 rounded-full animate-spin"></div>
+        <div className="w-10 h-10 border-4 border-slate-200 dark:border-zinc-800 border-t-[#20387b] dark:border-t-blue-400 rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -24,7 +24,7 @@ const StudentsCorner = () => {
   ];
 
   return (
-    <div className="w-full flex flex-col items-center bg-[#f8fafc] dark:bg-slate-900 min-h-screen fade-in">
+    <div className="w-full flex flex-col items-center bg-[#f8fafc] dark:bg-zinc-950 min-h-screen fade-in">
       
       <HeroBanner 
         title={header?.title || "Students' Corner"} 
