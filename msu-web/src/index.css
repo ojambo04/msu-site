@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+@theme {
+  --color-primary: #003366;
+  --color-primary-light: #004c99;
+  --color-primary-dark: #001a33;
+  --color-accent: #cc0000;
+  --color-accent-light: #ff1a1a;
+  --color-accent-dark: #990000;
+  --font-sans: 'Outfit', sans-serif;
+}
+
+@utility fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+@utility slide-up {
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Typography base for Markdown - Tightened up */
+.markdown-content h1 {
+  @apply text-3xl font-extrabold text-primary mb-4 tracking-tight;
+}
+
+.markdown-content h2 {
+  @apply text-2xl font-bold text-slate-900 dark:text-slate-100 mt-6 mb-3 border-b border-slate-200 dark:border-slate-700 pb-2;
+}
+
+.markdown-content h3 {
+  @apply text-xl font-bold text-slate-800 dark:text-slate-200 mt-5 mb-2;
+}
+
+.markdown-content p {
+  @apply text-slate-700 dark:text-slate-300 leading-relaxed mb-4 text-[15px];
+}
+
+.markdown-content ul {
+  @apply list-disc list-inside mb-4 text-slate-700 dark:text-slate-300 space-y-1 text-[15px];
+}
+
+.markdown-content ol {
+  @apply list-decimal list-inside mb-4 text-slate-700 dark:text-slate-300 space-y-1 text-[15px];
+}
+
+.markdown-content blockquote {
+  @apply border-l-4 border-primary pl-4 italic text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/50 p-3 rounded-r-lg mb-4;
+}
+
+.markdown-content a {
+  @apply text-primary dark:text-primary-light hover:underline font-medium transition-colors;
+}
+
+.markdown-content strong {
+  @apply font-bold text-slate-900 dark:text-slate-100;
+}
+
