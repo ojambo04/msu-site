@@ -35,6 +35,13 @@ const About = () => {
               {attributes.header.subtitle}
             </p>
           )}
+          {attributes.header?.constitutionPdf && (
+            <div className="mt-8">
+              <a href={attributes.header.constitutionPdf} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5">
+                <span className="text-lg leading-none">📄</span> Read the Constitution
+              </a>
+            </div>
+          )}
         </div>
       </div>
 

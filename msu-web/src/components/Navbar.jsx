@@ -1,9 +1,21 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Moon, Sun, Menu, X, Phone, Search } from 'lucide-react';
+import { useMarkdown } from '../hooks/useMarkdown';
 
 const Navbar = ({ toggleTheme, theme }) => {
   const [isOpen, setIsOpen] = React.useState(false);
+
+  const { attributes: contactData } = useMarkdown('contact.md');
+  const { attributes: aboutData } = useMarkdown('about.md');
+
+  const location = contactData?.location || "Central HQ: Tadubi & Senapati, Manipur";
+  const helpline = contactData?.helpline || "+91 94360 88201";
+  const facebook = contactData?.socials?.facebook || "#";
+  const instagram = contactData?.socials?.instagram || "#";
+  const youtube = contactData?.socials?.youtube || "#";
+  
+  const constitutionPdf = aboutData?.header?.constitutionPdf || "#";
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -25,24 +37,24 @@ const Navbar = ({ toggleTheme, theme }) => {
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5 text-amber-500">
               <span className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></span>
-              Central HQ: Tadubi & Senapati, Manipur
+              {location}
             </span>
             <span className="text-slate-600">|</span>
             <span className="flex items-center gap-1.5">
-              <Phone size={12} /> Helpline: +91 94360 88201
+              <Phone size={12} /> {helpline.includes('Helpline') ? helpline : `Helpline: ${helpline}`}
             </span>
           </div>
           <div className="flex items-center gap-5">
             <a href="#" className="hover:text-amber-500 flex items-center gap-1 font-medium"><span className="text-amber-500 text-sm leading-none">🎓</span> Scholarships</a>
-            <a href="#" className="hover:text-amber-500 flex items-center gap-1 font-medium"><span className="text-amber-500 text-sm leading-none">📄</span> Constitution PDF</a>
+            <a href={constitutionPdf} className="hover:text-amber-500 flex items-center gap-1 font-medium"><span className="text-amber-500 text-sm leading-none">📄</span> Constitution PDF</a>
             <div className="flex items-center gap-3 ml-2 pl-4 border-l border-slate-700">
-              <a href="#" className="hover:text-white transition-colors" title="Facebook">
+              <a href={facebook} className="hover:text-white transition-colors" title="Facebook">
                 <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.325v21.351C0 23.403.597 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.597 1.323-1.325V1.325C24 .597 23.403 0 22.675 0z" /></svg>
               </a>
-              <a href="#" className="hover:text-white transition-colors" title="Instagram">
+              <a href={instagram} className="hover:text-white transition-colors" title="Instagram">
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
               </a>
-              <a href="#" className="hover:text-white transition-colors" title="YouTube">
+              <a href={youtube} className="hover:text-white transition-colors" title="YouTube">
                 <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93-.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
               </a>
             </div>

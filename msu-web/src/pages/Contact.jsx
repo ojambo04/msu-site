@@ -4,6 +4,14 @@ import { useMarkdown } from '../hooks/useMarkdown';
 
 const Contact = () => {
   const { attributes: homeData } = useMarkdown('home.md');
+  const { attributes: contactData } = useMarkdown('contact.md');
+
+  const address = contactData?.address || "Central Headquarters, Tadubi Sub-Division / Senapati, Manipur – 795104, India";
+  const email = contactData?.email || "contact@maostudentsunion.org";
+  
+  const directoryTitle = contactData?.directory?.title || "Constituent Units Directory";
+  const directoryDesc = contactData?.directory?.description || "The Mao Students' Union spans 27 Constituent Units across Manipur, Nagaland, Assam, and major university hubs in India. For unit-specific queries, reach out directly via your regional executive representatives.";
+
   return (
     <div className="w-full flex flex-col items-center pb-12 fade-in">
       {/* Hero Banner Section */}
@@ -82,10 +90,10 @@ const Contact = () => {
             <div className="bg-white dark:bg-zinc-900 rounded-xl overflow-hidden shadow-sm p-6 border border-slate-200 dark:border-zinc-800 flex-1">
               <h3 className="text-[#d97706] font-bold font-serif flex items-center gap-2 text-lg mb-4">
                 <Building size={20} />
-                Constituent Units Directory
+                {directoryTitle}
               </h3>
               <p className="text-slate-600 dark:text-zinc-400 text-[15px] leading-relaxed">
-                The Mao Students' Union spans 27 Constituent Units across Manipur, Nagaland, Assam, and major university hubs in India. For unit-specific queries, reach out directly via your regional executive representatives.
+                {directoryDesc}
               </p>
             </div>
 
@@ -143,7 +151,7 @@ const Contact = () => {
               <MapPin className="text-slate-500 mt-1 shrink-0" size={18} />
               <p className="text-slate-700 dark:text-zinc-300 text-[15px]">
                 <span className="font-bold text-slate-900 dark:text-white block mb-1">Address:</span>
-                <span className="text-slate-900 px-1.5 font-medium rounded inline-block">Central Headquarters, Tadubi Sub-Division / Senapati, Manipur – 795104, India</span>
+                <span className="text-slate-900 px-1.5 font-medium rounded inline-block">{address}</span>
               </p>
             </div>
 
@@ -151,7 +159,7 @@ const Contact = () => {
               <Mail className="text-slate-500 mt-1 shrink-0" size={18} />
               <p className="text-slate-700 dark:text-zinc-300 text-[15px]">
                 <span className="font-bold text-slate-900 dark:text-white block mb-1">Official Email:</span>
-                contact@maostudentsunion.org
+                {email}
               </p>
             </div>
           </div>

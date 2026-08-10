@@ -1,11 +1,13 @@
-# Contact Us
-
-You can reach out to the Mao Students' Union via the information below.
-
-## Office Location
-*Official address of the MSU Office.*
-
-**Google Maps Location**: 
-[Link to Map]
-
-*(Note: Per user request, the interactive contact form and suggestion box have been removed from this page. Reach out via email or the helpdesk for direct communications.)*
+---
+location: "Central HQ: Tadubi & Senapati, Manipur"
+helpline: "+91 94360 88201"
+address: "Central Headquarters, Tadubi Sub-Division / Senapati, Manipur – 795104, India"
+email: "contact@maostudentsunion.org"
+directory:
+  title: "Constituent Units Directory"
+  description: "The Mao Students' Union spans 27 Constituent Units across Manipur, Nagaland, Assam, and major cities in India. For unit-specific queries, reach out directly via your regional executive representatives."
+socials:
+  facebook: "#"
+  instagram: "#"
+  youtube: "#"
+---

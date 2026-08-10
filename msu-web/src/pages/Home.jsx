@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import { Target, Eye } from 'lucide-react';
 import { useMarkdown } from '../hooks/useMarkdown';
 
 const Home = () => {
@@ -49,29 +50,29 @@ const Home = () => {
 
           {/* Right Content - Stats Card */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end mt-12 lg:mt-0">
-            <div className="bg-[#0f172a] rounded-[2rem] p-8 border border-slate-700 shadow-2xl w-full max-w-[420px] flex flex-col relative overflow-hidden">
+            <div className="bg-[#0f172a] rounded-[2rem] p-6 border border-slate-700 shadow-2xl w-full max-w-[420px] flex flex-col relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-500 to-amber-500"></div>
 
-              <div className="flex-1 flex flex-col items-center justify-center py-8">
-                <div className="w-48 h-48 mb-8 relative flex items-center justify-center">
-                  <img src="/assets/images/logo.png" alt="MSU Logo" className="w-full h-full object-contain drop-shadow-2xl z-10 relative" onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
-                  <div className="w-full h-full rounded-full border-[3px] border-[#25418b] hidden flex-col items-center justify-center bg-white shadow-inner">
+              <div className="flex-1 flex flex-col items-center justify-center py-4">
+                <div className="w-36 h-36 mb-5 relative flex items-center justify-center bg-white rounded-full overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.5)] border-4 border-slate-800">
+                  <img src="/assets/images/logo.png" alt="MSU Logo" className="w-full h-full object-contain object-center p-2 z-10 relative" onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
+                  <div className="w-full h-full rounded-full hidden flex-col items-center justify-center bg-white">
                     <span className="text-[#25418b] font-black text-2xl">MSU</span>
                   </div>
                 </div>
 
                 <h3 className="text-xl font-bold text-white font-serif tracking-widest text-center">{homeData?.secretariat?.title || 'CENTRAL SECRETARIAT'}</h3>
-                <p className="text-amber-500 italic font-serif text-center mt-2 font-medium">{homeData?.secretariat?.location || 'Tadubi Sub-Division & Senapati, Manipur'}</p>
+                <p className="text-amber-500 italic font-serif text-center mt-1.5 font-medium text-[15px]">{homeData?.secretariat?.location || 'Tadubi Sub-Division & Senapati, Manipur'}</p>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 mt-4">
-                <div className="bg-slate-900 rounded-xl p-5 text-center border border-slate-800 shadow-inner">
-                  <div className="text-3xl font-black text-amber-500 mb-2">{homeData?.secretariat?.stats?.[0]?.value || '27'}</div>
-                  <div className="text-[10px] font-bold text-slate-300 uppercase tracking-widest" dangerouslySetInnerHTML={{ __html: homeData?.secretariat?.stats?.[0]?.label || 'CONSTITUENT<br />UNITS' }}></div>
+              <div className="grid grid-cols-2 gap-3 mt-2">
+                <div className="bg-[#15203c] rounded-xl p-4 text-center border border-slate-800 shadow-inner">
+                  <div className="text-3xl font-black text-amber-500 mb-1">{homeData?.secretariat?.stats?.[0]?.value || '27'}</div>
+                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-relaxed" dangerouslySetInnerHTML={{ __html: homeData?.secretariat?.stats?.[0]?.label || 'CONSTITUENT<br />UNITS' }}></div>
                 </div>
-                <div className="bg-slate-900 rounded-xl p-5 text-center border border-slate-800 shadow-inner">
-                  <div className="text-3xl font-black text-amber-500 mb-2">{homeData?.secretariat?.stats?.[1]?.value || '4'}</div>
-                  <div className="text-[10px] font-bold text-slate-300 uppercase tracking-widest" dangerouslySetInnerHTML={{ __html: homeData?.secretariat?.stats?.[1]?.label || 'SUBORDINATE<br />BODIES' }}></div>
+                <div className="bg-[#15203c] rounded-xl p-4 text-center border border-slate-800 shadow-inner">
+                  <div className="text-3xl font-black text-amber-500 mb-1">{homeData?.secretariat?.stats?.[1]?.value || '4'}</div>
+                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-relaxed" dangerouslySetInnerHTML={{ __html: homeData?.secretariat?.stats?.[1]?.label || 'SUBORDINATE<br />BODIES' }}></div>
                 </div>
               </div>
             </div>
@@ -150,37 +151,72 @@ const Home = () => {
       </section>
 
       {/* Mission & Vision Section */}
-      <section className="py-24 bg-slate-50 dark:bg-zinc-950 px-6 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/4"></div>
-        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-amber-500/5 rounded-full blur-3xl translate-y-1/4 translate-x-1/4"></div>
+      <section className="py-24 bg-white dark:bg-zinc-950 px-6 relative overflow-hidden">
+        {/* Abstract Background Elements */}
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-900/5 via-transparent to-transparent"></div>
+        <div className="absolute bottom-0 right-0 w-[800px] h-[800px] bg-amber-500/5 rounded-full blur-[100px] translate-y-1/3 translate-x-1/3 pointer-events-none"></div>
 
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
-          {/* Mission Card */}
-          <div className="bg-white dark:bg-zinc-900 p-8 md:p-10 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-slate-100 dark:border-zinc-800 relative overflow-hidden group hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-500 flex flex-col h-full">
-            <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600"></div>
-
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-14 h-14 shrink-0 bg-blue-50 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500 shadow-sm border border-blue-100 dark:border-blue-800/50">
-                <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
-              </div>
-              <h2 className="text-3xl font-bold font-serif text-slate-900 dark:text-white leading-tight">{aboutData?.mission?.title || 'Our Mission'}</h2>
-            </div>
-
-            <p className="text-slate-600 dark:text-zinc-300 leading-relaxed text-lg flex-1">{aboutData?.mission?.content}</p>
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-sm font-bold text-amber-500 tracking-widest uppercase mb-3">Our Core Purpose</h2>
+            <h3 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white font-serif tracking-tight">Mission & Vision</h3>
+            <div className="w-24 h-1.5 bg-gradient-to-r from-[#1e3a8a] to-amber-500 rounded-full mx-auto mt-6"></div>
           </div>
 
-          {/* Vision Card */}
-          <div className="bg-white dark:bg-zinc-900 p-8 md:p-10 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-slate-100 dark:border-zinc-800 relative overflow-hidden group hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-500 flex flex-col h-full">
-            <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-amber-500 to-orange-500"></div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            {/* Mission Card */}
+            <div className="group relative bg-slate-50 dark:bg-zinc-900 rounded-[2.5rem] p-8 md:p-12 shadow-sm hover:shadow-2xl border border-slate-200/60 dark:border-zinc-800 transition-all duration-500 hover:-translate-y-2 overflow-hidden flex flex-col h-full">
+              {/* Background Glow */}
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-all duration-700"></div>
+              
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="flex items-center gap-6 mb-8">
+                  <div className="relative shrink-0">
+                    <div className="absolute inset-0 bg-blue-500/30 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                    <div className="relative w-16 h-16 bg-gradient-to-br from-[#1e3a8a] to-blue-600 rounded-2xl flex items-center justify-center shadow-lg transform group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500">
+                      <Target className="w-8 h-8 text-white" strokeWidth={2} />
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="text-3xl font-bold font-serif text-slate-900 dark:text-white leading-tight">{aboutData?.mission?.title || 'Our Mission'}</h4>
+                  </div>
+                </div>
 
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-14 h-14 shrink-0 bg-amber-50 dark:bg-amber-900/40 rounded-2xl flex items-center justify-center text-amber-600 dark:text-amber-400 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 shadow-sm border border-amber-100 dark:border-amber-800/50">
-                <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                <div className="flex-1 relative">
+                  <div className="absolute left-0 top-2 bottom-2 w-1 bg-gradient-to-b from-blue-500/50 to-transparent rounded-full"></div>
+                  <p className="text-slate-600 dark:text-zinc-300 leading-relaxed text-lg md:text-xl pl-6">
+                    {aboutData?.mission?.content}
+                  </p>
+                </div>
               </div>
-              <h2 className="text-3xl font-bold font-serif text-slate-900 dark:text-white leading-tight">{aboutData?.vision?.title || 'Our Vision'}</h2>
             </div>
 
-            <p className="text-slate-600 dark:text-zinc-300 leading-relaxed text-lg flex-1">{aboutData?.vision?.content}</p>
+            {/* Vision Card */}
+            <div className="group relative bg-slate-50 dark:bg-zinc-900 rounded-[2.5rem] p-8 md:p-12 shadow-sm hover:shadow-2xl border border-slate-200/60 dark:border-zinc-800 transition-all duration-500 hover:-translate-y-2 overflow-hidden flex flex-col h-full">
+              {/* Background Glow */}
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl group-hover:bg-amber-500/20 transition-all duration-700"></div>
+              
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="flex items-center gap-6 mb-8">
+                  <div className="relative shrink-0">
+                    <div className="absolute inset-0 bg-amber-500/30 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                    <div className="relative w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                      <Eye className="w-8 h-8 text-white" strokeWidth={2} />
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="text-3xl font-bold font-serif text-slate-900 dark:text-white leading-tight">{aboutData?.vision?.title || 'Our Vision'}</h4>
+                  </div>
+                </div>
+
+                <div className="flex-1 relative">
+                  <div className="absolute left-0 top-2 bottom-2 w-1 bg-gradient-to-b from-amber-500/50 to-transparent rounded-full"></div>
+                  <p className="text-slate-600 dark:text-zinc-300 leading-relaxed text-lg md:text-xl pl-6">
+                    {aboutData?.vision?.content}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
