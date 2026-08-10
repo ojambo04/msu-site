@@ -16,11 +16,11 @@ const ImageModal = ({ imageUrl, onClose }) => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
-      <div className="relative max-w-4xl w-full max-h-[90vh] flex justify-center items-center">
+      <div className="relative w-full h-full max-w-5xl flex justify-center items-center">
         <img 
           src={imageUrl} 
           alt="Enlarged profile" 
-          className="max-w-full max-h-[85vh] object-contain rounded-xl shadow-2xl"
+          className="w-auto h-auto max-w-full max-h-[60vh] md:max-h-full object-contain rounded-xl shadow-2xl"
           onClick={(e) => e.stopPropagation()}
         />
       </div>
