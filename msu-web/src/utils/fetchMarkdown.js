@@ -1,11 +1,22 @@
 import frontMatter from 'front-matter';
 
-// This utility fetches markdown from a given URL or local public folder
+// In production, content is fetched directly from GitHub (single source of truth).
+// In development, Vite copies msu-content/ → public/content/ so we can serve locally.
+const GITHUB_RAW_BASE =
+  'https://raw.githubusercontent.com/ojambo04/msu-site/main/msu-content/content';
+
+const getContentUrl = (filename) => {
+  if (import.meta.env.PROD) {
+    // Production: read from GitHub raw — no deploy step needed for content updates
+    return `${GITHUB_RAW_BASE}/${filename}`;
+  }
+  // Development: served from public/content/ (auto-copied by Vite plugin)
+  return `/content/${filename}`;
+};
+
 export const fetchMarkdown = async (filename) => {
   try {
-    // For local development, we fetch from the public folder.
-    // In production, this can be changed to point to the raw GitHub URL.
-    const url = `/content/${filename}?t=${new Date().getTime()}`;
+    const url = getContentUrl(filename);
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`Failed to fetch ${filename}: ${response.statusText}`);

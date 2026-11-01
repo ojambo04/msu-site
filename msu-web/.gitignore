@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Content is the canonical source in ../msu-content/
+# Auto-copied here by the Vite dev plugin — do not commit
+public/content/
+public/files/
+public/images/
+public/assets/

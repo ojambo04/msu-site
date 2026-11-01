@@ -2,7 +2,7 @@
 header:
   title: "About the Union"
   subtitle: "Founded in 1933 with the enduring motto, 'Sacrifice and Progress'. Discover our rich history and our legendary leaders."
-  constitutionPdf: "#"
+  constitutionPdf: "constitution.pdf"
 
 mission:
   title: "Our Mission"

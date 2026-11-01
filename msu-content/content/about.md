@@ -2,14 +2,13 @@
 header:
   title: "About the Union"
   subtitle: "Founded in 1933 with the enduring motto, 'Sacrifice and Progress'. Discover our rich history and our legendary leaders."
+  constitutionPdf: "constitution.pdf"
 
 mission:
-  tag: "CORE MISSION"
   title: "Our Mission"
   content: "To empower students through quality educational access, protect student rights, foster patriotic leadership, preserve ancestral Mao cultural traditions, and safeguard our pristine environment for future generations."
 
 vision:
-  tag: "ENDURING VISION"
   title: "Our Vision"
   content: "A unified, highly educated, resilient, and socially conscious student body driving progressive development, ecological preservation, and leadership across regional and global spheres."
 
@@ -35,21 +34,7 @@ timeline:
   - year: "2033"
     title: "Centenary Celebrations (Upcoming)"
     description: "Preparations begin for the monumental 100-year anniversary of the Mao Students' Union."
-hallOfFame:
-  presidents:
-    - name: "Mr. P. Daili"
-      tenure: "1972 - 1978"
-      description: "Instituted the Inter-School Literary Meet and led major advocacy campaigns for school infrastructure in rural Mao areas."
-      image: "/assets/profile_3.png"
-  secretaries:
-    - name: "Mr. A. Lokho"
-      tenure: "1933 - 1938"
-      description: "Drafted the initial structural framework for the Union and served alongside the founding president."
-      image: "/assets/profile_2.png"
-    - name: "Mr. S. P. Neli"
-      tenure: "1948 - 1954"
-      description: "Key administrative figure during the expansion phase, known for meticulous record-keeping and student advocacy."
-      image: "/assets/profile_1.png"
+
 ---
 
 The Mao Students' Union (MSU) is one of the oldest and most respected student body organizations, founded in 1933 with the enduring motto, "Sacrifice and Progress." For over nine decades, the Union has remained committed to serving the interests of the student community while fostering unity, leadership, and social responsibility.

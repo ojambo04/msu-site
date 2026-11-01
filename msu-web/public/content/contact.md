@@ -7,7 +7,7 @@ directory:
   title: "Constituent Units Directory"
   description: "The Mao Students' Union spans 27 Constituent Units across Manipur, Nagaland, Assam, and major cities in India. For unit-specific queries, reach out directly via your regional executive representatives."
 socials:
-  facebook: "#"
-  instagram: "#"
+  facebook: "https://facebook.com/groups/277556472336657/"
+  instagram: "https://www.instagram.com/maostudentsunion"
   youtube: "#"
 ---

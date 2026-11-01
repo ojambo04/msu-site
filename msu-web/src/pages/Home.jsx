@@ -8,6 +8,7 @@ const Home = () => {
   const { attributes: eventsData } = useMarkdown('events.md');
   const { attributes: noticesData } = useMarkdown('notices.md');
   const { attributes: aboutData } = useMarkdown('about.md');
+  const { attributes: contactData } = useMarkdown('contact.md');
 
   const upcomingEvents = eventsData?.upcoming?.slice(0, 3) || [];
   const latestNotices = noticesData?.notices?.slice(0, 3) || [];
@@ -317,15 +318,15 @@ const Home = () => {
             <p className="text-slate-300 text-sm md:text-base leading-relaxed">{homeData?.socials?.description || "Stay updated with daily announcements, cultural videos, literary meet archives, and sports updates on our official social handles."}</p>
           </div>
           <div className="flex flex-wrap lg:flex-nowrap justify-center lg:justify-end gap-4 shrink-0">
-            <a href={homeData?.socials?.links?.facebook || "#"} className="flex items-center gap-2 bg-[#25418b] hover:bg-[#1c326b] text-white font-bold py-2 px-4 rounded-full transition-colors text-xs">
+            <a href={contactData?.socials?.facebook || "#"} className="flex items-center gap-2 bg-[#25418b] hover:bg-[#1c326b] text-white font-bold py-2 px-4 rounded-full transition-colors text-xs">
               <svg className="w-4 h-4 text-amber-500" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.325v21.351C0 23.403.597 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.597 1.323-1.325V1.325C24 .597 23.403 0 22.675 0z" /></svg>
               Facebook
             </a>
-            <a href={homeData?.socials?.links?.instagram || "#"} className="flex items-center gap-2 bg-[#25418b] hover:bg-[#1c326b] text-white font-bold py-2 px-4 rounded-full transition-colors text-xs">
+            <a href={contactData?.socials?.instagram || "#"} className="flex items-center gap-2 bg-[#25418b] hover:bg-[#1c326b] text-white font-bold py-2 px-4 rounded-full transition-colors text-xs">
               <svg className="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
               Instagram
             </a>
-            <a href={homeData?.socials?.links?.youtube || "#"} className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-2 px-4 rounded-full transition-colors text-xs">
+            <a href={contactData?.socials?.youtube || "#"} className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-2 px-4 rounded-full transition-colors text-xs">
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93-.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
               YouTube
             </a>
