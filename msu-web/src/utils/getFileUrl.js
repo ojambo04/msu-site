@@ -35,7 +35,7 @@ export const getImageUrl = (imagePath) => {
   if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
     return imagePath;
   }
-  const cleanName = imagePath.replace(/^(\/?assets)?\/images\//, '').replace(/^\//, '');
+  const cleanName = imagePath.replace(/^(\/?assets)?\/?images\//, '').replace(/^\//, '');
   if (import.meta.env.PROD) {
     return `${GITHUB_IMAGES_BASE}/${cleanName}`;
   }

@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { resolve } from 'path'
-import { cpSync, mkdirSync, watch, existsSync } from 'fs'
+import { cpSync, mkdirSync, watch, existsSync, rmSync } from 'fs'
 
 const msuRoot          = resolve(import.meta.dirname, '../msu-content')
 const contentSrc       = resolve(import.meta.dirname, '../msu-content/content')
@@ -18,7 +18,7 @@ const assetsImagesDest = resolve(import.meta.dirname, 'public/assets/images')
  * - Copies content/ (*.md) into public/content/
  * - Copies files/ into public/files/
  * - Copies images/ into public/images/ and public/assets/images/
- * Runs during `vite` (dev) and `vite build` (production).
+ * Runs ONLY during `vite` (dev server). Disabled during `vite build`.
  */
 function contentSyncPlugin() {
   let watcher = null
@@ -56,6 +56,7 @@ function contentSyncPlugin() {
 
   return {
     name: 'content-sync-plugin',
+    apply: 'serve', // Only run during development server
     buildStart() {
       sync()
     },
@@ -73,9 +74,29 @@ function contentSyncPlugin() {
   }
 }
 
+/**
+ * Ensures msu-content files (content, files, images) are not included in dist/ at build time.
+ */
+function excludeContentFromDistPlugin() {
+  return {
+    name: 'exclude-content-from-dist-plugin',
+    apply: 'build',
+    closeBundle() {
+      const dist = resolve(import.meta.dirname, 'dist')
+      const foldersToRemove = ['content', 'files', 'images', 'assets/images']
+      for (const folder of foldersToRemove) {
+        const target = resolve(dist, folder)
+        if (existsSync(target)) {
+          rmSync(target, { recursive: true, force: true })
+        }
+      }
+    },
+  }
+}
+
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [contentSyncPlugin(), react(), tailwindcss()],
+  plugins: [contentSyncPlugin(), excludeContentFromDistPlugin(), react(), tailwindcss()],
   build: {
     rollupOptions: {
       output: {

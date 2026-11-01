@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Quote } from 'lucide-react';
+import { getImageUrl } from '../utils/getFileUrl';
 
 const HallOfFame = ({ data }) => {
   if (!data || (!data.presidents && !data.secretaries)) return null;
@@ -56,7 +57,7 @@ const HallOfFame = ({ data }) => {
                   <div className="absolute inset-0 bg-primary/20 rounded-full blur-md group-hover:blur-xl transition-all duration-500"></div>
                   <div className="relative w-20 h-20 rounded-full p-[3px] bg-gradient-to-br from-[#1e3a8a] to-amber-500 shadow-md">
                     <div className="w-full h-full rounded-full overflow-hidden bg-white dark:bg-zinc-900 border-2 border-white dark:border-zinc-900">
-                      <img src={person.image} alt={person.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                      <img src={getImageUrl(person.image)} alt={person.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                     </div>
                   </div>
                 </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Moon, Sun, Menu, X, Phone, Search } from 'lucide-react';
 import { useMarkdown } from '../hooks/useMarkdown';
-import { getFileUrl } from '../utils/getFileUrl';
+import { getFileUrl, getImageUrl } from '../utils/getFileUrl';
 
 const Navbar = ({ toggleTheme, theme }) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -71,7 +71,7 @@ const Navbar = ({ toggleTheme, theme }) => {
           {/* Logo & Brand */}
           <NavLink to="/" className="flex items-center gap-4 group">
             <div className="w-14 h-14 md:w-16 md:h-16 bg-transparent shrink-0 flex items-center justify-center relative">
-              <img src="/assets/images/logo.png" alt="MSU Logo" className="w-full h-full object-contain absolute inset-0 z-10" onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
+              <img src={getImageUrl('logo.png')} alt="MSU Logo" className="w-full h-full object-contain absolute inset-0 z-10" onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
               {/* Fallback generic circular logo if image is missing */}
               <div className="w-full h-full rounded-full border-[3px] border-[#25418b] dark:border-blue-400 hidden flex-col items-center justify-center">
                 <span className="text-[#25418b] dark:text-blue-400 font-bold text-lg leading-none">MSU</span>

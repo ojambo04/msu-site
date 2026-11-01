@@ -1,5 +1,6 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import ImageModal from './ImageModal';
+import { getImageUrl } from '../utils/getFileUrl';
 
 const ExecutiveLeaders = ({ leaders }) => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -20,9 +21,9 @@ const ExecutiveLeaders = ({ leaders }) => {
             <div className="bg-[#20387b] p-8 flex flex-col md:flex-row items-center md:items-start gap-6">
               <div 
                 className="w-32 h-32 rounded-3xl p-1 border-2 border-yellow-400 shrink-0 overflow-hidden bg-white/10 cursor-pointer hover:opacity-80 transition-opacity"
-                onClick={() => setSelectedImage(leader.image)}
+                onClick={() => setSelectedImage(getImageUrl(leader.image))}
               >
-                <img src={leader.image} alt={leader.name} className="w-full h-full object-cover rounded-[20px]" />
+                <img src={getImageUrl(leader.image)} alt={leader.name} className="w-full h-full object-cover rounded-[20px]" />
               </div>
               <div className="text-center md:text-left text-white mt-2 md:mt-0">
                 <div className="inline-block bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-md tracking-wider uppercase mb-3">

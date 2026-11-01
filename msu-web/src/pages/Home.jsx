@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { Target, Eye } from 'lucide-react';
 import { useMarkdown } from '../hooks/useMarkdown';
+import { getImageUrl } from '../utils/getFileUrl';
 
 const Home = () => {
   const { attributes: homeData } = useMarkdown('home.md');
@@ -56,7 +57,7 @@ const Home = () => {
 
               <div className="flex-1 flex flex-col items-center justify-center py-4">
                 <div className="w-36 h-36 mb-5 relative flex items-center justify-center bg-white rounded-full overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.5)] border-4 border-slate-800">
-                  <img src="/assets/images/logo.png" alt="MSU Logo" className="w-full h-full object-contain object-center p-2 z-10 relative" onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
+                  <img src={getImageUrl('logo.png')} alt="MSU Logo" className="w-full h-full object-contain object-center p-2 z-10 relative" onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
                   <div className="w-full h-full rounded-full hidden flex-col items-center justify-center bg-white">
                     <span className="text-[#25418b] font-black text-2xl">MSU</span>
                   </div>

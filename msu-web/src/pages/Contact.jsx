@@ -1,6 +1,7 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Building, ExternalLink, Clock, Send, Share2 } from 'lucide-react';
 import { useMarkdown } from '../hooks/useMarkdown';
+import { getImageUrl } from '../utils/getFileUrl';
 
 const Contact = () => {
   const { attributes: contactData } = useMarkdown('contact.md');
@@ -16,7 +17,7 @@ const Contact = () => {
       {/* Hero Banner Section */}
       <div className="w-full relative pt-24 pb-20 px-4 md:px-8 overflow-hidden z-0">
         <div className="absolute inset-0 z-[-1]">
-          <img src="/assets/images/banner_abstract.png" alt="Banner" className="w-full h-full object-cover" />
+          <img src={getImageUrl('banner_abstract.png')} alt="Banner" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-[#20387b]/85 mix-blend-multiply"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#152554]/90 dark:to-zinc-950/95"></div>
         </div>

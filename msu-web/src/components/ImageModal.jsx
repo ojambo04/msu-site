@@ -1,4 +1,5 @@
 import React from 'react';
+import { getImageUrl } from '../utils/getFileUrl';
 
 const ImageModal = ({ imageUrl, onClose }) => {
   if (!imageUrl) return null;
@@ -18,7 +19,7 @@ const ImageModal = ({ imageUrl, onClose }) => {
       </button>
       <div className="relative w-full h-full max-w-5xl flex justify-center items-center">
         <img 
-          src={imageUrl} 
+          src={getImageUrl(imageUrl)} 
           alt="Enlarged profile" 
           className="w-auto h-auto max-w-full max-h-[60vh] md:max-h-full object-contain rounded-xl shadow-2xl"
           onClick={(e) => e.stopPropagation()}

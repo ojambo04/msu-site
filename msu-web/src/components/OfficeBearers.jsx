@@ -1,5 +1,6 @@
-﻿import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import ImageModal from './ImageModal';
+import { getImageUrl } from '../utils/getFileUrl';
 
 const OfficeBearers = ({ bearers }) => {
   const [filter, setFilter] = useState('All');
@@ -51,9 +52,9 @@ const OfficeBearers = ({ bearers }) => {
             <div className="flex items-center gap-4 mb-5">
               <div
                 className="w-24 h-24 rounded-2xl overflow-hidden shrink-0 border border-slate-200 dark:border-zinc-800 cursor-pointer hover:opacity-80 transition-opacity"
-                onClick={() => setSelectedImage(person.image)}
+                onClick={() => setSelectedImage(getImageUrl(person.image))}
               >
-                <img src={person.image} alt={person.name} className="w-full h-full object-cover" />
+                <img src={getImageUrl(person.image)} alt={person.name} className="w-full h-full object-cover" />
               </div>
               <div>
                 <div className="text-[10px] font-bold text-[#20387b] dark:text-blue-300 tracking-wider uppercase mb-1">

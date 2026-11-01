@@ -1,7 +1,7 @@
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useMarkdown } from '../hooks/useMarkdown';
-import { getFileUrl } from '../utils/getFileUrl';
+import { getFileUrl, getImageUrl } from '../utils/getFileUrl';
 import Timeline from '../components/Timeline';
 import HallOfFame from '../components/HallOfFame';
 
@@ -22,7 +22,7 @@ const About = () => {
       {/* Hero Banner Section */}
       <div className="w-full relative pt-24 pb-20 px-4 md:px-8 overflow-hidden z-0">
         <div className="absolute inset-0 z-[-1]">
-          <img src="/assets/images/banner_abstract.png" alt="Banner" className="w-full h-full object-cover" />
+          <img src={getImageUrl('banner_abstract.png')} alt="Banner" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-[#20387b]/85 mix-blend-multiply"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#152554]/90 dark:to-zinc-950/95"></div>
         </div>
@@ -90,7 +90,12 @@ const About = () => {
       <div className="relative z-10 w-full max-w-5xl mx-auto px-4 md:px-6 mt-2 slide-up" style={{ animationDelay: '150ms' }}>
         <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:shadow-2xl transition-all duration-300 p-8 md:p-14 border border-slate-100 dark:border-zinc-800">
           <div className="markdown-content">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                img: ({ src, alt, ...props }) => <img src={getImageUrl(src)} alt={alt} {...props} />
+              }}
+            >
               {content}
             </ReactMarkdown>
           </div>

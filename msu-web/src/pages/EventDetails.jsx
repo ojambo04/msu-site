@@ -1,6 +1,7 @@
-﻿import React from 'react';
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useMarkdown } from '../hooks/useMarkdown';
+import { getImageUrl } from '../utils/getFileUrl';
 
 const EventDetails = () => {
   const { id } = useParams();
@@ -32,7 +33,7 @@ const EventDetails = () => {
       {/* Hero Header */}
       <div className="w-full bg-[#20387b] pt-16 pb-24 px-4 md:px-8 overflow-hidden z-0 shadow-inner relative">
         <div className="absolute inset-0 z-[-1] opacity-20 mix-blend-overlay">
-           <img src="/assets/images/banner_abstract.png" alt="Texture" className="w-full h-full object-cover" />
+           <img src={getImageUrl('banner_abstract.png')} alt="Texture" className="w-full h-full object-cover" />
         </div>
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <Link to="/events" state={{ tab: 'past' }} className="inline-flex items-center text-blue-200 hover:text-white transition-colors text-sm font-bold mb-8 group">
@@ -104,7 +105,7 @@ const EventDetails = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {event.images.map((img, idx) => (
                 <div key={idx} className="rounded-2xl overflow-hidden aspect-video bg-slate-100 dark:bg-zinc-950 shadow-md border border-slate-200 dark:border-zinc-800 group">
-                  <img src={img} alt={`Gallery image ${idx + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 cursor-pointer" />
+                  <img src={getImageUrl(img)} alt={`Gallery image ${idx + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 cursor-pointer" />
                 </div>
               ))}
             </div>
