@@ -7,7 +7,7 @@ const TabNavigation = ({ tabs, activeTab, onTabChange, rightElement }) => {
   );
 
   return (
-    <div className="bg-white dark:bg-zinc-900 rounded-2xl md:rounded-full shadow-lg p-2 mb-10 flex flex-col md:flex-row items-center gap-4 relative z-20 border border-slate-100 dark:border-zinc-800">
+    <div className="bg-white dark:bg-zinc-900 rounded-2xl md:rounded-3xl shadow-lg p-2.5 mb-10 flex flex-col md:flex-row items-center gap-4 relative z-20 border border-slate-100 dark:border-zinc-800">
       
       {/* Stacked for mobile, flex row for desktop */}
       <div className={`flex w-full md:w-auto flex-1 ${rightElement ? 'justify-start' : 'justify-center'}`}>

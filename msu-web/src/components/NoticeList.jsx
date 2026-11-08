@@ -1,17 +1,18 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { Calendar, Download, FileText, ArrowRight, AlertCircle, SearchX } from 'lucide-react';
 import { getFileUrl } from '../utils/getFileUrl';
 import { formatDate } from '../utils/formatDate';
 
-const NoticeList = ({ notices, filter, searchQuery }) => {
-
+const NoticeList = ({ notices, filter, searchQuery, onResetFilters }) => {
   const filteredNotices = useMemo(() => {
     if (!notices) return [];
 
-    return notices.filter(notice => {
+    return notices.filter((notice) => {
       const matchesCategory = filter === 'All Notices' || notice.category === filter;
-      const query = (searchQuery || '').toLowerCase();
+      const query = (searchQuery || '').toLowerCase().trim();
       const matchesSearch =
+        !query ||
         (notice.ref || '').toLowerCase().includes(query) ||
         (notice.title || '').toLowerCase().includes(query) ||
         (notice.snippet || '').toLowerCase().includes(query);
@@ -20,100 +21,139 @@ const NoticeList = ({ notices, filter, searchQuery }) => {
     });
   }, [notices, filter, searchQuery]);
 
-
   return (
     <div className="w-full max-w-6xl mx-auto px-4 pb-20 slide-up" style={{ animationDelay: '150ms' }}>
+      
+      {/* Result Count Header */}
+      <div className="flex items-center justify-between mb-5 px-1 text-sm text-slate-500 dark:text-zinc-400">
+        <span>
+          Showing <strong className="text-slate-800 dark:text-zinc-200">{filteredNotices.length}</strong>{' '}
+          {filteredNotices.length === 1 ? 'notice' : 'notices'}
+        </span>
+      </div>
 
       {/* Notice Cards List */}
       <div className="space-y-4">
-        {filteredNotices.map((notice, index) => (
-          <div key={index} className="bg-white dark:bg-zinc-900 rounded-[20px] p-6 shadow-[0_2px_10px_rgb(0,0,0,0.04)] border border-slate-100 dark:border-zinc-800 hover:shadow-lg transition-all duration-300 fade-in flex flex-col md:flex-row justify-between gap-6" style={{ animationDelay: `${index * 50}ms` }}>
+        {filteredNotices.map((notice, index) => {
+          const attachedFile = notice.file || notice.pdf;
+          const downloadUrl = attachedFile ? getFileUrl(attachedFile) : null;
+          const isUrgent = Boolean(notice.urgent);
 
-            {/* Left Content */}
-            <div className="flex-1 pr-0 md:pr-8">
-              {/* Tags Row */}
-              <div className="flex flex-wrap items-center gap-2 mb-3">
-                <span className="bg-[#20387b] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-sm">
-                  {notice.ref}
-                </span>
-                <span className="bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-zinc-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
-                  {notice.category}
-                </span>
-                {notice.urgent && (
-                  <span className="bg-amber-500 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-sm flex items-center">
-                    <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                    </svg>
-                    URGENT ALERT
+          return (
+            <div
+              key={notice.slug || index}
+              className={`group bg-white dark:bg-zinc-900 rounded-2xl p-6 md:p-7 shadow-[0_2px_12px_rgb(0,0,0,0.03)] border transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 flex flex-col md:flex-row justify-between gap-6 relative overflow-hidden ${
+                isUrgent
+                  ? 'border-l-4 border-l-amber-500 border-t-amber-100/60 border-r-amber-100/60 border-b-amber-100/60 dark:border-l-amber-500 dark:border-t-zinc-800 dark:border-r-zinc-800 dark:border-b-zinc-800 bg-gradient-to-r from-amber-50/20 via-white to-white dark:from-amber-950/10 dark:via-zinc-900 dark:to-zinc-900'
+                  : 'border-slate-100 dark:border-zinc-800 hover:border-slate-200 dark:hover:border-zinc-700'
+              }`}
+            >
+              {/* Left Notice Content */}
+              <div className="flex-1 min-w-0 pr-0 md:pr-6">
+                
+                {/* Meta Badges Row */}
+                <div className="flex flex-wrap items-center gap-2.5 mb-3.5">
+                  {notice.ref && (
+                    <span className="font-mono text-[11px] font-semibold px-2.5 py-1 rounded-md bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-zinc-300 border border-slate-200/80 dark:border-zinc-700">
+                      {notice.ref}
+                    </span>
+                  )}
+
+                  {notice.category && (
+                    <span className="text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider bg-blue-50 text-[#20387b] dark:bg-blue-950/60 dark:text-blue-300">
+                      {notice.category}
+                    </span>
+                  )}
+
+                  {isUrgent && (
+                    <span className="inline-flex items-center gap-1 bg-amber-500 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm animate-pulse">
+                      <AlertCircle className="w-3 h-3" />
+                      Urgent Alert
+                    </span>
+                  )}
+
+                  <span className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 dark:text-zinc-500 ml-auto md:ml-2">
+                    <Calendar className="w-3.5 h-3.5" />
+                    {formatDate(notice.date)}
                   </span>
-                )}
-                <span className="text-xs font-medium text-slate-400 flex items-center ml-2">
-                  <svg className="w-4 h-4 mr-1 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  {formatDate(notice.date)}
-                </span>
-              </div>
+                </div>
 
-              {/* Title & Snippet */}
-              {notice.hasBody ? (
-                <Link to={`/notices/${notice.slug || ''}`}>
-                  <h3 className="text-xl md:text-[22px] font-bold font-serif text-[#0f172a] dark:text-white mb-2.5 leading-snug hover:text-[#20387b] dark:hover:text-blue-400 transition-colors cursor-pointer">
+                {/* Notice Title */}
+                {notice.hasBody ? (
+                  <Link to={`/notices/${notice.slug || ''}`}>
+                    <h3 className="text-lg md:text-xl font-bold font-serif text-slate-900 dark:text-white mb-2 leading-snug group-hover:text-[#20387b] dark:group-hover:text-blue-400 transition-colors cursor-pointer">
+                      {notice.title}
+                    </h3>
+                  </Link>
+                ) : (
+                  <h3 className="text-lg md:text-xl font-bold font-serif text-slate-900 dark:text-white mb-2 leading-snug">
                     {notice.title}
                   </h3>
-                </Link>
-              ) : (
-                <h3 className="text-xl md:text-[22px] font-bold font-serif text-[#0f172a] dark:text-white mb-2.5 leading-snug">
-                  {notice.title}
-                </h3>
-              )}
-              <p className="text-[15px] text-slate-500 dark:text-zinc-400 font-medium leading-relaxed">
-                {notice.snippet}
-              </p>
+                )}
+
+                {/* Notice Snippet */}
+                {notice.snippet && (
+                  <p className="text-sm md:text-[15px] text-slate-600 dark:text-zinc-400 font-normal leading-relaxed">
+                    {notice.snippet}
+                  </p>
+                )}
+              </div>
+
+              {/* Right Action Buttons */}
+              <div className="flex flex-row md:flex-col items-stretch md:items-end justify-center gap-2.5 shrink-0 pt-3 md:pt-0 border-t md:border-t-0 border-slate-100 dark:border-zinc-800">
+                {notice.hasBody && (
+                  <Link
+                    to={`/notices/${notice.slug || ''}`}
+                    className="inline-flex items-center justify-center gap-1.5 bg-[#20387b] hover:bg-[#152554] text-white text-xs md:text-sm font-semibold py-2.5 px-5 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 flex-1 md:flex-initial"
+                  >
+                    <span>Read Details</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                )}
+
+                {downloadUrl && (
+                  <a
+                    href={downloadUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-1.5 py-2 px-4 rounded-xl border border-slate-200 dark:border-zinc-700 hover:border-amber-500/60 text-slate-700 dark:text-zinc-300 hover:text-amber-600 dark:hover:text-amber-400 hover:bg-amber-50/40 dark:hover:bg-amber-950/20 text-xs md:text-sm font-semibold transition-all duration-200 flex-1 md:flex-initial"
+                  >
+                    <Download className="w-4 h-4 text-amber-500" />
+                    <span>Download</span>
+                  </a>
+                )}
+              </div>
             </div>
+          );
+        })}
 
-            {/* Right Actions */}
-            <div className="flex flex-col items-start md:items-end justify-center gap-3 shrink-0 mt-2 md:mt-0">
-              {notice.hasBody && (
-                <Link
-                  to={`/notices/${notice.slug || ''}`}
-                  className="bg-[#20387b] hover:bg-[#152554] text-white text-sm font-bold py-2.5 px-6 rounded-full transition-all duration-300 flex items-center justify-center shadow-md hover:shadow-lg w-full md:w-auto hover:-translate-y-0.5"
-                >
-                  Read Full Notice
-                  <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H16M16 6V12M16 6L8 14" />
-                  </svg>
-                </Link>
-              )}
-
-              {(notice.file || notice.pdf) && (
-                <a
-                  href={getFileUrl(notice.file || notice.pdf)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 text-sm font-bold flex items-center transition-colors w-full md:w-auto justify-center md:justify-end pr-2"
-                >
-                  <svg className="w-4 h-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
-                  Download
-                </a>
-              )}
-            </div>
-
-          </div>
-        ))}
-
+        {/* Empty State */}
         {filteredNotices.length === 0 && (
-          <div className="text-center py-20 text-slate-500 bg-white dark:bg-zinc-900 rounded-[20px] border border-slate-200 dark:border-zinc-800 shadow-sm">
-            <svg className="w-12 h-12 mx-auto mb-4 text-slate-300 dark:text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <h3 className="text-xl font-bold mb-2">No notices found</h3>
-            <p>Try adjusting your search or category filter.</p>
+          <div className="text-center py-20 px-6 bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 shadow-sm">
+            <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-slate-100 dark:bg-zinc-800 flex items-center justify-center text-slate-400">
+              <SearchX className="w-7 h-7" />
+            </div>
+            <h3 className="text-xl font-bold font-serif text-slate-800 dark:text-zinc-200 mb-2">
+              No Notices Found
+            </h3>
+            <p className="text-sm text-slate-500 dark:text-zinc-400 max-w-md mx-auto mb-6">
+              {searchQuery
+                ? `No announcements match "${searchQuery}" in ${filter}.`
+                : `There are currently no circulars published under "${filter}".`}
+            </p>
+            {onResetFilters && (
+              <button
+                type="button"
+                onClick={onResetFilters}
+                className="inline-flex items-center gap-2 bg-[#20387b] hover:bg-[#152554] text-white text-xs md:text-sm font-semibold py-2.5 px-6 rounded-xl transition-all shadow-sm cursor-pointer"
+              >
+                Clear Filters & Search
+              </button>
+            )}
           </div>
         )}
       </div>
+
     </div>
   );
 };
