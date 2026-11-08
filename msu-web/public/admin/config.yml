@@ -1,14 +1,13 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+
 # ─── Local development only ──────────────────────────────────────────────────
 # Lets you edit files locally without GitHub auth.
-local_backend:
-  url: http://localhost:8081/api/v1
+local_backend: true
 
 backend:
   name: github
-  repo: ojambo04/msu-site        # ← your GitHub repo
+  repo: ojambo04/msu-site
   branch: decap-cms-github-pages
-  auth_type: pkce                 # No OAuth proxy server needed
-  app_id: Ov23licgbyZauCUEmclF
 
 # Where uploaded images are stored in the repo
 media_folder: /msu-content/images
