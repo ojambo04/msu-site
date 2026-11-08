@@ -6,6 +6,17 @@
   },
   "notices": [
     {
+      "slug": "2026-08-04-literary-meet-notification",
+      "hasBody": true,
+      "ref": "MSU/PRESS/2026/08-01",
+      "category": "Events & Tournaments",
+      "urgent": true,
+      "date": "2026-08-04T00:00:00.000Z",
+      "title": "Official Notification: Schedule & Guidelines for Inter-School Literary Meet 2026",
+      "snippet": "Registration details, category rules, and venue guidelines for the annual regional literary meet scheduled on August 14, 2026.",
+      "file": ""
+    },
+    {
       "slug": "2026-06-10-general-assembly-notice",
       "hasBody": true,
       "ref": "MSU/CIR/2026/06-10",
@@ -25,17 +36,6 @@
       "date": "2026-05-22T00:00:00.000Z",
       "title": "Press Statement Condemning Recent Educational Budget Cuts",
       "snippet": "The Mao Students' Union stands in solidarity with all affected student bodies in protesting the recent arbitrary cuts."
-    },
-    {
-      "slug": "2026-08-04-literary-meet-notification",
-      "hasBody": true,
-      "ref": "MSU/PRESS/2026/08-01",
-      "category": "Events & Tournaments",
-      "urgent": true,
-      "date": "2026-08-04",
-      "title": "Official Notification: Schedule & Guidelines for Inter-School Literary Meet 2026",
-      "snippet": "Registration details, category rules, and venue guidelines for the annual regional literary meet scheduled on August 14, 2026.",
-      "file": "notice_1.pdf"
     }
   ]
 }
