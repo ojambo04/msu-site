@@ -4,7 +4,7 @@ status: "past"
 date: "2025-12-15"
 displayDate: "December 15, 2025"
 location: "Pudunamei Village"
-description: "A celebration of our ancestral traditions, folk songs, and indigenous crafts."
+snippet: "A celebration of our ancestral traditions, folk songs, and indigenous crafts."
 youtubeId: "dQw4w9WgXcQ"
 images:
   - "banner_abstract.png"

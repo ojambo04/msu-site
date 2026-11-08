@@ -6,7 +6,7 @@ local_backend:
 backend:
   name: github
   repo: ojambo04/msu-site        # ← your GitHub repo
-  branch: main
+  branch: decap-cms-github-pages
   auth_type: pkce                 # No OAuth proxy server needed
   app_id: Ov23licgbyZauCUEmclF
 
@@ -41,7 +41,7 @@ collections:
       - { name: displayDate, label: "Display Date (e.g. August 14, 2026)", widget: string }
       - { name: time,        label: "Time (optional)",  widget: string,   required: false }
       - { name: location,    label: "Location",         widget: string }
-      - { name: description, label: "Short Description (shown on card)", widget: text }
+      - { name: snippet,     label: "Snippet (shown on card)", widget: text }
       - { name: youtubeId,   label: "YouTube Video ID (optional)",       widget: string,   required: false }
       - name: images
         label: "Gallery Images (optional)"
@@ -53,7 +53,7 @@ collections:
           widget: image
           choose_url: true
       - name: body
-        label: "Full Event Writeup (shown on detail page)"
+        label: "Full Event Writeup (Optional - triggers detail page)"
         widget: markdown
         required: false
 

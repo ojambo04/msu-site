@@ -7,6 +7,7 @@
   "notices": [
     {
       "slug": "2026-08-04-literary-meet-notification",
+      "hasBody": true,
       "ref": "MSU/PRESS/2026/08-01",
       "category": "Events & Tournaments",
       "urgent": true,
@@ -18,6 +19,7 @@
     },
     {
       "slug": "2026-06-10-general-assembly-notice",
+      "hasBody": true,
       "ref": "MSU/CIR/2026/06-10",
       "category": "Official Circular",
       "urgent": false,
@@ -29,6 +31,7 @@
     },
     {
       "slug": "2026-05-22-press-statement",
+      "hasBody": true,
       "ref": "MSU/PR/2026/05-22",
       "category": "Press Release",
       "urgent": false,
@@ -39,4 +42,3 @@
     }
   ]
 }
-

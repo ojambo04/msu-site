@@ -18,18 +18,20 @@ const EventDetails = () => {
     );
   }
 
-  if (!attributes?.title) {
+  const hasWriteup = content && content.trim().length > 0;
+
+  // Only events with a markdown body have a detail page
+  if (!attributes?.title || !hasWriteup) {
     return (
       <div className="w-full flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
         <h2 className="text-3xl font-bold font-serif text-slate-800 dark:text-zinc-200 mb-4">Event Not Found</h2>
+        <p className="text-slate-500 dark:text-zinc-400 mb-6 max-w-md">This event does not have an extended writeup page.</p>
         <Link to="/events" className="text-[#20387b] dark:text-blue-400 hover:underline font-bold">Return to Events</Link>
       </div>
     );
   }
 
   const event = attributes;
-  // Markdown body is the full writeup; fall back to description if body is empty
-  const hasWriteup = content && content.trim().length > 0;
 
   return (
     <div className="w-full flex flex-col items-center bg-[#f8fafc] dark:bg-zinc-950 min-h-screen pb-20 fade-in">
@@ -72,16 +74,10 @@ const EventDetails = () => {
       <div className="w-full max-w-4xl mx-auto px-4 md:px-8 mt-[-50px] relative z-10 slide-up" style={{ animationDelay: '150ms' }}>
         <div className="bg-white dark:bg-zinc-900 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] border border-slate-100 dark:border-zinc-800 p-8 md:p-14 mb-12">
           
-          {/* Full writeup (markdown body) or fallback description */}
-          {hasWriteup ? (
-            <div className="prose prose-slate dark:prose-invert prose-lg max-w-none">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
-            </div>
-          ) : (
-            <p className="text-[15px] md:text-lg text-slate-700 dark:text-zinc-300 leading-relaxed font-medium">
-              {event.description}
-            </p>
-          )}
+          {/* Full writeup (markdown body) */}
+          <div className="prose prose-slate dark:prose-invert prose-lg max-w-none">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+          </div>
 
         </div>
 

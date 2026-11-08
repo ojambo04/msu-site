@@ -6,50 +6,55 @@
   "events": [
     {
       "slug": "ongoing-village-library",
+      "hasBody": false,
       "title": "Village Library Initiative",
       "status": "ongoing",
       "date": "Ongoing",
       "displayDate": "Ongoing",
       "location": "Various Constituent Units",
-      "description": "Collecting and distributing books to setup miniature libraries in remote villages to support primary education."
+      "snippet": "Collecting and distributing books to setup miniature libraries in remote villages to support primary education."
     },
     {
       "slug": "ongoing-career-mentorship",
+      "hasBody": false,
       "title": "Career Mentorship Program",
       "status": "ongoing",
       "date": "Current Academic Year",
       "displayDate": "Current Academic Year",
       "location": "Online / Hybrid",
-      "description": "Connecting senior professionals with college students for career guidance, resume building, and interview preparation."
+      "snippet": "Connecting senior professionals with college students for career guidance, resume building, and interview preparation."
     },
     {
       "slug": "2026-09-10-general-assembly",
+      "hasBody": false,
       "title": "Bi-Annual General Assembly",
       "status": "upcoming",
       "date": "2026-09-10",
       "displayDate": "September 10, 2026",
       "time": "9:00 AM",
       "location": "Central HQ, Tadubi",
-      "description": "Gathering of all constituent unit presidents and secretaries to discuss the upcoming academic year's agenda."
+      "snippet": "Gathering of all constituent unit presidents and secretaries to discuss the upcoming academic year's agenda."
     },
     {
       "slug": "2026-08-14-literary-meet",
+      "hasBody": false,
       "title": "Inter-School Literary Meet 2026",
       "status": "upcoming",
       "date": "2026-08-14",
       "displayDate": "August 14, 2026",
       "time": "10:00 AM - 4:00 PM",
       "location": "Mao Town Hall, Senapati",
-      "description": "Annual regional literary meet featuring debate, essay writing, and extempore speech competitions for high school students."
+      "snippet": "Annual regional literary meet featuring debate, essay writing, and extempore speech competitions for high school students."
     },
     {
       "slug": "2025-12-15-cultural-heritage-festival",
+      "hasBody": true,
       "title": "MSU Cultural Heritage Festival 2025",
       "status": "past",
       "date": "2025-12-15",
       "displayDate": "December 15, 2025",
       "location": "Pudunamei Village",
-      "description": "A celebration of our ancestral traditions, folk songs, and indigenous crafts.",
+      "snippet": "A celebration of our ancestral traditions, folk songs, and indigenous crafts.",
       "youtubeId": "dQw4w9WgXcQ",
       "images": [
         "banner_abstract.png"
@@ -57,12 +62,13 @@
     },
     {
       "slug": "2025-06-05-afforestation-drive",
+      "hasBody": true,
       "title": "Environmental Afforestation Drive",
       "status": "past",
       "date": "2025-06-05",
       "displayDate": "June 5, 2025",
       "location": "Dzukou Valley Approach",
-      "description": "Mass tree plantation drive organized on World Environment Day with over 500 volunteers."
+      "snippet": "Mass tree plantation drive organized on World Environment Day with over 500 volunteers."
     }
   ]
 }

@@ -39,8 +39,9 @@ function readEntries(dir) {
     .map(filename => {
       const slug = basename(filename, '.md');
       const raw  = readFileSync(join(dir, filename), 'utf-8');
-      const { data } = matter(raw);
-      return { slug, ...data };
+      const { data, content } = matter(raw);
+      const hasBody = Boolean(content && content.trim().length > 0);
+      return { slug, hasBody, ...data };
     })
     .sort((a, b) => {
       // Sort by date descending (ISO dates sort lexicographically).
