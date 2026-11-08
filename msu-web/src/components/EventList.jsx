@@ -21,7 +21,7 @@ const EventList = ({ upcoming, ongoing, past, activeTab }) => {
             upcoming.map((event, index) => (
               <div key={index} className="bg-white dark:bg-zinc-900 rounded-3xl overflow-hidden shadow-[0_4px_20px_rgb(0,0,0,0.04)] border border-slate-100 dark:border-zinc-800 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
                 <div className="p-8 flex-1 flex flex-col">
-                  
+
                   {/* Date & Time Badge */}
                   <div className="flex flex-wrap items-center gap-3 mb-5">
                     <span className="bg-[#20387b] text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider flex items-center shadow-sm">
@@ -41,7 +41,7 @@ const EventList = ({ upcoming, ongoing, past, activeTab }) => {
                   </div>
 
                   <h3 className="text-2xl font-bold font-serif text-[#0f172a] dark:text-white mb-3 leading-snug">{event.title}</h3>
-                  
+
                   {event.location && (
                     <div className="flex items-start text-slate-500 dark:text-zinc-400 mb-4 text-[15px] font-medium">
                       <svg className="w-5 h-5 mr-2 mt-0.5 shrink-0 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -57,7 +57,7 @@ const EventList = ({ upcoming, ongoing, past, activeTab }) => {
                   </p>
 
                   {event.hasBody && (
-                    <Link 
+                    <Link
                       to={`/events/${event.slug}`}
                       className="mt-auto w-full py-2.5 rounded-xl border border-slate-200 dark:border-zinc-800 text-slate-700 dark:text-zinc-300 font-bold text-[13px] hover:bg-[#20387b] hover:text-white hover:border-[#20387b] transition-all flex justify-center items-center group"
                     >
@@ -89,7 +89,7 @@ const EventList = ({ upcoming, ongoing, past, activeTab }) => {
             ongoing.map((program, index) => (
               <div key={index} className="bg-white dark:bg-zinc-900 rounded-3xl overflow-hidden shadow-[0_4px_20px_rgb(0,0,0,0.04)] border border-slate-100 dark:border-zinc-800 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
                 <div className="p-8 flex-1 flex flex-col">
-                  
+
                   {/* Date & Time Badge */}
                   <div className="flex flex-wrap items-center gap-3 mb-5">
                     <span className="bg-[#20387b] text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider flex items-center shadow-sm">
@@ -101,7 +101,7 @@ const EventList = ({ upcoming, ongoing, past, activeTab }) => {
                   </div>
 
                   <h3 className="text-2xl font-bold font-serif text-[#0f172a] dark:text-white mb-3 leading-snug">{program.title}</h3>
-                  
+
                   {program.location && (
                     <div className="flex items-start text-slate-500 dark:text-zinc-400 mb-4 text-[15px] font-medium">
                       <svg className="w-5 h-5 mr-2 mt-0.5 shrink-0 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -117,7 +117,7 @@ const EventList = ({ upcoming, ongoing, past, activeTab }) => {
                   </p>
 
                   {program.hasBody && (
-                    <Link 
+                    <Link
                       to={`/events/${program.slug}`}
                       className="mt-auto w-full py-2.5 rounded-xl border border-slate-200 dark:border-zinc-800 text-slate-700 dark:text-zinc-300 font-bold text-[13px] hover:bg-[#20387b] hover:text-white hover:border-[#20387b] transition-all flex justify-center items-center group"
                     >
@@ -139,7 +139,7 @@ const EventList = ({ upcoming, ongoing, past, activeTab }) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 fade-in">
           {(!past || past.length === 0) ? (
             <div className="col-span-1 md:col-span-3 text-center py-20 text-slate-500 bg-white dark:bg-zinc-900 rounded-[20px] border border-slate-200 dark:border-zinc-800 shadow-sm">
-               <svg className="w-12 h-12 mx-auto mb-4 text-slate-300 dark:text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-12 h-12 mx-auto mb-4 text-slate-300 dark:text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <h3 className="text-xl font-bold mb-2">No Past Events</h3>
@@ -149,9 +149,9 @@ const EventList = ({ upcoming, ongoing, past, activeTab }) => {
             past.map((event, index) => (
               <div key={index} className="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-100 dark:border-zinc-800 shadow-[0_2px_10px_rgb(0,0,0,0.03)] hover:shadow-lg transition-all flex flex-col h-full fade-in" style={{ animationDelay: `${index * 50}ms` }}>
                 <span className="text-sm font-bold text-slate-400 dark:text-zinc-500 mb-3 block flex items-center">
-                   <svg className="w-4 h-4 mr-1.5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
+                  <svg className="w-4 h-4 mr-1.5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
                   {formatDate(event.date)}
                 </span>
                 <h3 className="text-lg font-bold font-serif text-slate-800 dark:text-zinc-200 mb-2 leading-snug">{event.title}</h3>
@@ -166,9 +166,9 @@ const EventList = ({ upcoming, ongoing, past, activeTab }) => {
                     {event.location}
                   </div>
                 )}
-                
+
                 {event.hasBody && (
-                  <Link 
+                  <Link
                     to={`/events/${event.slug}`}
                     className="mt-auto w-full py-2.5 rounded-xl border border-slate-200 dark:border-zinc-800 text-slate-700 dark:text-zinc-300 font-bold text-[13px] hover:bg-[#20387b] hover:text-white hover:border-[#20387b] transition-all flex justify-center items-center group"
                   >

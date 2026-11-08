@@ -5,7 +5,7 @@ urgent: true
 date: "2026-08-04"
 title: "Official Notification: Schedule & Guidelines for Inter-School Literary Meet 2026"
 snippet: "Registration details, category rules, and venue guidelines for the annual regional literary meet scheduled on August 14, 2026."
-pdf: "notice_1.pdf"
+file: "notice_1.pdf"
 ---
 
 ## Official Notification

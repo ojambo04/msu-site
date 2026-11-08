@@ -36,3 +36,4 @@ export const formatDate = (dateVal) => {
 
   return `${day}-${month}-${year}`;
 };
+

@@ -7,11 +7,11 @@ const NoticeList = ({ notices, filter, searchQuery }) => {
 
   const filteredNotices = useMemo(() => {
     if (!notices) return [];
-    
+
     return notices.filter(notice => {
       const matchesCategory = filter === 'All Notices' || notice.category === filter;
       const query = (searchQuery || '').toLowerCase();
-      const matchesSearch = 
+      const matchesSearch =
         (notice.ref || '').toLowerCase().includes(query) ||
         (notice.title || '').toLowerCase().includes(query) ||
         (notice.snippet || '').toLowerCase().includes(query);
@@ -28,7 +28,7 @@ const NoticeList = ({ notices, filter, searchQuery }) => {
       <div className="space-y-4">
         {filteredNotices.map((notice, index) => (
           <div key={index} className="bg-white dark:bg-zinc-900 rounded-[20px] p-6 shadow-[0_2px_10px_rgb(0,0,0,0.04)] border border-slate-100 dark:border-zinc-800 hover:shadow-lg transition-all duration-300 fade-in flex flex-col md:flex-row justify-between gap-6" style={{ animationDelay: `${index * 50}ms` }}>
-            
+
             {/* Left Content */}
             <div className="flex-1 pr-0 md:pr-8">
               {/* Tags Row */}
@@ -75,7 +75,7 @@ const NoticeList = ({ notices, filter, searchQuery }) => {
             {/* Right Actions */}
             <div className="flex flex-col items-start md:items-end justify-center gap-3 shrink-0 mt-2 md:mt-0">
               {notice.hasBody && (
-                <Link 
+                <Link
                   to={`/notices/${notice.slug || ''}`}
                   className="bg-[#20387b] hover:bg-[#152554] text-white text-sm font-bold py-2.5 px-6 rounded-full transition-all duration-300 flex items-center justify-center shadow-md hover:shadow-lg w-full md:w-auto hover:-translate-y-0.5"
                 >
@@ -85,10 +85,10 @@ const NoticeList = ({ notices, filter, searchQuery }) => {
                   </svg>
                 </Link>
               )}
-              
-              {notice.pdf && (
+
+              {(notice.file || notice.pdf) && (
                 <a
-                  href={getFileUrl(notice.pdf)}
+                  href={getFileUrl(notice.file || notice.pdf)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 text-sm font-bold flex items-center transition-colors w-full md:w-auto justify-center md:justify-end pr-2"
@@ -96,7 +96,7 @@ const NoticeList = ({ notices, filter, searchQuery }) => {
                   <svg className="w-4 h-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                   </svg>
-                  Download PDF
+                  Download
                 </a>
               )}
             </div>

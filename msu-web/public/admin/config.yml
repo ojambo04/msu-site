@@ -11,7 +11,7 @@ backend:
   app_id: Ov23licgbyZauCUEmclF
 
 # Where uploaded images are stored in the repo
-media_folder: msu-content/images
+media_folder: /msu-content/images
 # The public path used when inserting images into markdown
 public_folder: /images
 
@@ -80,11 +80,12 @@ collections:
       - { name: date,        label: "Date", widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
       - { name: title,       label: "Title",           widget: string }
       - { name: snippet,     label: "Snippet (shown on listing card)", widget: text }
-      - name: pdf
-        label: "Upload Notice PDF Document"
+      - name: file
+        label: "Upload Attachment / Document"
         widget: file
-        media_folder: msu-content/files
+        media_folder: /msu-content/files
         public_folder: /files
+        choose_url: true
         required: false
       - name: body
         label: "Full Notice Body (Optional - triggers detail page)"
@@ -167,8 +168,9 @@ collections:
               - name: constitutionPdf
                 label: "Upload Constitution PDF"
                 widget: file
-                media_folder: msu-content/files
+                media_folder: /msu-content/files
                 public_folder: /files
+                choose_url: true
                 required: false
           - name: mission
             label: "Mission"
@@ -217,8 +219,9 @@ collections:
               - name: image
                 label: "Leader Photo"
                 widget: image
-                media_folder: msu-content/images
+                media_folder: /msu-content/images
                 public_folder: /images
+                choose_url: true
                 required: false
           - name: officeBearers
             label: "Executive Council & Office Bearers"
@@ -242,8 +245,9 @@ collections:
               - name: image
                 label: "Officer Photo"
                 widget: image
-                media_folder: msu-content/images
+                media_folder: /msu-content/images
                 public_folder: /images
+                choose_url: true
                 required: false
 
       # ── Students' Corner ─────────────────────────────────────────────────
@@ -309,8 +313,9 @@ collections:
                   - name: image
                     label: "Portrait Image"
                     widget: image
-                    media_folder: msu-content/images
+                    media_folder: /msu-content/images
                     public_folder: /images
+                    choose_url: true
                     required: false
               - name: secretaries
                 label: "Former General Secretaries"
@@ -322,8 +327,9 @@ collections:
                   - name: image
                     label: "Portrait Image"
                     widget: image
-                    media_folder: msu-content/images
+                    media_folder: /msu-content/images
                     public_folder: /images
+                    choose_url: true
                     required: false
 
       # ── Contact Information ──────────────────────────────────────────────

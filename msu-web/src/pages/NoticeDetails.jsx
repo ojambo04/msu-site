@@ -32,7 +32,9 @@ const NoticeDetails = () => {
   }
 
   const notice = attributes;
-  const pdfDownloadUrl = notice.pdf ? getFileUrl(notice.pdf) : null;
+  const attachedFile = notice.file || notice.pdf;
+  const fileDownloadUrl = attachedFile ? getFileUrl(attachedFile) : null;
+  const fileExtension = attachedFile ? (attachedFile.split('.').pop()?.toUpperCase() || 'FILE') : 'FILE';
 
   return (
     <div className="w-full flex flex-col items-center bg-[#f8fafc] dark:bg-zinc-950 min-h-screen pb-20 fade-in">
@@ -88,21 +90,21 @@ const NoticeDetails = () => {
       <div className="w-full max-w-4xl mx-auto px-4 md:px-8 mt-[-50px] relative z-10 slide-up" style={{ animationDelay: '150ms' }}>
         <div className="bg-white dark:bg-zinc-900 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] border border-slate-100 dark:border-zinc-800 p-8 md:p-14 mb-8">
           
-          {/* Action Row for PDF if present */}
-          {notice.pdf && (
+          {/* Action Row for Attached File if present */}
+          {attachedFile && (
             <div className="mb-8 p-5 bg-blue-50/50 dark:bg-zinc-800/50 border border-blue-100 dark:border-zinc-700/60 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-rose-500/10 text-rose-600 dark:text-rose-400 flex items-center justify-center font-bold text-sm shrink-0">
-                  PDF
+                <div className="w-12 h-12 rounded-xl bg-rose-500/10 text-rose-600 dark:text-rose-400 flex items-center justify-center font-bold text-xs uppercase tracking-wider shrink-0">
+                  {fileExtension}
                 </div>
                 <div>
                   <h4 className="font-bold text-slate-800 dark:text-white text-sm">Official Attached Document</h4>
-                  <p className="text-xs text-slate-500 dark:text-zinc-400">Download the full circular or press release</p>
+                  <p className="text-xs text-slate-500 dark:text-zinc-400">View or download the full circular, attachment, or press release</p>
                 </div>
               </div>
 
               <a
-                href={pdfDownloadUrl}
+                href={fileDownloadUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#20387b] hover:bg-[#152554] text-white text-xs font-bold py-2.5 px-5 rounded-full transition-all duration-300 flex items-center shadow hover:shadow-md shrink-0"
@@ -110,7 +112,7 @@ const NoticeDetails = () => {
                 <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
-                Download PDF Document
+                {fileExtension === 'PDF' ? 'Download PDF Document' : `View / Download ${fileExtension}`}
               </a>
             </div>
           )}

@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, decap-cms-github-pages]
   workflow_dispatch:
 
 # Allow only one concurrent deployment
@@ -58,9 +58,9 @@ jobs:
         run: npm run build
         working-directory: msu-web
         env:
-          # Set to /repo-name/ for a project GitHub Pages site (no custom domain).
-          # Change to / if you have a custom domain configured.
-          VITE_BASE_URL: ${{ vars.VITE_BASE_URL || '/' }}
+          # Defaults to /repo-name/ for GitHub Pages (https://<user>.github.io/<repo>/).
+          # Can be overridden by setting repository variable VITE_BASE_URL (e.g. '/' for custom domain).
+          VITE_BASE_URL: ${{ vars.VITE_BASE_URL || '/msu-site/' }}
 
       # Enables React Router on GitHub Pages: 404 → index.html
       - name: Copy index.html as 404.html for SPA routing

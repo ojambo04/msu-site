@@ -1,11 +1,12 @@
 ---
-ref: "MSU/CIR/2026/06-10"
-category: "Official Circular"
+ref: MSU/CIR/2026/06-10
+category: Official Circular
 urgent: false
-date: "2026-06-10"
-title: "General Assembly Meeting Notice for all Constituent Units"
-snippet: "All unit presidents and secretaries are requested to attend the bi-annual general assembly."
-pdf: "notice_3.pdf"
+date: 2026-06-10
+title: General Assembly Meeting Notice for all Constituent Units
+snippet: All unit presidents and secretaries are requested to attend the
+  bi-annual general assembly.
+file: /files/whatsapp-image-2026-11-01-at-19.49.22-1-.jpeg
 ---
 
 ## General Assembly Meeting Notice

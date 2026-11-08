@@ -6,6 +6,27 @@
   },
   "notices": [
     {
+      "slug": "2026-06-10-general-assembly-notice",
+      "hasBody": true,
+      "ref": "MSU/CIR/2026/06-10",
+      "category": "Official Circular",
+      "urgent": false,
+      "date": "2026-06-10T00:00:00.000Z",
+      "title": "General Assembly Meeting Notice for all Constituent Units",
+      "snippet": "All unit presidents and secretaries are requested to attend the bi-annual general assembly.",
+      "file": "/files/whatsapp-image-2026-11-01-at-19.49.22-1-.jpeg"
+    },
+    {
+      "slug": "2026-05-22-press-statement",
+      "hasBody": false,
+      "ref": "MSU/PR/2026/05-22",
+      "category": "Press Release",
+      "urgent": false,
+      "date": "2026-05-22T00:00:00.000Z",
+      "title": "Press Statement Condemning Recent Educational Budget Cuts",
+      "snippet": "The Mao Students' Union stands in solidarity with all affected student bodies in protesting the recent arbitrary cuts."
+    },
+    {
       "slug": "2026-08-04-literary-meet-notification",
       "hasBody": true,
       "ref": "MSU/PRESS/2026/08-01",
@@ -14,28 +35,7 @@
       "date": "2026-08-04",
       "title": "Official Notification: Schedule & Guidelines for Inter-School Literary Meet 2026",
       "snippet": "Registration details, category rules, and venue guidelines for the annual regional literary meet scheduled on August 14, 2026.",
-      "pdf": "notice_1.pdf"
-    },
-    {
-      "slug": "2026-06-10-general-assembly-notice",
-      "hasBody": true,
-      "ref": "MSU/CIR/2026/06-10",
-      "category": "Official Circular",
-      "urgent": false,
-      "date": "2026-06-10",
-      "title": "General Assembly Meeting Notice for all Constituent Units",
-      "snippet": "All unit presidents and secretaries are requested to attend the bi-annual general assembly.",
-      "pdf": "notice_3.pdf"
-    },
-    {
-      "slug": "2026-05-22-press-statement",
-      "hasBody": false,
-      "ref": "MSU/PR/2026/05-22",
-      "category": "Press Release",
-      "urgent": false,
-      "date": "2026-05-22",
-      "title": "Press Statement Condemning Recent Educational Budget Cuts",
-      "snippet": "The Mao Students' Union stands in solidarity with all affected student bodies in protesting the recent arbitrary cuts."
+      "file": "notice_1.pdf"
     }
   ]
 }
