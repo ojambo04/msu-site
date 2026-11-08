@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -21,12 +22,12 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-bold mb-6 text-sm tracking-widest uppercase">Navigation</h4>
             <ul className="space-y-3">
-              <li><a href="/" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">›</span> Home & Announcements</a></li>
-              <li><a href="/about" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">›</span> About, Mission & History</a></li>
-              <li><a href="/leadership" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">›</span> Executive Council 2026–2028</a></li>
-              <li><a href="/notices" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">›</span> Notice & Official Press Hub</a></li>
-              <li><a href="/students" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">›</span> Students' Corner & Scholarships</a></li>
-              <li><a href="/contact" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">›</span> Contact Us</a></li>
+              <li><Link to="/" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">›</span> Home & Announcements</Link></li>
+              <li><Link to="/about" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">›</span> About, Mission & History</Link></li>
+              <li><Link to="/leadership" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">›</span> Executive Council 2026–2028</Link></li>
+              <li><Link to="/notices" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">›</span> Notice & Official Press Hub</Link></li>
+              <li><Link to="/students" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">›</span> Students' Corner & Scholarships</Link></li>
+              <li><Link to="/contact" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">›</span> Contact Us</Link></li>
             </ul>
           </div>
 
@@ -35,10 +36,10 @@ const Footer = () => {
             <h4 className="text-white font-bold mb-6 text-sm tracking-widest uppercase">Student Resources</h4>
             <ul className="space-y-3">
               <li><a href="#" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">📥</span> MSU Constitution PDF</a></li>
-              <li><a href="#" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">›</span> MSU Scholarship Scheme</a></li>
-              <li><a href="#" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">›</span> Past Presidents Hall of Fame</a></li>
-              <li><a href="#" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">›</span> 27 Constituent Units Directory</a></li>
-              <li><a href="#" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">›</span> Suggestion & Feedback Box</a></li>
+              <li><Link to="/students#scholarships" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">›</span> MSU Scholarship Scheme</Link></li>
+              <li><Link to="/about#hall-of-fame" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">›</span> Past Presidents Hall of Fame</Link></li>
+              <li><Link to="/leadership#units" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">›</span> 27 Constituent Units Directory</Link></li>
+              <li><Link to="/contact" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">›</span> Suggestion & Feedback Box</Link></li>
             </ul>
           </div>
 

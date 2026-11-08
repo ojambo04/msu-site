@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import ImageModal from './ImageModal';
 import { getImageUrl } from '../utils/getFileUrl';
+import { getInitials } from '../utils/getInitials';
 
 const OfficeBearers = ({ bearers }) => {
   const [filter, setFilter] = useState('All');
@@ -51,10 +52,23 @@ const OfficeBearers = ({ bearers }) => {
             {/* Top info */}
             <div className="flex items-center gap-4 mb-5">
               <div
-                className="w-24 h-24 rounded-2xl overflow-hidden shrink-0 border border-slate-200 dark:border-zinc-800 cursor-pointer hover:opacity-80 transition-opacity"
-                onClick={() => setSelectedImage(getImageUrl(person.image))}
+                className={`w-24 h-24 rounded-2xl overflow-hidden shrink-0 border border-slate-200 dark:border-zinc-800 ${person.image ? 'cursor-pointer hover:opacity-80' : ''} transition-opacity flex items-center justify-center bg-slate-100 dark:bg-zinc-800`}
+                onClick={() => person.image && setSelectedImage(getImageUrl(person.image))}
               >
-                <img src={getImageUrl(person.image)} alt={person.name} className="w-full h-full object-cover" />
+                {person.image ? (
+                  <img
+                    src={getImageUrl(person.image)}
+                    alt={person.name}
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                    }}
+                    className="w-full h-full object-cover"
+                  />
+                ) : null}
+                <div className={`w-full h-full flex items-center justify-center font-serif font-bold text-2xl text-[#20387b] dark:text-blue-300 bg-gradient-to-br from-blue-50 to-slate-100 dark:from-zinc-800 dark:to-zinc-900 select-none ${person.image ? 'hidden' : ''}`}>
+                  {getInitials(person.name)}
+                </div>
               </div>
               <div>
                 <div className="text-[10px] font-bold text-[#20387b] dark:text-blue-300 tracking-wider uppercase mb-1">

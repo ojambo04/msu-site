@@ -1,13 +1,38 @@
-﻿import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useMarkdown } from '../hooks/useMarkdown';
 import TabNavigation from '../components/TabNavigation';
 import ExecutiveLeaders from '../components/ExecutiveLeaders';
 import OfficeBearers from '../components/OfficeBearers';
 import HeroBanner from '../components/HeroBanner';
 
+const tabs = [
+  { id: 'executive', label: 'Central Executive Leadership' },
+  { id: 'units', label: '27 Constituent Units & Branches' },
+  { id: 'bodies', label: '4 Subordinate Bodies & Cells' }
+];
+
 const Leadership = () => {
   const { attributes, loading } = useMarkdown('leadership.md');
-  const [activeTab, setActiveTab] = useState('executive');
+  const location = useLocation();
+
+  const getInitialTab = () => {
+    const hash = location.hash?.replace('#', '');
+    if (hash && tabs.some(t => t.id === hash)) return hash;
+    const queryTab = new URLSearchParams(location.search).get('tab');
+    if (queryTab && tabs.some(t => t.id === queryTab)) return queryTab;
+    if (location.state?.tab && tabs.some(t => t.id === location.state.tab)) return location.state.tab;
+    return 'executive';
+  };
+
+  const [activeTab, setActiveTab] = useState(getInitialTab);
+
+  useEffect(() => {
+    const tabFromUrl = getInitialTab();
+    if (tabFromUrl) {
+      setActiveTab(tabFromUrl);
+    }
+  }, [location]);
 
   if (loading) {
     return (
@@ -19,12 +44,6 @@ const Leadership = () => {
 
   const { header, keyLeaders, officeBearers } = attributes;
 
-  const tabs = [
-    { id: 'executive', label: 'Central Executive Leadership' },
-    { id: 'units', label: '27 Constituent Units & Branches' },
-    { id: 'bodies', label: '4 Subordinate Bodies & Cells' }
-  ];
-
   return (
     <div className="w-full flex flex-col items-center pb-20 bg-slate-50 dark:bg-zinc-950 min-h-screen fade-in">
       
@@ -32,6 +51,11 @@ const Leadership = () => {
         title={header?.title || 'Executive Council'} 
         subtitle={header?.subtitle} 
       />
+
+      {/* Destination Anchors for smooth footer / deep-link scrolling */}
+      <div id="executive" className="scroll-mt-28"></div>
+      <div id="units" className="scroll-mt-28"></div>
+      <div id="bodies" className="scroll-mt-28"></div>
 
       {/* Main Navigation - Floating Bar */}
       <div className="w-full max-w-6xl mx-auto px-4 mt-[-40px] relative z-10">

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ImageModal from './ImageModal';
 import { getImageUrl } from '../utils/getFileUrl';
+import { getInitials } from '../utils/getInitials';
 
 const ExecutiveLeaders = ({ leaders }) => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -20,10 +21,23 @@ const ExecutiveLeaders = ({ leaders }) => {
             {/* Top Half - Dark Blue */}
             <div className="bg-[#20387b] p-8 flex flex-col md:flex-row items-center md:items-start gap-6">
               <div 
-                className="w-32 h-32 rounded-3xl p-1 border-2 border-yellow-400 shrink-0 overflow-hidden bg-white/10 cursor-pointer hover:opacity-80 transition-opacity"
-                onClick={() => setSelectedImage(getImageUrl(leader.image))}
+                className={`w-32 h-32 rounded-3xl p-1 border-2 border-yellow-400 shrink-0 overflow-hidden bg-white/10 ${leader.image ? 'cursor-pointer hover:opacity-90' : ''} transition-opacity flex items-center justify-center`}
+                onClick={() => leader.image && setSelectedImage(getImageUrl(leader.image))}
               >
-                <img src={getImageUrl(leader.image)} alt={leader.name} className="w-full h-full object-cover rounded-[20px]" />
+                {leader.image ? (
+                  <img
+                    src={getImageUrl(leader.image)}
+                    alt={leader.name}
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                    }}
+                    className="w-full h-full object-cover rounded-[20px]"
+                  />
+                ) : null}
+                <div className={`w-full h-full rounded-[20px] flex items-center justify-center font-serif font-extrabold text-3xl text-yellow-300 bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm select-none border border-white/20 shadow-inner ${leader.image ? 'hidden' : ''}`}>
+                  {getInitials(leader.name)}
+                </div>
               </div>
               <div className="text-center md:text-left text-white mt-2 md:mt-0">
                 <div className="inline-block bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-md tracking-wider uppercase mb-3">

@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useMarkdown } from '../hooks/useMarkdown';
@@ -8,6 +9,17 @@ import HallOfFame from '../components/HallOfFame';
 const About = () => {
   const { content, attributes, loading } = useMarkdown('about.md');
   const { attributes: hallOfFameAttrs, loading: hallOfFameLoading } = useMarkdown('hallOfFame.md');
+
+  useEffect(() => {
+    if (!loading && !hallOfFameLoading && window.location.hash === '#hall-of-fame') {
+      const el = document.getElementById('hall-of-fame');
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }, 150);
+      }
+    }
+  }, [loading, hallOfFameLoading]);
 
   if (loading || hallOfFameLoading) {
     return (
@@ -109,7 +121,7 @@ const About = () => {
         )}
 
         {hallOfFameAttrs?.hallOfFame && (
-          <div className="mt-12 slide-up" style={{ animationDelay: '300ms' }}>
+          <div id="hall-of-fame" className="mt-12 slide-up scroll-mt-24" style={{ animationDelay: '300ms' }}>
             <HallOfFame data={hallOfFameAttrs.hallOfFame} />
           </div>
         )}
