@@ -1,0 +1,81 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Allow only one concurrent deployment
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+permissions:
+  contents: write   # needed to commit the rebuilt index.json
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # ── Step 1: Rebuild content indexes ──────────────────────────────────
+      - name: Set up Node.js for scripts
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install script dependencies
+        run: npm install
+        working-directory: scripts
+
+      - name: Rebuild events & notices index.json
+        run: node scripts/build-index.js
+
+      - name: Commit updated indexes (if changed)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add msu-content/content/events/index.json msu-content/content/notices/index.json
+          git diff --cached --quiet || git commit -m "chore: rebuild content indexes [skip ci]"
+          git push
+
+      # ── Step 2: Build the React app ───────────────────────────────────────
+      - name: Install web dependencies
+        run: npm install
+        working-directory: msu-web
+
+      - name: Build Vite app
+        run: npm run build
+        working-directory: msu-web
+        env:
+          # Defaults to /repo-name/ for GitHub Pages (https://<user>.github.io/<repo>/).
+          # Can be overridden by setting repository variable VITE_BASE_URL (e.g. '/' for custom domain).
+          VITE_BASE_URL: ${{ vars.VITE_BASE_URL || '/msu-site/' }}
+
+      # Enables React Router on GitHub Pages: 404 → index.html
+      - name: Copy index.html as 404.html for SPA routing
+        run: cp msu-web/dist/index.html msu-web/dist/404.html
+
+      # ── Step 3: Deploy to GitHub Pages ───────────────────────────────────
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: msu-web/dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+

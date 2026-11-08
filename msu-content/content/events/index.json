@@ -1,0 +1,68 @@
+{
+  "header": {
+    "title": "Events & Programs",
+    "subtitle": "Join us in our upcoming activities, cultural programs, and academic meets. Explore our past events."
+  },
+  "events": [
+    {
+      "slug": "ongoing-village-library",
+      "hasBody": false,
+      "title": "Village Library Initiative",
+      "status": "ongoing",
+      "date": "Ongoing",
+      "location": "Various Constituent Units",
+      "snippet": "Collecting and distributing books to setup miniature libraries in remote villages to support primary education."
+    },
+    {
+      "slug": "ongoing-career-mentorship",
+      "hasBody": false,
+      "title": "Career Mentorship Program",
+      "status": "ongoing",
+      "date": "Current Academic Year",
+      "location": "Online / Hybrid",
+      "snippet": "Connecting senior professionals with college students for career guidance, resume building, and interview preparation."
+    },
+    {
+      "slug": "2026-09-10-general-assembly",
+      "hasBody": false,
+      "title": "Bi-Annual General Assembly",
+      "status": "upcoming",
+      "date": "2026-09-10",
+      "time": "9:00 AM",
+      "location": "Central HQ, Tadubi",
+      "snippet": "Gathering of all constituent unit presidents and secretaries to discuss the upcoming academic year's agenda."
+    },
+    {
+      "slug": "2026-08-14-literary-meet",
+      "hasBody": false,
+      "title": "Inter-School Literary Meet 2026",
+      "status": "upcoming",
+      "date": "2026-08-14",
+      "time": "10:00 AM - 4:00 PM",
+      "location": "Mao Town Hall, Senapati",
+      "snippet": "Annual regional literary meet featuring debate, essay writing, and extempore speech competitions for high school students."
+    },
+    {
+      "slug": "2025-12-15-cultural-heritage-festival",
+      "hasBody": true,
+      "title": "MSU Cultural Heritage Festival 2025",
+      "status": "past",
+      "date": "2025-12-15",
+      "location": "Pudunamei Village",
+      "snippet": "A celebration of our ancestral traditions, folk songs, and indigenous crafts.",
+      "youtubeId": "dQw4w9WgXcQ",
+      "images": [
+        "banner_abstract.png"
+      ]
+    },
+    {
+      "slug": "2025-06-05-afforestation-drive",
+      "hasBody": true,
+      "title": "Environmental Afforestation Drive",
+      "status": "past",
+      "date": "2025-06-05",
+      "location": "Dzukou Valley Approach",
+      "snippet": "Mass tree plantation drive organized on World Environment Day with over 500 volunteers."
+    }
+  ]
+}

@@ -2,10 +2,14 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useMarkdown } from '../hooks/useMarkdown';
 import { getImageUrl } from '../utils/getFileUrl';
+import { formatDate } from '../utils/formatDate';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const EventDetails = () => {
-  const { id } = useParams();
-  const { attributes, loading } = useMarkdown('events.md');
+  const { slug } = useParams();
+  // Fetch the individual event MD file by its slug
+  const { attributes, content, loading } = useMarkdown(`events/${slug}.md`);
 
   if (loading) {
     return (
@@ -15,17 +19,20 @@ const EventDetails = () => {
     );
   }
 
-  const eventIndex = parseInt(id, 10);
-  const event = attributes?.past ? attributes.past[eventIndex] : null;
+  const hasWriteup = content && content.trim().length > 0;
 
-  if (!event) {
+  // Only events with a markdown body have a detail page
+  if (!attributes?.title || !hasWriteup) {
     return (
       <div className="w-full flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
         <h2 className="text-3xl font-bold font-serif text-slate-800 dark:text-zinc-200 mb-4">Event Not Found</h2>
+        <p className="text-slate-500 dark:text-zinc-400 mb-6 max-w-md">This event does not have an extended writeup page.</p>
         <Link to="/events" className="text-[#20387b] dark:text-blue-400 hover:underline font-bold">Return to Events</Link>
       </div>
     );
   }
+
+  const event = attributes;
 
   return (
     <div className="w-full flex flex-col items-center bg-[#f8fafc] dark:bg-zinc-950 min-h-screen pb-20 fade-in">
@@ -47,7 +54,7 @@ const EventDetails = () => {
               <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              {event.date}
+              {formatDate(event.date)}
             </span>
           </div>
           <h1 className="text-4xl md:text-5xl font-extrabold text-white font-serif mb-6 tracking-tight leading-tight drop-shadow-sm">
@@ -68,16 +75,10 @@ const EventDetails = () => {
       <div className="w-full max-w-4xl mx-auto px-4 md:px-8 mt-[-50px] relative z-10 slide-up" style={{ animationDelay: '150ms' }}>
         <div className="bg-white dark:bg-zinc-900 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] border border-slate-100 dark:border-zinc-800 p-8 md:p-14 mb-12">
           
-          {/* Detailed Writeup */}
-          {event.writeup ? (
-            <div className="text-[15px] md:text-lg text-slate-700 dark:text-zinc-300 leading-relaxed font-medium space-y-6">
-              {event.writeup.split('\n').map((paragraph, idx) => (
-                paragraph.trim() !== '' && <p key={idx}>{paragraph}</p>
-              ))}
-            </div>
-          ) : (
-            <p className="text-[15px] md:text-lg text-slate-700 dark:text-zinc-300 leading-relaxed font-medium">{event.description}</p>
-          )}
+          {/* Full writeup (markdown body) */}
+          <div className="prose prose-slate dark:prose-invert prose-lg max-w-none">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+          </div>
 
         </div>
 

@@ -1,12 +1,12 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useMarkdown } from '../hooks/useMarkdown';
+import { useContentIndex } from '../hooks/useContentIndex';
 import EventList from '../components/EventList';
 import TabNavigation from '../components/TabNavigation';
 import HeroBanner from '../components/HeroBanner';
 
 const Events = () => {
-  const { attributes, loading } = useMarkdown('events.md');
+  const { data, loading } = useContentIndex('events');
   const location = useLocation();
   const [activeTab, setActiveTab] = useState(location.state?.tab || 'upcoming');
 
@@ -18,7 +18,12 @@ const Events = () => {
     );
   }
 
-  const { header, upcoming, ongoing, past } = attributes;
+  const { header, events = [] } = data;
+
+  // Split the flat events array by status
+  const upcoming = events.filter(e => e.status === 'upcoming');
+  const ongoing  = events.filter(e => e.status === 'ongoing');
+  const past     = events.filter(e => e.status === 'past');
 
   return (
     <div className="w-full flex flex-col items-center bg-[#f8fafc] dark:bg-zinc-950 min-h-screen fade-in">
