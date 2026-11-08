@@ -4,9 +4,8 @@ category: Official Circular
 urgent: false
 date: 2026-06-10
 title: General Assembly Meeting Notice for all Constituent Units
-snippet: All unit presidents and secretaries are requested to attend the
-  bi-annual general assembly.
-file: /files/whatsapp-image-2026-11-01-at-19.49.22-1-.jpeg
+snippet: All unit presidents and secretaries are requested to attend the bi-annual general assembly.
+file: ''
 ---
 
 ## General Assembly Meeting Notice
@@ -21,4 +20,3 @@ All unit presidents and secretaries of the Mao Students' Union constituent units
 4. Election of sub-committee members
 
 Attendance is **mandatory** for all constituent unit representatives. Units failing to send representatives will be noted in the official minutes.
-
