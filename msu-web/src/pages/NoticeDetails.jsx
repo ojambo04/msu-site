@@ -17,17 +17,20 @@ const NoticeDetails = () => {
     );
   }
 
-  if (!attributes?.title) {
+  const hasBody = content && content.trim().length > 0;
+
+  // Only notices with a markdown body have a detail page
+  if (!attributes?.title || !hasBody) {
     return (
       <div className="w-full flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
         <h2 className="text-3xl font-bold font-serif text-slate-800 dark:text-zinc-200 mb-4">Notice Not Found</h2>
+        <p className="text-slate-500 dark:text-zinc-400 mb-6 max-w-md">This circular does not have an extended detail page.</p>
         <Link to="/notices" className="text-[#20387b] dark:text-blue-400 hover:underline font-bold">Return to Notices</Link>
       </div>
     );
   }
 
   const notice = attributes;
-  const hasBody = content && content.trim().length > 0;
   const pdfDownloadUrl = notice.pdf ? getFileUrl(notice.pdf) : null;
 
   return (
@@ -135,3 +138,4 @@ const NoticeDetails = () => {
 };
 
 export default NoticeDetails;
+

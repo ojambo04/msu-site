@@ -89,7 +89,7 @@ collections:
         public_folder: /files
         required: false
       - name: body
-        label: "Full Notice Body"
+        label: "Full Notice Body (Optional - triggers detail page)"
         widget: markdown
         required: false
 
