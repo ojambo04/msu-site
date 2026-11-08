@@ -1,0 +1,86 @@
+backend:
+  name: github
+  repo: ojambo04/msu-site        # ← your GitHub repo
+  branch: main
+  auth_type: pkce                 # No OAuth proxy server needed
+  app_id: REPLACE_WITH_YOUR_GITHUB_OAUTH_APP_CLIENT_ID
+
+# Where uploaded images are stored in the repo
+media_folder: msu-content/images
+# The public path used when inserting images into markdown
+public_folder: /images
+
+# ─── Collections ────────────────────────────────────────────────────────────
+
+collections:
+
+  # ── Events & Programs ────────────────────────────────────────────────────
+  - name: events
+    label: Events & Programs
+    label_singular: Event
+    folder: msu-content/content/events
+    create: true
+    # Filename pattern: YYYY-MM-DD-title-slug for dated events,
+    # or just a descriptive slug for ongoing programs.
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    # Exclude the auto-generated index.json from the editor list
+    filter:
+      field: title
+      value: __index__
+    fields:
+      - { name: title,       label: "Title",           widget: string }
+      - name: status
+        label: "Status"
+        widget: select
+        options:
+          - { label: "Upcoming", value: upcoming }
+          - { label: "Ongoing",  value: ongoing  }
+          - { label: "Past",     value: past     }
+      - { name: date,        label: "Date (ISO: YYYY-MM-DD)", widget: string }
+      - { name: displayDate, label: "Display Date (e.g. August 14, 2026)", widget: string }
+      - { name: time,        label: "Time (optional)",  widget: string,   required: false }
+      - { name: location,    label: "Location",         widget: string }
+      - { name: description, label: "Short Description (shown on card)", widget: text }
+      - { name: youtubeId,   label: "YouTube Video ID (optional)",       widget: string,   required: false }
+      - name: images
+        label: "Gallery Images (optional)"
+        widget: list
+        required: false
+        field:
+          name: image
+          label: Image
+          widget: image
+      - name: body
+        label: "Full Event Writeup (shown on detail page)"
+        widget: markdown
+        required: false
+
+  # ── Notices & Press Releases ──────────────────────────────────────────────
+  - name: notices
+    label: Notices & Press
+    label_singular: Notice
+    folder: msu-content/content/notices
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { name: ref,         label: "Reference No. (e.g. MSU/PRESS/2026/08-01)", widget: string }
+      - name: category
+        label: "Category"
+        widget: select
+        options:
+          - "Events & Tournaments"
+          - "Official Circular"
+          - "Press Release"
+          - "Scholarship"
+          - "General"
+      - { name: urgent,      label: "Mark as Urgent",  widget: boolean, default: false }
+      - { name: date,        label: "Date (ISO: YYYY-MM-DD)", widget: string }
+      - { name: displayDate, label: "Display Date (e.g. August 04, 2026)", widget: string }
+      - { name: title,       label: "Title",           widget: string }
+      - { name: snippet,     label: "Snippet (shown on listing card)", widget: text }
+      - { name: pdf,         label: "PDF Filename (e.g. notice_1.pdf — upload file to msu-content/files/)", widget: string, required: false }
+      - name: body
+        label: "Full Notice Body"
+        widget: markdown
+        required: false
+

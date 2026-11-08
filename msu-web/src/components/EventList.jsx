@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const EventList = ({ upcoming, ongoing, past, activeTab }) => {
@@ -141,7 +141,7 @@ const EventList = ({ upcoming, ongoing, past, activeTab }) => {
                 )}
                 
                 <Link 
-                  to={`/events/past/${index}`}
+                  to={`/events/${event.slug}`}
                   className="mt-auto w-full py-2.5 rounded-xl border border-slate-200 dark:border-zinc-800 text-slate-700 dark:text-zinc-300 font-bold text-[13px] hover:bg-[#20387b] hover:text-white hover:border-[#20387b] transition-all flex justify-center items-center group"
                 >
                   View Event Details

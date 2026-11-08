@@ -1,15 +1,15 @@
-﻿import React, { useState, useMemo } from 'react';
-import { useMarkdown } from '../hooks/useMarkdown';
+import React, { useState, useMemo } from 'react';
+import { useContentIndex } from '../hooks/useContentIndex';
 import NoticeList from '../components/NoticeList';
 import TabNavigation from '../components/TabNavigation';
 import HeroBanner from '../components/HeroBanner';
 
 const Notices = () => {
-  const { attributes, loading } = useMarkdown('notices.md');
+  const { data, loading } = useContentIndex('notices');
   const [filter, setFilter] = useState('All Notices');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const { header, notices } = attributes || {};
+  const { header, notices } = data || {};
 
   const categories = useMemo(() => {
     if (!notices) return ['All Notices'];

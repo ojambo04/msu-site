@@ -96,6 +96,9 @@ function excludeContentFromDistPlugin() {
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Set VITE_BASE_URL=/repo-name/ in GitHub Actions for project pages (no custom domain).
+  // Leave unset (defaults to /) when using a custom domain or Netlify.
+  base: process.env.VITE_BASE_URL || '/',
   plugins: [contentSyncPlugin(), excludeContentFromDistPlugin(), react(), tailwindcss()],
   build: {
     rollupOptions: {
