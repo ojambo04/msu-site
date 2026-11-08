@@ -1,9 +1,14 @@
+# ─── Local development only ──────────────────────────────────────────────────
+# Lets you edit files locally without GitHub auth.
+local_backend:
+  url: http://localhost:8081/api/v1
+
 backend:
   name: github
   repo: ojambo04/msu-site        # ← your GitHub repo
   branch: main
   auth_type: pkce                 # No OAuth proxy server needed
-  app_id: REPLACE_WITH_YOUR_GITHUB_OAUTH_APP_CLIENT_ID
+  app_id: Ov23licgbyZauCUEmclF
 
 # Where uploaded images are stored in the repo
 media_folder: msu-content/images
@@ -14,19 +19,15 @@ public_folder: /images
 
 collections:
 
-  # ── Events & Programs ────────────────────────────────────────────────────
+  # ── Events & Programs (Folder Collection) ─────────────────────────────────
   - name: events
     label: Events & Programs
     label_singular: Event
     folder: msu-content/content/events
+    extension: md
+    format: frontmatter
     create: true
-    # Filename pattern: YYYY-MM-DD-title-slug for dated events,
-    # or just a descriptive slug for ongoing programs.
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    # Exclude the auto-generated index.json from the editor list
-    filter:
-      field: title
-      value: __index__
     fields:
       - { name: title,       label: "Title",           widget: string }
       - name: status
@@ -50,16 +51,19 @@ collections:
           name: image
           label: Image
           widget: image
+          choose_url: true
       - name: body
         label: "Full Event Writeup (shown on detail page)"
         widget: markdown
         required: false
 
-  # ── Notices & Press Releases ──────────────────────────────────────────────
+  # ── Notices & Press Releases (Folder Collection) ──────────────────────────
   - name: notices
     label: Notices & Press
     label_singular: Notice
     folder: msu-content/content/notices
+    extension: md
+    format: frontmatter
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
@@ -78,9 +82,271 @@ collections:
       - { name: displayDate, label: "Display Date (e.g. August 04, 2026)", widget: string }
       - { name: title,       label: "Title",           widget: string }
       - { name: snippet,     label: "Snippet (shown on listing card)", widget: text }
-      - { name: pdf,         label: "PDF Filename (e.g. notice_1.pdf — upload file to msu-content/files/)", widget: string, required: false }
+      - name: pdf
+        label: "Upload Notice PDF Document"
+        widget: file
+        media_folder: msu-content/files
+        public_folder: /files
+        required: false
       - name: body
         label: "Full Notice Body"
         widget: markdown
         required: false
 
+  # ── Website Static Pages (File Collection) ────────────────────────────────
+  - name: pages
+    label: Static Pages
+    files:
+
+      # ── Home Page ────────────────────────────────────────────────────────
+      - name: home
+        label: "Home Page"
+        file: msu-content/content/home.md
+        fields:
+          - name: hero
+            label: "Hero Section"
+            widget: object
+            fields:
+              - { name: badge, label: "Badge", widget: string }
+              - { name: title, label: "Title", widget: string }
+              - { name: subtitle, label: "Subtitle / Motto", widget: string }
+              - { name: description, label: "Description", widget: text }
+              - name: primaryButton
+                label: "Primary Button"
+                widget: object
+                fields:
+                  - { name: text, label: "Button Text", widget: string }
+                  - { name: link, label: "Link URL", widget: string }
+              - name: secondaryButton
+                label: "Secondary Button"
+                widget: object
+                fields:
+                  - { name: text, label: "Button Text", widget: string }
+                  - { name: link, label: "Link URL", widget: string }
+          - name: secretariat
+            label: "Central Secretariat"
+            widget: object
+            fields:
+              - { name: title, label: "Title", widget: string }
+              - { name: location, label: "Location", widget: string }
+              - name: stats
+                label: "Secretariat Numbers"
+                widget: list
+                fields:
+                  - { name: value, label: "Number Value", widget: string }
+                  - { name: label, label: "Label", widget: string }
+          - name: features
+            label: "Key Portal Features"
+            widget: list
+            fields:
+              - { name: title, label: "Title", widget: string }
+              - { name: description, label: "Description", widget: text }
+              - { name: link, label: "Target Route", widget: string }
+          - name: stats
+            label: "Key Union Statistics"
+            widget: list
+            fields:
+              - { name: value, label: "Value", widget: string }
+              - { name: label, label: "Label", widget: string }
+          - name: socials
+            label: "Social Media Banner"
+            widget: object
+            fields:
+              - { name: title, label: "Title", widget: string }
+              - { name: description, label: "Description", widget: text }
+
+      # ── About Page ───────────────────────────────────────────────────────
+      - name: about
+        label: "About Union"
+        file: msu-content/content/about.md
+        fields:
+          - name: header
+            label: "Header"
+            widget: object
+            fields:
+              - { name: title, label: "Title", widget: string }
+              - { name: subtitle, label: "Subtitle", widget: text }
+              - name: constitutionPdf
+                label: "Upload Constitution PDF"
+                widget: file
+                media_folder: msu-content/files
+                public_folder: /files
+                required: false
+          - name: mission
+            label: "Mission"
+            widget: object
+            fields:
+              - { name: title, label: "Title", widget: string }
+              - { name: content, label: "Content", widget: text }
+          - name: vision
+            label: "Vision"
+            widget: object
+            fields:
+              - { name: title, label: "Title", widget: string }
+              - { name: content, label: "Content", widget: text }
+          - name: timeline
+            label: "Union History Milestones"
+            widget: list
+            fields:
+              - { name: year, label: "Year", widget: string }
+              - { name: title, label: "Milestone Title", widget: string }
+              - { name: description, label: "Description", widget: text }
+          - name: body
+            label: "Detailed About Writeup"
+            widget: markdown
+
+      # ── Leadership Directory ─────────────────────────────────────────────
+      - name: leadership
+        label: "Leadership & Executives"
+        file: msu-content/content/leadership.md
+        fields:
+          - name: header
+            label: "Header"
+            widget: object
+            fields:
+              - { name: title, label: "Title", widget: string }
+              - { name: subtitle, label: "Subtitle", widget: text }
+          - name: keyLeaders
+            label: "Top Key Leaders (President & Gen. Secy)"
+            widget: list
+            fields:
+              - { name: role, label: "Role / Designation", widget: string }
+              - { name: name, label: "Full Name", widget: string }
+              - { name: unit, label: "Unit / Office", widget: string }
+              - { name: phone, label: "Contact Phone", widget: string, required: false }
+              - { name: email, label: "Email Address", widget: string, required: false }
+              - { name: message, label: "Official Message", widget: text, required: false }
+              - name: image
+                label: "Leader Photo"
+                widget: image
+                media_folder: msu-content/images
+                public_folder: /images
+                required: false
+          - name: officeBearers
+            label: "Executive Council & Office Bearers"
+            widget: list
+            fields:
+              - name: category
+                label: "Category"
+                widget: select
+                options:
+                  - "Administration"
+                  - "Education"
+                  - "Women Cell"
+                  - "Information"
+                  - "Cultural"
+                  - "Finance"
+                  - "Assembly"
+              - { name: role, label: "Role / Designation", widget: string }
+              - { name: name, label: "Full Name", widget: string }
+              - { name: email, label: "Email", widget: string, required: false }
+              - { name: phone, label: "Phone", widget: string, required: false }
+              - name: image
+                label: "Officer Photo"
+                widget: image
+                media_folder: msu-content/images
+                public_folder: /images
+                required: false
+
+      # ── Students' Corner ─────────────────────────────────────────────────
+      - name: students
+        label: "Students' Corner"
+        file: msu-content/content/students.md
+        fields:
+          - name: header
+            label: "Header"
+            widget: object
+            fields:
+              - { name: tag, label: "Tag / Category", widget: string }
+              - { name: title, label: "Title", widget: string }
+              - { name: subtitle, label: "Subtitle", widget: text }
+          - name: scholarships
+            label: "Scholarships"
+            widget: list
+            fields:
+              - { name: title, label: "Scholarship Title", widget: string }
+              - { name: description, label: "Description", widget: text }
+              - { name: provider, label: "Provider / Agency", widget: string }
+              - { name: deadline, label: "Application Deadline", widget: string }
+              - { name: link, label: "Application Link", widget: string }
+          - name: jobs
+            label: "Job Vacancies"
+            widget: list
+            fields:
+              - { name: title, label: "Job Title", widget: string }
+              - { name: description, label: "Description", widget: text }
+              - { name: department, label: "Recruiting Department", widget: string }
+              - { name: deadline, label: "Application Deadline", widget: string }
+              - { name: link, label: "Portal Link", widget: string }
+          - name: exams
+            label: "Exams & Entrance Tests"
+            widget: list
+            fields:
+              - { name: title, label: "Exam Title", widget: string }
+              - name: category
+                label: "Exam Type"
+                widget: select
+                options: ["Competitive", "Entrance", "Academic"]
+              - { name: description, label: "Description", widget: text }
+              - { name: openingDate, label: "Opening Date", widget: string }
+              - { name: closingDate, label: "Closing Date", widget: string }
+              - { name: link, label: "Official Portal URL", widget: string }
+
+      # ── Hall of Fame ─────────────────────────────────────────────────────
+      - name: hallOfFame
+        label: "Hall of Fame"
+        file: msu-content/content/hallOfFame.md
+        fields:
+          - name: hallOfFame
+            label: "Hall of Fame Lists"
+            widget: object
+            fields:
+              - name: presidents
+                label: "Former Presidents"
+                widget: list
+                fields:
+                  - { name: name, label: "President Name", widget: string }
+                  - { name: tenure, label: "Tenure Period (e.g. 1972 - 1978)", widget: string }
+                  - { name: description, label: "Contributions / Achievements", widget: text }
+                  - name: image
+                    label: "Portrait Image"
+                    widget: image
+                    media_folder: msu-content/images
+                    public_folder: /images
+                    required: false
+              - name: secretaries
+                label: "Former General Secretaries"
+                widget: list
+                fields:
+                  - { name: name, label: "Secretary Name", widget: string }
+                  - { name: tenure, label: "Tenure Period", widget: string }
+                  - { name: description, label: "Contributions / Achievements", widget: text }
+                  - name: image
+                    label: "Portrait Image"
+                    widget: image
+                    media_folder: msu-content/images
+                    public_folder: /images
+                    required: false
+
+      # ── Contact Information ──────────────────────────────────────────────
+      - name: contact
+        label: "Contact & Secretariat Details"
+        file: msu-content/content/contact.md
+        fields:
+          - { name: location, label: "Location Summary", widget: string }
+          - { name: helpline, label: "Helpline Phone", widget: string }
+          - { name: address, label: "Full Physical Address", widget: text }
+          - { name: email, label: "Contact Email", widget: string }
+          - name: directory
+            label: "Constituent Units Directory Info"
+            widget: object
+            fields:
+              - { name: title, label: "Title", widget: string }
+              - { name: description, label: "Description", widget: text }
+          - name: socials
+            label: "Social Media Links"
+            widget: object
+            fields:
+              - { name: facebook, label: "Facebook Link", widget: string, required: false }
+              - { name: instagram, label: "Instagram Link", widget: string, required: false }
+              - { name: youtube, label: "YouTube Link", widget: string, required: false }
