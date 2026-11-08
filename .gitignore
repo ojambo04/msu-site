@@ -1,2 +1,8 @@
 scripts/node_modules/
 
+# Content is dynamically copied into msu-web/public during dev — do not commit
+msu-web/public/content/
+msu-web/public/files/
+msu-web/public/images/
+msu-web/public/assets/
+
