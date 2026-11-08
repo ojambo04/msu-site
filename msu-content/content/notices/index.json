@@ -6,6 +6,17 @@
   },
   "notices": [
     {
+      "slug": "2026-05-22-press-statement",
+      "hasBody": false,
+      "ref": "MSU/PR/2026/05-22",
+      "category": "Press Release",
+      "urgent": false,
+      "date": "2026-05-22T00:00:00.000Z",
+      "displayDate": "May 22, 2026",
+      "title": "Press Statement Condemning Recent Educational Budget Cuts",
+      "snippet": "The Mao Students' Union stands in solidarity with all affected student bodies in protesting the recent arbitrary cuts."
+    },
+    {
       "slug": "2026-08-04-literary-meet-notification",
       "hasBody": true,
       "ref": "MSU/PRESS/2026/08-01",
@@ -28,17 +39,6 @@
       "title": "General Assembly Meeting Notice for all Constituent Units",
       "snippet": "All unit presidents and secretaries are requested to attend the bi-annual general assembly.",
       "pdf": "notice_3.pdf"
-    },
-    {
-      "slug": "2026-05-22-press-statement",
-      "hasBody": true,
-      "ref": "MSU/PR/2026/05-22",
-      "category": "Press Release",
-      "urgent": false,
-      "date": "2026-05-22",
-      "displayDate": "May 22, 2026",
-      "title": "Press Statement Condemning Recent Educational Budget Cuts",
-      "snippet": "The Mao Students' Union stands in solidarity with all affected student bodies in protesting the recent arbitrary cuts."
     }
   ]
 }

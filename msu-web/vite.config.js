@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { resolve } from 'path'
 import { cpSync, mkdirSync, watch, existsSync, rmSync } from 'fs'
+import { exec } from 'child_process'
 
 const msuRoot          = resolve(import.meta.dirname, '../msu-content')
 const contentSrc       = resolve(import.meta.dirname, '../msu-content/content')
@@ -12,10 +13,20 @@ const filesDest        = resolve(import.meta.dirname, 'public/files')
 const imagesSrc        = resolve(import.meta.dirname, '../msu-content/images')
 const imagesDest       = resolve(import.meta.dirname, 'public/images')
 const assetsImagesDest = resolve(import.meta.dirname, 'public/assets/images')
+const buildIndexScript = resolve(import.meta.dirname, '../scripts/build-index.js')
+
+function rebuildIndex(callback) {
+  if (!existsSync(buildIndexScript)) return callback?.()
+  exec(`node "${buildIndexScript}"`, (err) => {
+    if (err) console.error('[build-index] Error rebuilding index:', err)
+    callback?.()
+  })
+}
 
 /**
  * Syncs msu-content/ into msu-web/public/
- * - Copies content/ (*.md) into public/content/
+ * - Rebuilds events and notices index.json
+ * - Copies content/ (*.md, *.json) into public/content/
  * - Copies files/ into public/files/
  * - Copies images/ into public/images/ and public/assets/images/
  * Runs ONLY during `vite` (dev server). Disabled during `vite build`.
@@ -27,26 +38,34 @@ function contentSyncPlugin() {
     try {
       if (!existsSync(msuRoot)) return
 
-      // 1. Copy markdown content from msu-content/content to public/content
-      if (existsSync(contentSrc)) {
-        mkdirSync(contentDest, { recursive: true })
-        cpSync(contentSrc, contentDest, { recursive: true, force: true })
-      }
+      rebuildIndex(() => {
+        // 1. Copy markdown content & index.json from msu-content/content to public/content
+        if (existsSync(contentSrc)) {
+          mkdirSync(contentDest, { recursive: true })
+          cpSync(contentSrc, contentDest, { recursive: true, force: true })
+        }
 
-      // 2. Copy files (PDFs, docs) from msu-content/files to public/files
-      if (existsSync(filesSrc)) {
-        mkdirSync(filesDest, { recursive: true })
-        cpSync(filesSrc, filesDest, { recursive: true, force: true })
-      }
+        // 2. Copy files (PDFs, docs) from msu-content/files to public/files
+        if (existsSync(filesSrc)) {
+          mkdirSync(filesDest, { recursive: true })
+          cpSync(filesSrc, filesDest, { recursive: true, force: true })
+        }
 
-      // 3. Copy images from msu-content/images to public/images and public/assets/images
-      if (existsSync(imagesSrc)) {
-        mkdirSync(imagesDest, { recursive: true })
-        cpSync(imagesSrc, imagesDest, { recursive: true, force: true })
+        // 3. Copy images from msu-content/images to public/images and public/assets/images
+        if (existsSync(imagesSrc)) {
+          mkdirSync(imagesDest, { recursive: true })
+          cpSync(imagesSrc, imagesDest, { recursive: true, force: true })
 
-        mkdirSync(assetsImagesDest, { recursive: true })
-        cpSync(imagesSrc, assetsImagesDest, { recursive: true, force: true })
-      }
+          mkdirSync(assetsImagesDest, { recursive: true })
+          cpSync(imagesSrc, assetsImagesDest, { recursive: true, force: true })
+        }
+
+        console.log(`\x1b[36m[content]\x1b[0m Synced msu-content (content, files, images)${label ? ` (${label})` : ''}`)
+      })
+    } catch (err) {
+      console.error('[content] Sync error:', err)
+    }
+  }
 
       console.log(`\x1b[36m[content]\x1b[0m Synced msu-content (content, files, images)${label ? ` (${label})` : ''}`)
     } catch (err) {
