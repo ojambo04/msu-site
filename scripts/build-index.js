@@ -79,6 +79,17 @@ if (existsSync(eventsHeaderPath)) {
 
 const allEvents = readEntries(eventsDir);
 
+// Automatically transition passed upcoming events to 'past' based on current date
+const todayStr = new Date().toISOString().slice(0, 10); // 'YYYY-MM-DD'
+allEvents.forEach(event => {
+  if (event.status === 'upcoming' && event.date && /^\d{4}-\d{2}-\d{2}$/.test(event.date)) {
+    if (event.date < todayStr) {
+      console.log(`[build-index] Auto-moving passed event to past: "${event.title}" (${event.date})`);
+      event.status = 'past';
+    }
+  }
+});
+
 writeIndex(join(eventsDir, 'index.json'), {
   header: eventsHeader,
   events: allEvents,

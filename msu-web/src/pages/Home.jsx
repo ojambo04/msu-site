@@ -2,17 +2,26 @@ import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { Target, Eye } from 'lucide-react';
 import { useMarkdown } from '../hooks/useMarkdown';
+import { useContentIndex } from '../hooks/useContentIndex';
 import { getImageUrl } from '../utils/getFileUrl';
+import { getEffectiveEventStatus, parseDateBadge } from '../utils/eventStatus';
+import { formatDate } from '../utils/formatDate';
 
 const Home = () => {
   const { attributes: homeData } = useMarkdown('home.md');
-  const { attributes: eventsData } = useMarkdown('events.md');
-  const { attributes: noticesData } = useMarkdown('notices.md');
+  const { data: eventsIndex } = useContentIndex('events');
+  const { data: noticesIndex } = useContentIndex('notices');
   const { attributes: aboutData } = useMarkdown('about.md');
   const { attributes: contactData } = useMarkdown('contact.md');
 
-  const upcomingEvents = eventsData?.upcoming?.slice(0, 3) || [];
-  const latestNotices = noticesData?.notices?.slice(0, 3) || [];
+  // Filter only upcoming events, sorted chronologically ascending (closest upcoming first), max 3
+  const upcomingEvents = (eventsIndex?.events || [])
+    .filter(event => getEffectiveEventStatus(event) === 'upcoming')
+    .sort((a, b) => (a.date || '').localeCompare(b.date || ''))
+    .slice(0, 3);
+
+  // Take the 3 latest notices (notices index is pre-sorted newest first)
+  const latestNotices = (noticesIndex?.notices || []).slice(0, 3);
 
   return (
     <div className="flex flex-col w-full">
@@ -244,27 +253,48 @@ const Home = () => {
 
             <div className="space-y-4">
               {upcomingEvents.length > 0 ? (
-                upcomingEvents.map((event, i) => (
-                  <div key={i} className="bg-white dark:bg-zinc-900 p-5 rounded-2xl border border-slate-100 dark:border-zinc-800 shadow-sm hover:shadow-md transition-shadow flex items-start gap-5">
-                    <div className="bg-amber-50 dark:bg-amber-900/30 border border-amber-100 dark:border-amber-800 rounded-xl p-3 flex flex-col items-center justify-center min-w-[70px]">
-                      <span className="text-xs font-bold text-amber-600 dark:text-amber-500 uppercase tracking-wider">{event.date?.split(' ')[0] || 'TBA'}</span>
-                      <span className="text-2xl font-black text-amber-700 dark:text-amber-400">{event.date?.split(' ')[1]?.replace(',', '') || '--'}</span>
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-1 line-clamp-1">{event.title}</h4>
-                      <div className="flex items-center text-sm font-medium text-slate-500 dark:text-zinc-400 mb-2">
-                        <svg className="w-4 h-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        {event.time || 'Time TBA'}
+                upcomingEvents.map((event, i) => {
+                  const { month, day } = parseDateBadge(event.date);
+                  return (
+                    <div key={event.slug || i} className="bg-white dark:bg-zinc-900 p-5 rounded-2xl border border-slate-100 dark:border-zinc-800 shadow-sm hover:shadow-md transition-shadow flex items-start gap-5">
+                      <div className="bg-amber-50 dark:bg-amber-900/30 border border-amber-100 dark:border-amber-800 rounded-xl p-3 flex flex-col items-center justify-center min-w-[70px]">
+                        <span className="text-xs font-bold text-amber-600 dark:text-amber-500 uppercase tracking-wider">{month}</span>
+                        <span className="text-2xl font-black text-amber-700 dark:text-amber-400">{day}</span>
                       </div>
-                      <p className="text-sm text-slate-600 dark:text-zinc-300 line-clamp-2">{event.description}</p>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-1 line-clamp-1">{event.title}</h4>
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-medium text-slate-500 dark:text-zinc-400 mb-2">
+                          {event.time && (
+                            <span className="flex items-center">
+                              <svg className="w-4 h-4 mr-1.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                              {event.time}
+                            </span>
+                          )}
+                          {event.location && (
+                            <span className="flex items-center">
+                              <svg className="w-4 h-4 mr-1.5 shrink-0 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                              </svg>
+                              {event.location}
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-sm text-slate-600 dark:text-zinc-300 line-clamp-2">{event.snippet || event.description}</p>
+                        {event.hasBody && (
+                          <Link to={`/events/${event.slug}`} className="inline-flex items-center text-xs font-bold text-[#20387b] dark:text-blue-400 hover:underline mt-2">
+                            Read details &rarr;
+                          </Link>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))
+                  );
+                })
               ) : (
                 <div className="bg-white dark:bg-zinc-900 p-8 rounded-2xl text-center border border-slate-100 dark:border-zinc-800">
-                  <p className="text-slate-500 font-medium">No upcoming events at the moment.</p>
+                  <p className="text-slate-500 font-medium">No upcoming events scheduled at the moment.</p>
                 </div>
               )}
             </div>
@@ -288,21 +318,27 @@ const Home = () => {
             <div className="space-y-4">
               {latestNotices.length > 0 ? (
                 latestNotices.map((notice, i) => (
-                  <Link to="/notices" key={i} className="block bg-white dark:bg-zinc-900 p-5 rounded-2xl border border-slate-100 dark:border-zinc-800 shadow-sm hover:shadow-md transition-shadow group relative overflow-hidden">
+                  <Link
+                    to={notice.hasBody ? `/notices/${notice.slug}` : "/notices"}
+                    key={notice.slug || i}
+                    className="block bg-white dark:bg-zinc-900 p-5 rounded-2xl border border-slate-100 dark:border-zinc-800 shadow-sm hover:shadow-md transition-shadow group relative overflow-hidden"
+                  >
                     <div className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-500 scale-y-0 group-hover:scale-y-100 transition-transform origin-top"></div>
                     <div className="flex justify-between items-start mb-2">
                       <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 dark:bg-emerald-900/30 dark:text-emerald-400 px-2 py-1 rounded">
-                        {notice.category}
+                        {notice.category || 'Announcement'}
                       </span>
-                      <span className="text-xs font-semibold text-slate-400">{notice.date}</span>
+                      <span className="text-xs font-semibold text-slate-400">{formatDate(notice.date)}</span>
                     </div>
                     <h4 className="text-base font-bold text-slate-900 dark:text-white mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors line-clamp-1">{notice.title}</h4>
-                    <div className="text-xs text-slate-500 font-mono">Ref: {notice.ref}</div>
+                    {notice.ref && (
+                      <div className="text-xs text-slate-500 font-mono">Ref: {notice.ref}</div>
+                    )}
                   </Link>
                 ))
               ) : (
                 <div className="bg-white dark:bg-zinc-900 p-8 rounded-2xl text-center border border-slate-100 dark:border-zinc-800">
-                  <p className="text-slate-500 font-medium">No recent notices available.</p>
+                  <p className="text-slate-500 font-medium">No recent notices available at this time.</p>
                 </div>
               )}
             </div>

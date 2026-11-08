@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useContentIndex } from '../hooks/useContentIndex';
+import { getEffectiveEventStatus } from '../utils/eventStatus';
 import EventList from '../components/EventList';
 import TabNavigation from '../components/TabNavigation';
 import HeroBanner from '../components/HeroBanner';
@@ -20,10 +21,18 @@ const Events = () => {
 
   const { header, events = [] } = data;
 
-  // Split the flat events array by status
-  const upcoming = events.filter(e => e.status === 'upcoming');
-  const ongoing  = events.filter(e => e.status === 'ongoing');
-  const past     = events.filter(e => e.status === 'past');
+  // Split the flat events array by real-time effective status based on current date
+  // Upcoming events are sorted chronologically ascending (closest upcoming first)
+  const upcoming = events
+    .filter(e => getEffectiveEventStatus(e) === 'upcoming')
+    .sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+
+  const ongoing  = events.filter(e => getEffectiveEventStatus(e) === 'ongoing');
+
+  // Past events are sorted descending (most recent first)
+  const past     = events
+    .filter(e => getEffectiveEventStatus(e) === 'past')
+    .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
 
   return (
     <div className="w-full flex flex-col items-center bg-[#f8fafc] dark:bg-zinc-950 min-h-screen fade-in">
