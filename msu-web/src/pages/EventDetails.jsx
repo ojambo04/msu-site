@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useMarkdown } from '../hooks/useMarkdown';
 import { getImageUrl } from '../utils/getFileUrl';
+import { formatDate } from '../utils/formatDate';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
@@ -53,7 +54,7 @@ const EventDetails = () => {
               <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              {event.displayDate || event.date}
+              {formatDate(event.date)}
             </span>
           </div>
           <h1 className="text-4xl md:text-5xl font-extrabold text-white font-serif mb-6 tracking-tight leading-tight drop-shadow-sm">

@@ -2,7 +2,6 @@
 title: "Environmental Afforestation Drive"
 status: "past"
 date: "2025-06-05"
-displayDate: "June 5, 2025"
 location: "Dzukou Valley Approach"
 snippet: "Mass tree plantation drive organized on World Environment Day with over 500 volunteers."
 ---

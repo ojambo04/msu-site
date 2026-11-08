@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { formatDate } from '../utils/formatDate';
 
 const EventList = ({ upcoming, ongoing, past, activeTab }) => {
   return (
@@ -27,7 +28,7 @@ const EventList = ({ upcoming, ongoing, past, activeTab }) => {
                       <svg className="w-4 h-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
-                      {event.date}
+                      {formatDate(event.date)}
                     </span>
                     {event.time && (
                       <span className="bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300 text-xs font-bold px-3 py-1.5 rounded-full flex items-center">
@@ -95,7 +96,7 @@ const EventList = ({ upcoming, ongoing, past, activeTab }) => {
                       <svg className="w-4 h-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
-                      {program.date}
+                      {formatDate(program.date)}
                     </span>
                   </div>
 
@@ -151,7 +152,7 @@ const EventList = ({ upcoming, ongoing, past, activeTab }) => {
                    <svg className="w-4 h-4 mr-1.5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
-                  {event.date}
+                  {formatDate(event.date)}
                 </span>
                 <h3 className="text-lg font-bold font-serif text-slate-800 dark:text-zinc-200 mb-2 leading-snug">{event.title}</h3>
                 <p className="text-sm text-slate-500 dark:text-zinc-400 leading-relaxed mb-4 flex-1">

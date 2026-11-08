@@ -67,12 +67,6 @@ function contentSyncPlugin() {
     }
   }
 
-      console.log(`\x1b[36m[content]\x1b[0m Synced msu-content (content, files, images)${label ? ` (${label})` : ''}`)
-    } catch (err) {
-      console.error('[content] Sync error:', err)
-    }
-  }
-
   return {
     name: 'content-sync-plugin',
     apply: 'serve', // Only run during development server

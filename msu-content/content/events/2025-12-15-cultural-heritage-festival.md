@@ -2,7 +2,6 @@
 title: "MSU Cultural Heritage Festival 2025"
 status: "past"
 date: "2025-12-15"
-displayDate: "December 15, 2025"
 location: "Pudunamei Village"
 snippet: "A celebration of our ancestral traditions, folk songs, and indigenous crafts."
 youtubeId: "dQw4w9WgXcQ"
