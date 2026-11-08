@@ -51,9 +51,19 @@ const EventList = ({ upcoming, ongoing, past, activeTab }) => {
                     </div>
                   )}
 
-                  <p className="text-slate-600 dark:text-zinc-300 text-base leading-relaxed flex-1">
+                  <p className="text-slate-600 dark:text-zinc-300 text-base leading-relaxed flex-1 mb-6">
                     {event.description}
                   </p>
+
+                  <Link 
+                    to={`/events/${event.slug}`}
+                    className="mt-auto w-full py-2.5 rounded-xl border border-slate-200 dark:border-zinc-800 text-slate-700 dark:text-zinc-300 font-bold text-[13px] hover:bg-[#20387b] hover:text-white hover:border-[#20387b] transition-all flex justify-center items-center group"
+                  >
+                    View Event Details
+                    <svg className="w-4 h-4 ml-1.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </Link>
                 </div>
               </div>
             ))
@@ -99,9 +109,19 @@ const EventList = ({ upcoming, ongoing, past, activeTab }) => {
                     </div>
                   )}
 
-                  <p className="text-slate-600 dark:text-zinc-300 text-base leading-relaxed flex-1">
+                  <p className="text-slate-600 dark:text-zinc-300 text-base leading-relaxed flex-1 mb-6">
                     {program.description}
                   </p>
+
+                  <Link 
+                    to={`/events/${program.slug}`}
+                    className="mt-auto w-full py-2.5 rounded-xl border border-slate-200 dark:border-zinc-800 text-slate-700 dark:text-zinc-300 font-bold text-[13px] hover:bg-[#20387b] hover:text-white hover:border-[#20387b] transition-all flex justify-center items-center group"
+                  >
+                    View Program Details
+                    <svg className="w-4 h-4 ml-1.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </Link>
                 </div>
               </div>
             ))

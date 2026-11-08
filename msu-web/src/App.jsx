@@ -10,6 +10,7 @@ import Notices from './pages/Notices';
 import StudentsCorner from './pages/StudentsCorner';
 import Events from './pages/Events';
 import EventDetails from './pages/EventDetails';
+import NoticeDetails from './pages/NoticeDetails';
 import Contact from './pages/Contact';
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/leadership" element={<Leadership />} />
             <Route path="/notices" element={<Notices />} />
+            <Route path="/notices/:slug" element={<NoticeDetails />} />
             <Route path="/students" element={<StudentsCorner />} />
             <Route path="/events" element={<Events />} />
             <Route path="/events/:slug" element={<EventDetails />} />

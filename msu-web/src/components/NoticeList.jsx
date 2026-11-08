@@ -1,4 +1,6 @@
 ﻿import React, { useMemo } from 'react';
+import { Link } from 'react-router-dom';
+import { getFileUrl } from '../utils/getFileUrl';
 
 const NoticeList = ({ notices, filter, searchQuery }) => {
 
@@ -53,9 +55,11 @@ const NoticeList = ({ notices, filter, searchQuery }) => {
               </div>
 
               {/* Title & Snippet */}
-              <h3 className="text-xl md:text-[22px] font-bold font-serif text-[#0f172a] dark:text-white mb-2.5 leading-snug hover:text-[#20387b] dark:hover:text-blue-400 transition-colors cursor-pointer">
-                {notice.title}
-              </h3>
+              <Link to={`/notices/${notice.slug || ''}`}>
+                <h3 className="text-xl md:text-[22px] font-bold font-serif text-[#0f172a] dark:text-white mb-2.5 leading-snug hover:text-[#20387b] dark:hover:text-blue-400 transition-colors cursor-pointer">
+                  {notice.title}
+                </h3>
+              </Link>
               <p className="text-[15px] text-slate-500 dark:text-zinc-400 font-medium leading-relaxed">
                 {notice.snippet}
               </p>
@@ -63,20 +67,28 @@ const NoticeList = ({ notices, filter, searchQuery }) => {
 
             {/* Right Actions */}
             <div className="flex flex-col items-start md:items-end justify-center gap-3 shrink-0 mt-2 md:mt-0">
-              <button className="bg-[#20387b] hover:bg-[#152554] text-white text-sm font-bold py-2.5 px-6 rounded-full transition-all duration-300 flex items-center justify-center shadow-md hover:shadow-lg w-full md:w-auto hover:-translate-y-0.5">
+              <Link 
+                to={`/notices/${notice.slug || ''}`}
+                className="bg-[#20387b] hover:bg-[#152554] text-white text-sm font-bold py-2.5 px-6 rounded-full transition-all duration-300 flex items-center justify-center shadow-md hover:shadow-lg w-full md:w-auto hover:-translate-y-0.5"
+              >
                 Read Full Notice
                 <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H16M16 6V12M16 6L8 14" />
                 </svg>
-              </button>
+              </Link>
               
               {notice.pdf && (
-                <button className="text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 text-sm font-bold flex items-center transition-colors w-full md:w-auto justify-center md:justify-end pr-2">
+                <a
+                  href={getFileUrl(notice.pdf)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 text-sm font-bold flex items-center transition-colors w-full md:w-auto justify-center md:justify-end pr-2"
+                >
                   <svg className="w-4 h-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                   </svg>
                   Download PDF
-                </button>
+                </a>
               )}
             </div>
 
