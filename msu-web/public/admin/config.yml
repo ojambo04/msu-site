@@ -7,7 +7,7 @@ local_backend: true
 backend:
   name: github
   repo: ojambo04/msu-site
-  branch: decap-cms-github-pages
+  branch: main
 
 # Where uploaded images are stored in the repo
 media_folder: /msu-content/images
