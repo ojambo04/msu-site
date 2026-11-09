@@ -1,13 +1,13 @@
 ---
 title: MSU Cultural Heritage Festival 2026
 status: past
-date: 2025-05-01
+date: 2026-05-01
 time: ''
 location: Pudunamei Village
 snippet: A celebration of our ancestral traditions, folk songs, and indigenous crafts.
 youtubeId: tDNTTuBAgYU
 images:
-  - banner_abstract.png
+  - /msu-content/images/cultural_secretary.jpeg
 ---
 
 The MSU Cultural Heritage Festival 2025 was a resounding success, bringing together thousands of students and community members to celebrate the vibrant traditions of the Mao community. The three-day event featured traditional folk dances, indigenous sports, and a spectacular showcase of traditional attire.
