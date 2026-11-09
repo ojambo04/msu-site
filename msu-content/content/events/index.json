@@ -5,6 +5,29 @@
   },
   "events": [
     {
+      "slug": "2025-06-05-afforestation-drive",
+      "hasBody": true,
+      "title": "Environmental Afforestation Drive",
+      "status": "past",
+      "date": "2025-06-05",
+      "location": "Dzukou Valley Approach",
+      "snippet": "Mass tree plantation drive organized on World Environment Day with over 500 volunteers."
+    },
+    {
+      "slug": "2025-12-15-cultural-heritage-festival",
+      "hasBody": true,
+      "title": "MSU Cultural Heritage Festival 2026",
+      "status": "past",
+      "date": "2025-05-01T00:00:00.000Z",
+      "time": "",
+      "location": "Pudunamei Village",
+      "snippet": "A celebration of our ancestral traditions, folk songs, and indigenous crafts.",
+      "youtubeId": "tDNTTuBAgYU",
+      "images": [
+        "banner_abstract.png"
+      ]
+    },
+    {
       "slug": "ongoing-village-library",
       "hasBody": false,
       "title": "Village Library Initiative",
@@ -41,28 +64,6 @@
       "time": "10:00 AM - 4:00 PM",
       "location": "Mao Town Hall, Senapati",
       "snippet": "Annual regional literary meet featuring debate, essay writing, and extempore speech competitions for high school students."
-    },
-    {
-      "slug": "2025-12-15-cultural-heritage-festival",
-      "hasBody": true,
-      "title": "MSU Cultural Heritage Festival 2025",
-      "status": "past",
-      "date": "2025-12-15",
-      "location": "Pudunamei Village",
-      "snippet": "A celebration of our ancestral traditions, folk songs, and indigenous crafts.",
-      "youtubeId": "dQw4w9WgXcQ",
-      "images": [
-        "banner_abstract.png"
-      ]
-    },
-    {
-      "slug": "2025-06-05-afforestation-drive",
-      "hasBody": true,
-      "title": "Environmental Afforestation Drive",
-      "status": "past",
-      "date": "2025-06-05",
-      "location": "Dzukou Valley Approach",
-      "snippet": "Mass tree plantation drive organized on World Environment Day with over 500 volunteers."
     }
   ]
 }
