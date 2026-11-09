@@ -6,17 +6,6 @@
   },
   "notices": [
     {
-      "slug": "2026-11-08-test-circular-notice",
-      "hasBody": false,
-      "ref": "Test",
-      "category": "General",
-      "urgent": false,
-      "date": "2026-11-08T00:00:00.000Z",
-      "title": "Test Circular Notice",
-      "snippet": "This is just a test circular",
-      "file": ""
-    },
-    {
       "slug": "2026-08-04-literary-meet-notification",
       "hasBody": true,
       "ref": "MSU/PRESS/2026/08-01",
@@ -46,7 +35,8 @@
       "urgent": false,
       "date": "2026-05-22T00:00:00.000Z",
       "title": "Press Statement Condemning Recent Educational Budget Cuts",
-      "snippet": "The Mao Students' Union stands in solidarity with all affected student bodies in protesting the recent arbitrary cuts."
+      "snippet": "The Mao Students' Union stands in solidarity with all affected student bodies in protesting the recent arbitrary cuts.",
+      "file": ""
     }
   ]
 }

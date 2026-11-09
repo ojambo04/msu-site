@@ -5,14 +5,13 @@ import { resolve } from 'path'
 import { cpSync, mkdirSync, watch, existsSync, rmSync } from 'fs'
 import { exec } from 'child_process'
 
-const msuRoot          = resolve(import.meta.dirname, '../msu-content')
-const contentSrc       = resolve(import.meta.dirname, '../msu-content/content')
-const contentDest      = resolve(import.meta.dirname, 'public/content')
-const filesSrc         = resolve(import.meta.dirname, '../msu-content/files')
-const filesDest        = resolve(import.meta.dirname, 'public/files')
-const imagesSrc        = resolve(import.meta.dirname, '../msu-content/images')
-const imagesDest       = resolve(import.meta.dirname, 'public/images')
-const assetsImagesDest = resolve(import.meta.dirname, 'public/assets/images')
+const msuRoot = resolve(import.meta.dirname, '../msu-content')
+const contentSrc = resolve(import.meta.dirname, '../msu-content/content')
+const contentDest = resolve(import.meta.dirname, 'public/msu-content/content')
+const filesSrc = resolve(import.meta.dirname, '../msu-content/files')
+const filesDest = resolve(import.meta.dirname, 'public/msu-content/files')
+const imagesSrc = resolve(import.meta.dirname, '../msu-content/images')
+const imagesDest = resolve(import.meta.dirname, 'public/msu-content/images')
 const buildIndexScript = resolve(import.meta.dirname, '../scripts/build-index.js')
 
 function rebuildIndex(callback) {
@@ -27,37 +26,37 @@ function rebuildIndex(callback) {
  * Syncs msu-content/ into msu-web/public/
  * - Rebuilds events and notices index.json
  * - Copies content/ (*.md, *.json) into public/content/
- * - Copies files/ into public/files/
- * - Copies images/ into public/images/ and public/assets/images/
+ * - Copies files/ into public/msu-content/files/
+ * - Copies images/ into public/msu-content/images/
+ * The dest paths mirror the repo structure so dev URLs match the paths stored
+ * in markdown frontmatter (/msu-content/images/foo.jpg → served as-is by Vite).
  * Runs ONLY during `vite` (dev server). Disabled during `vite build`.
  */
 function contentSyncPlugin() {
   let watcher = null
+  let debounceTimer = null
 
   function sync(label) {
     try {
       if (!existsSync(msuRoot)) return
 
       rebuildIndex(() => {
-        // 1. Copy markdown content & index.json from msu-content/content to public/content
+        // 1. Copy markdown content & index.json from msu-content/content to public/msu-content/content
         if (existsSync(contentSrc)) {
           mkdirSync(contentDest, { recursive: true })
           cpSync(contentSrc, contentDest, { recursive: true, force: true })
         }
 
-        // 2. Copy files (PDFs, docs) from msu-content/files to public/files
+        // 2. Copy files (PDFs, docs) from msu-content/files to public/msu-content/files
         if (existsSync(filesSrc)) {
           mkdirSync(filesDest, { recursive: true })
           cpSync(filesSrc, filesDest, { recursive: true, force: true })
         }
 
-        // 3. Copy images from msu-content/images to public/images and public/assets/images
+        // 3. Copy images from msu-content/images to public/msu-content/images
         if (existsSync(imagesSrc)) {
           mkdirSync(imagesDest, { recursive: true })
           cpSync(imagesSrc, imagesDest, { recursive: true, force: true })
-
-          mkdirSync(assetsImagesDest, { recursive: true })
-          cpSync(imagesSrc, assetsImagesDest, { recursive: true, force: true })
         }
 
         console.log(`\x1b[36m[content]\x1b[0m Synced msu-content (content, files, images)${label ? ` (${label})` : ''}`)
@@ -77,11 +76,19 @@ function contentSyncPlugin() {
       // Watch msu-content for changes in content, files, or images
       watcher = watch(msuRoot, { recursive: true }, (_, filename) => {
         if (!filename) return
-        sync(filename)
-        server.hot.send({ type: 'full-reload' })
+        // Ignore auto-generated index.json — writing it would re-trigger this
+        // watcher and cause an EBUSY lock conflict on Windows.
+        if (filename.endsWith('index.json')) return
+        // Debounce: rapid saves (e.g. editor auto-save) are collapsed into one sync.
+        clearTimeout(debounceTimer)
+        debounceTimer = setTimeout(() => {
+          sync(filename)
+          server.hot.send({ type: 'full-reload' })
+        }, 200)
       })
     },
     buildEnd() {
+      clearTimeout(debounceTimer)
       watcher?.close()
     },
   }
@@ -96,7 +103,7 @@ function excludeContentFromDistPlugin() {
     apply: 'build',
     closeBundle() {
       const dist = resolve(import.meta.dirname, 'dist')
-      const foldersToRemove = ['content', 'files', 'images', 'assets/images']
+      const foldersToRemove = ['msu-content']
       for (const folder of foldersToRemove) {
         const target = resolve(dist, folder)
         if (existsSync(target)) {

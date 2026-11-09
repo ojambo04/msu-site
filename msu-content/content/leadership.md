@@ -12,7 +12,7 @@ keyLeaders:
       student empowerment, educational infrastructure transparency, and
       preserving our pristine Mao heritage.
     email: shulychakre@gmail.com
-    image: /assets/images/president.jpeg
+    image: /msu-content/images/president.jpeg
   - role: General Secretary
     name: Mr. Lot Pfotte
     unit: MSU Secretariat, Tadubi
@@ -21,60 +21,60 @@ keyLeaders:
       portal for immediate grievance resolution, scholarship verification, and
       official circular verification.
     email: msugensecy@gmail.com
-    image: /assets/images/general_secretary.jpeg
+    image: /msu-content/images/general_secretary.jpeg
 officeBearers:
   - category: Administration
     role: Vice President
     name: Mr. Tuni Khrasi
     email: ""
     phone: +91 9612649437
-    image: /assets/images/vice_president.jpeg
+    image: /msu-content/images/vice_president.jpeg
   - category: Education
     role: Education Secretary
     name: Mr. Daiho Lokho
     email: ""
     phone: +91 8731032421
-    image: /assets/images/education_secretary.jpeg
+    image: /msu-content/images/education_secretary.jpeg
   - category: Women Cell
     role: Women Co-ordinator
     name: Ms. Ashihrii Athine
     email: ""
     phone: +91 9863201445
-    image: /assets/images/women_cordinator1.jpeg
+    image: /msu-content/images/women_cordinator1.jpeg
   - category: Women Cell
     role: Women Co-ordinator
     name: Ms. Kaisii Lolia
     email: ""
     phone: +91 9383101292
-    image: /assets/images/women_cordinator2.jpeg
+    image: /msu-content/images/women_cordinator2.jpeg
   - category: Information
     role: Information & Publicity Secretary
     name: Mr. K Saou Phimu
     email: ""
     phone: +91 8732808423
-    image: /assets/images/information_secretary.jpeg
+    image: /msu-content/images/information_secretary.jpeg
   - category: Cultural
     role: Cultural Secretary
     name: Ms. Losii Chorow
     email: ""
     phone: +91 8787319926
-    image: /assets/images/cultural_secretary.jpeg
+    image: /msu-content/images/cultural_secretary.jpeg
   - category: Administration
     role: Asst. General Secretary
     name: Mr. Simon Athili
     email: ""
     phone: ""
-    image: /assets/images/asst_gen_secretary.jpeg
+    image: /msu-content/images/asst_gen_secretary.jpeg
   - category: Finance
     role: Finance Secretary
     name: Mr. K Athishu Kayina
     email: ""
     phone: ""
-    image: /assets/images/finance_secretary.jpeg
+    image: /msu-content/images/finance_secretary.jpeg
   - category: Assembly
     role: Assembly Speaker
     name: Mr. Salew Kaihrii
     email: ""
     phone: ""
-    image: /assets/images/assembly_speaker.jpeg
+    image: /msu-content/images/assembly_speaker.jpeg
 ---

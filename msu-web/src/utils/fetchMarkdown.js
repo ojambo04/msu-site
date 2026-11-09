@@ -1,17 +1,17 @@
 import frontMatter from 'front-matter';
 
 // In production, content is fetched directly from GitHub (single source of truth).
-// In development, Vite copies msu-content/ → public/content/ so we can serve locally.
+// In development, Vite serves /msu-content/content/ from public/msu-content/content/.
 const GITHUB_RAW_BASE =
-  'https://raw.githubusercontent.com/ojambo04/msu-site/main/msu-content/content';
+  'https://raw.githubusercontent.com/ojambo04/msu-site/main';
 
 const getContentUrl = (filename) => {
   if (import.meta.env.PROD) {
     // Production: read from GitHub raw — no deploy step needed for content updates
-    return `${GITHUB_RAW_BASE}/${filename}`;
+    return `${GITHUB_RAW_BASE}/msu-content/content/${filename}`;
   }
-  // Development: served from public/content/ (auto-copied by Vite plugin)
-  return `/content/${filename}`;
+  // Development: served from public/msu-content/content/ (auto-copied by Vite dev plugin)
+  return `/msu-content/content/${filename}`;
 };
 
 export const fetchMarkdown = async (filename) => {

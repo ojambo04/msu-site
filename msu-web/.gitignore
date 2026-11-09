@@ -25,7 +25,5 @@ dist-ssr
 
 # Content is the canonical source in ../msu-content/
 # Auto-copied here by the Vite dev plugin — do not commit
-public/content/
-public/files/
-public/images/
-public/assets/
+public/msu-content
+public/msu-content/*

@@ -3,6 +3,12 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+    paths:
+      - 'msu-content/content/events/**'
+      - 'msu-content/content/notices/**'
+      - 'msu-web/**'
+      - 'scripts/**'
+      - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
 # Allow only one concurrent deployment
@@ -28,20 +34,41 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # ── Step 1: Rebuild content indexes ──────────────────────────────────
+      # ── Detect which paths changed ────────────────────────────────────────
+      - name: Detect changed paths
+        id: changes
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            content:
+              - 'msu-content/content/events/**'
+              - 'msu-content/content/notices/**'
+              - 'scripts/**'
+            web:
+              - 'msu-web/**'
+            workflow:
+              - '.github/workflows/deploy.yml'
+
+      # ── Phase 1: Rebuild content indexes ─────────────────────────────────
+      # Runs only when events/notices .md files or the build script itself change.
+      # .md files are fetched at runtime from GitHub, so no Vite rebuild is needed.
       - name: Set up Node.js for scripts
+        if: steps.changes.outputs.content == 'true' || steps.changes.outputs.workflow == 'true' || github.event_name == 'workflow_dispatch'
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
       - name: Install script dependencies
+        if: steps.changes.outputs.content == 'true' || steps.changes.outputs.workflow == 'true' || github.event_name == 'workflow_dispatch'
         run: npm install
         working-directory: scripts
 
       - name: Rebuild events & notices index.json
+        if: steps.changes.outputs.content == 'true' || steps.changes.outputs.workflow == 'true' || github.event_name == 'workflow_dispatch'
         run: node scripts/build-index.js
 
       - name: Commit updated indexes (if changed)
+        if: steps.changes.outputs.content == 'true' || steps.changes.outputs.workflow == 'true' || github.event_name == 'workflow_dispatch'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -49,12 +76,16 @@ jobs:
           git diff --cached --quiet || git commit -m "chore: rebuild content indexes [skip ci]"
           git push
 
-      # ── Step 2: Build the React app ───────────────────────────────────────
+      # ── Phase 2: Build the React app ─────────────────────────────────────
+      # Runs only when msu-web/ source changes. Content-only pushes skip this
+      # phase entirely since the app bundle is not affected by .md file changes.
       - name: Install web dependencies
+        if: steps.changes.outputs.web == 'true' || steps.changes.outputs.workflow == 'true' || github.event_name == 'workflow_dispatch'
         run: npm install
         working-directory: msu-web
 
       - name: Build Vite app
+        if: steps.changes.outputs.web == 'true' || steps.changes.outputs.workflow == 'true' || github.event_name == 'workflow_dispatch'
         run: npm run build
         working-directory: msu-web
         env:
@@ -62,20 +93,25 @@ jobs:
           # Can be overridden by setting repository variable VITE_BASE_URL (e.g. '/' for custom domain).
           VITE_BASE_URL: ${{ vars.VITE_BASE_URL || '/msu-site/' }}
 
-      # Enables React Router on GitHub Pages: 404 → index.html
+      # Copies index.html → 404.html so GitHub Pages serves the SPA correctly
+      # for direct URL access and React Router deep links.
       - name: Copy index.html as 404.html for SPA routing
+        if: steps.changes.outputs.web == 'true' || steps.changes.outputs.workflow == 'true' || github.event_name == 'workflow_dispatch'
         run: cp msu-web/dist/index.html msu-web/dist/404.html
-
-      # ── Step 3: Deploy to GitHub Pages ───────────────────────────────────
+      
+      # ── Phase 3: Deploy to GitHub Pages ──────────────────────────────────
       - name: Setup Pages
+        if: steps.changes.outputs.web == 'true' || steps.changes.outputs.workflow == 'true' || github.event_name == 'workflow_dispatch'
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
+        if: steps.changes.outputs.web == 'true' || steps.changes.outputs.workflow == 'true' || github.event_name == 'workflow_dispatch'
         uses: actions/upload-pages-artifact@v3
         with:
           path: msu-web/dist
 
       - name: Deploy to GitHub Pages
+        if: steps.changes.outputs.web == 'true' || steps.changes.outputs.workflow == 'true' || github.event_name == 'workflow_dispatch'
         id: deployment
         uses: actions/deploy-pages@v4
 

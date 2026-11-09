@@ -11,8 +11,9 @@ backend:
 
 # Where uploaded images are stored in the repo
 media_folder: /msu-content/images
-# The public path used when inserting images into markdown
-public_folder: /images
+# The repo-relative path written into markdown — matches the actual storage path
+# so GitHub raw URLs can be constructed by simply prepending the raw base URL.
+public_folder: /msu-content/images
 
 # ─── Collections ────────────────────────────────────────────────────────────
 
@@ -83,7 +84,7 @@ collections:
         label: "Upload Attachment / Document"
         widget: file
         media_folder: /msu-content/files
-        public_folder: /files
+        public_folder: /msu-content/files
         choose_url: true
         required: false
       - name: body
@@ -168,7 +169,7 @@ collections:
                 label: "Upload Constitution PDF"
                 widget: file
                 media_folder: /msu-content/files
-                public_folder: /files
+                public_folder: /msu-content/files
                 choose_url: true
                 required: false
           - name: mission
@@ -219,7 +220,7 @@ collections:
                 label: "Leader Photo"
                 widget: image
                 media_folder: /msu-content/images
-                public_folder: /images
+                public_folder: /msu-content/images
                 choose_url: true
                 required: false
           - name: officeBearers
@@ -245,7 +246,7 @@ collections:
                 label: "Officer Photo"
                 widget: image
                 media_folder: /msu-content/images
-                public_folder: /images
+                public_folder: /msu-content/images
                 choose_url: true
                 required: false
 
@@ -313,7 +314,7 @@ collections:
                     label: "Portrait Image"
                     widget: image
                     media_folder: /msu-content/images
-                    public_folder: /images
+                    public_folder: /msu-content/images
                     choose_url: true
                     required: false
               - name: secretaries
@@ -327,7 +328,7 @@ collections:
                     label: "Portrait Image"
                     widget: image
                     media_folder: /msu-content/images
-                    public_folder: /images
+                    public_folder: /msu-content/images
                     choose_url: true
                     required: false
 

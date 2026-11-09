@@ -1,19 +1,20 @@
 const GITHUB_RAW_BASE =
-  'https://raw.githubusercontent.com/ojambo04/msu-site/main/msu-content/content';
+  'https://raw.githubusercontent.com/ojambo04/msu-site/main';
 
 /**
  * Returns the URL for a content index file or an individual entry MD file.
  *
- * - Development : served from public/content/ (auto-copied by Vite plugin)
- * - Production  : fetched from GitHub raw (no rebuild needed for content updates)
+ * The path matches the repo structure (msu-content/content/...) so:
+ * - Development : Vite serves /msu-content/content/ from public/msu-content/content/
+ * - Production  : prepend GitHub raw base to get the full raw URL
  *
  * @param {string} path  e.g. "events/index.json" or "events/2026-08-14-literary-meet.md"
  */
 const getContentUrl = (path) => {
   if (import.meta.env.PROD) {
-    return `${GITHUB_RAW_BASE}/${path}`;
+    return `${GITHUB_RAW_BASE}/msu-content/content/${path}`;
   }
-  return `/content/${path}`;
+  return `/msu-content/content/${path}`;
 };
 
 /**
@@ -33,4 +34,3 @@ export const fetchContentIndex = async (section) => {
     return {};
   }
 };
-

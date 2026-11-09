@@ -9,8 +9,9 @@
  * Usage:
  *   node scripts/build-index.js
  *
- * This script is also run automatically by GitHub Actions on every push
- * that touches msu-content/content/events/ or msu-content/content/notices/.
+ * This script is also run automatically by GitHub Actions on every push to main
+ * that touches msu-content/content/events/, msu-content/content/notices/,
+ * msu-web/, scripts/, or the deploy workflow itself.
  */
 
 import { readFileSync, writeFileSync, readdirSync, existsSync } from 'fs';
