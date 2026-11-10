@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useMarkdown } from '../hooks/useMarkdown';
-import { getFileUrl, getImageUrl } from '../utils/getFileUrl';
+import { getFileUrl } from '../utils/getFileUrl';
 import Timeline from '../components/Timeline';
 import HallOfFame from '../components/HallOfFame';
+import HeroBanner from '../components/HeroBanner';
 
 const About = () => {
   const { content, attributes, loading } = useMarkdown('about.md');
@@ -32,31 +33,20 @@ const About = () => {
   return (
     <div className="w-full flex flex-col items-center pb-12 fade-in">
       {/* Hero Banner Section */}
-      <div className="w-full relative pt-24 pb-20 px-4 md:px-8 overflow-hidden z-0">
-        <div className="absolute inset-0 z-[-1]">
-          <img src={getImageUrl('banner_abstract.png')} alt="Banner" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-[#20387b]/85 mix-blend-multiply"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#152554]/90 dark:to-zinc-950/95"></div>
-        </div>
-
-        <div className="max-w-6xl mx-auto relative z-10 text-center md:text-left">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white font-serif mb-4 tracking-tight">
-            {attributes.header?.title || 'About Us'}
-          </h1>
-          {attributes.header?.subtitle && (
-            <p className="text-blue-100 max-w-3xl text-sm md:text-base leading-relaxed">
-              {attributes.header.subtitle}
-            </p>
-          )}
-          {attributes.header?.constitutionPdf && (
-            <div className="mt-8">
-              <a href={getFileUrl(attributes.header.constitutionPdf)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5">
-                <span className="text-lg leading-none">📄</span> Read the Constitution
-              </a>
-            </div>
-          )}
-        </div>
-      </div>
+      <HeroBanner 
+        title={attributes.header?.title || 'About Us'}
+        subtitle={attributes.header?.subtitle}
+        bannerImage={attributes.header?.bannerImage || attributes.header?.image}
+        align="left"
+      >
+        {attributes.header?.constitutionPdf && (
+          <div>
+            <a href={getFileUrl(attributes.header.constitutionPdf)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5">
+              <span className="text-lg leading-none">📄</span> Read the Constitution
+            </a>
+          </div>
+        )}
+      </HeroBanner>
 
       {/* Vision & Mission Cards */}
       {attributes.mission && attributes.vision && (

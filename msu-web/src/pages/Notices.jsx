@@ -54,6 +54,7 @@ const Notices = () => {
       <HeroBanner 
         title={header?.title || 'Notice and Press Releases'} 
         subtitle={header?.subtitle} 
+        bannerImage={header?.bannerImage || header?.image}
       />
 
       {/* Floating Toolbar: Search & Category Navigation */}

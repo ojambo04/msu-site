@@ -4,6 +4,8 @@ import { useMarkdown } from '../hooks/useMarkdown';
 import TabNavigation from '../components/TabNavigation';
 import ExecutiveLeaders from '../components/ExecutiveLeaders';
 import OfficeBearers from '../components/OfficeBearers';
+import ConstituentUnits from '../components/ConstituentUnits';
+import SubordinateBodies from '../components/SubordinateBodies';
 import HeroBanner from '../components/HeroBanner';
 
 const tabs = [
@@ -13,8 +15,12 @@ const tabs = [
 ];
 
 const Leadership = () => {
-  const { attributes, loading } = useMarkdown('leadership.md');
+  const { attributes: execData, loading: lExec } = useMarkdown('leadership.md');
+  const { attributes: unitsData, loading: lUnits } = useMarkdown('constituentUnits.md');
+  const { attributes: bodiesData, loading: lBodies } = useMarkdown('subordinateBodies.md');
   const location = useLocation();
+
+  const loading = lExec || lUnits || lBodies;
 
   const getInitialTab = () => {
     const hash = location.hash?.replace('#', '');
@@ -34,22 +40,31 @@ const Leadership = () => {
     }
   }, [location]);
 
+  const unitsList = unitsData?.units || [];
+  const bodiesList = bodiesData?.bodies || [];
+
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-[50vh]">
-        <div className="w-10 h-10 border-4 border-slate-200 dark:border-zinc-800 border-t-primary dark:border-t-primary-light rounded-full animate-spin"></div>
+        <div className="w-10 h-10 border-4 border-slate-200 dark:border-zinc-800 border-t-[#20387b] dark:border-t-blue-400 rounded-full animate-spin"></div>
       </div>
     );
   }
 
-  const { header, keyLeaders, officeBearers } = attributes;
+  const { header: execHeader, keyLeaders, officeBearers } = execData || {};
+  const currentHeader = activeTab === 'units'
+    ? unitsData?.header || { title: '27 Constituent Units & Branches', subtitle: 'Regional and institutional constituent units of Mao Students\' Union.' }
+    : activeTab === 'bodies'
+    ? bodiesData?.header || { title: '4 Subordinate Bodies & Cells', subtitle: 'Specialized constitutional commissions, boards, and councils under MSU.' }
+    : execHeader || { title: 'Executive Council', subtitle: 'Central Executive Council leadership and office bearers.' };
 
   return (
     <div className="w-full flex flex-col items-center pb-20 bg-slate-50 dark:bg-zinc-950 min-h-screen fade-in">
       
       <HeroBanner 
-        title={header?.title || 'Executive Council'} 
-        subtitle={header?.subtitle} 
+        title={currentHeader.title || 'Executive Council'} 
+        subtitle={currentHeader.subtitle} 
+        bannerImage={currentHeader?.bannerImage || currentHeader?.image || execHeader?.bannerImage}
       />
 
       {/* Destination Anchors for smooth footer / deep-link scrolling */}
@@ -72,16 +87,14 @@ const Leadership = () => {
         )}
         
         {activeTab === 'units' && (
-          <div className="w-full max-w-6xl mx-auto py-20 px-4 text-center text-slate-500 fade-in">
-            <h3 className="text-2xl font-bold mb-2">Constituent Units Directory</h3>
-            <p>Content for 27 Constituent Units will be updated here.</p>
+          <div className="fade-in">
+            <ConstituentUnits units={unitsList} />
           </div>
         )}
 
         {activeTab === 'bodies' && (
-          <div className="w-full max-w-6xl mx-auto py-20 px-4 text-center text-slate-500 fade-in">
-            <h3 className="text-2xl font-bold mb-2">Subordinate Bodies</h3>
-            <p>Content for 4 Subordinate Bodies will be updated here.</p>
+          <div className="fade-in">
+            <SubordinateBodies bodies={bodiesList} />
           </div>
         )}
       </div>

@@ -12,8 +12,13 @@ const tabs = [
 ];
 
 const StudentsCorner = () => {
-  const { attributes, loading } = useMarkdown('students.md');
+  const { attributes: studentsData, loading: lStudents } = useMarkdown('students.md');
+  const { attributes: scholarshipsData, loading: lScholarships } = useMarkdown('scholarships.md');
+  const { attributes: jobsData, loading: lJobs } = useMarkdown('jobs.md');
+  const { attributes: examsData, loading: lExams } = useMarkdown('exams.md');
   const location = useLocation();
+
+  const loading = lStudents || lScholarships || lJobs || lExams;
 
   const getInitialTab = () => {
     const hash = location.hash?.replace('#', '');
@@ -41,6 +46,21 @@ const StudentsCorner = () => {
     );
   }
 
+  const scholarships = scholarshipsData?.scholarships || scholarshipsData?.items || studentsData?.scholarships || [];
+  const jobs = jobsData?.jobs || jobsData?.items || studentsData?.jobs || [];
+  const exams = examsData?.exams || examsData?.items || studentsData?.exams || [];
+
+  const attributes = {
+    header: studentsData?.header || {
+      tag: "RESOURCE CENTER",
+      title: "Students' Corner",
+      subtitle: "Your central hub for scholarships, job vacancies, competitive exams, and entrance test schedules."
+    },
+    scholarships,
+    jobs,
+    exams,
+  };
+
   const { header } = attributes;
 
   return (
@@ -49,6 +69,7 @@ const StudentsCorner = () => {
       <HeroBanner 
         title={header?.title || "Students' Corner"} 
         subtitle={header?.subtitle} 
+        bannerImage={header?.bannerImage || header?.image}
       />
 
       {/* Destination Anchors for smooth footer / deep-link scrolling */}

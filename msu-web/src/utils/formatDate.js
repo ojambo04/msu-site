@@ -37,3 +37,27 @@ export const formatDate = (dateVal) => {
   return `${day}-${month}-${year}`;
 };
 
+/**
+ * Formats an event's date or date range (fromDate to toDate) for display.
+ * - Single date: "14-08-2026"
+ * - Date range:  "14-08-2026 to 16-08-2026"
+ * - Text:        "Ongoing"
+ *
+ * @param {Object} event - Event object with optional fromDate, toDate, date
+ * @returns {string}
+ */
+export const formatEventDate = (event) => {
+  if (!event) return '';
+  const from = event.fromDate || event.date;
+  const to = event.toDate;
+
+  const formattedFrom = formatDate(from);
+  const formattedTo = formatDate(to);
+
+  if (formattedFrom && formattedTo && formattedFrom !== formattedTo) {
+    return `${formattedFrom} to ${formattedTo}`;
+  }
+
+  return formattedFrom || formattedTo || '';
+};
+

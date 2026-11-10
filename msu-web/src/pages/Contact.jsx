@@ -1,7 +1,7 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Building, ExternalLink, Clock, Send, Share2 } from 'lucide-react';
 import { useMarkdown } from '../hooks/useMarkdown';
-import { getImageUrl } from '../utils/getFileUrl';
+import HeroBanner from '../components/HeroBanner';
 
 const Contact = () => {
   const { attributes: contactData } = useMarkdown('contact.md');
@@ -15,22 +15,12 @@ const Contact = () => {
   return (
     <div className="w-full flex flex-col items-center pb-12 fade-in">
       {/* Hero Banner Section */}
-      <div className="w-full relative pt-24 pb-20 px-4 md:px-8 overflow-hidden z-0">
-        <div className="absolute inset-0 z-[-1]">
-          <img src={getImageUrl('banner_abstract.png')} alt="Banner" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-[#20387b]/85 mix-blend-multiply"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#152554]/90 dark:to-zinc-950/95"></div>
-        </div>
-
-        <div className="max-w-6xl mx-auto relative z-10 text-center md:text-left w-full">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white font-serif mb-4 tracking-tight">
-            Contact Us
-          </h1>
-          <p className="text-blue-100 max-w-3xl text-sm md:text-base leading-relaxed mx-auto md:mx-0">
-            Reach out to the Mao Students' Union Central Headquarters or our constituent units for any inquiries, assistance, or grievance redressal.
-          </p>
-        </div>
-      </div>
+      <HeroBanner 
+        title={contactData?.header?.title || "Contact Us"}
+        subtitle={contactData?.header?.subtitle || "Reach out to the Mao Students' Union Central Headquarters or our constituent units for any inquiries, assistance, or grievance redressal."}
+        bannerImage={contactData?.bannerImage || contactData?.header?.bannerImage}
+        align="left"
+      />
 
       <div className="w-full max-w-7xl mx-auto px-6 mt-[-40px] relative z-10 slide-up">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

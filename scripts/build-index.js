@@ -67,26 +67,56 @@ function writeIndex(filepath, data) {
 
 const eventsDir = join(contentRoot, 'events');
 
-// Read header metadata from an optional header.md, or use defaults.
+// Read header metadata from events.md, or an optional header.md, or use defaults.
 let eventsHeader = {
   title: 'Events & Programs',
   subtitle: 'Join us in our upcoming activities, cultural programs, and academic meets. Explore our past events.',
 };
-const eventsHeaderPath = join(eventsDir, 'header.md');
-if (existsSync(eventsHeaderPath)) {
-  const { data } = matter(readFileSync(eventsHeaderPath, 'utf-8'));
-  if (data.header) eventsHeader = data.header;
+const eventsHeaderPaths = [
+  join(contentRoot, 'events.md'),
+  join(eventsDir, 'header.md'),
+];
+for (const p of eventsHeaderPaths) {
+  if (existsSync(p)) {
+    const { data } = matter(readFileSync(p, 'utf-8'));
+    if (data.header) {
+      eventsHeader = data.header;
+      break;
+    }
+  }
 }
 
 const allEvents = readEntries(eventsDir);
 
-// Automatically transition passed upcoming events to 'past' based on current date
+// Automatically compute event status (upcoming, ongoing, past) based on fromDate & toDate
 const todayStr = new Date().toISOString().slice(0, 10); // 'YYYY-MM-DD'
 allEvents.forEach(event => {
-  if (event.status === 'upcoming' && event.date && /^\d{4}-\d{2}-\d{2}$/.test(event.date)) {
-    if (event.date < todayStr) {
-      console.log(`[build-index] Auto-moving passed event to past: "${event.title}" (${event.date})`);
+  const rawFrom = event.fromDate || event.date;
+  const rawTo = event.toDate || rawFrom;
+
+  // Sync date property for backwards compatibility
+  if (!event.date && event.fromDate) {
+    event.date = event.fromDate;
+  }
+  if (!event.fromDate && event.date) {
+    event.fromDate = event.date;
+  }
+
+  const fromStr = String(rawFrom || '').trim();
+  const toStr = String(rawTo || '').trim();
+
+  if (/ongoing/i.test(fromStr) || /ongoing/i.test(toStr) || /academic year/i.test(fromStr)) {
+    event.status = 'ongoing';
+  } else if (/^\d{4}-\d{2}-\d{2}/.test(fromStr) || /^\d{4}-\d{2}-\d{2}/.test(toStr)) {
+    const fromIso = fromStr.slice(0, 10);
+    const toIso = toStr ? toStr.slice(0, 10) : fromIso;
+
+    if (toIso < todayStr) {
       event.status = 'past';
+    } else if (fromIso > todayStr) {
+      event.status = 'upcoming';
+    } else {
+      event.status = 'ongoing';
     }
   }
 });
@@ -106,10 +136,18 @@ let noticesHeader = {
   subtitle:
     'Verify official circulars, download press kits, access event schedules, and stay informed on scholarship notifications.',
 };
-const noticesHeaderPath = join(noticesDir, 'header.md');
-if (existsSync(noticesHeaderPath)) {
-  const { data } = matter(readFileSync(noticesHeaderPath, 'utf-8'));
-  if (data.header) noticesHeader = data.header;
+const noticesHeaderPaths = [
+  join(contentRoot, 'notices.md'),
+  join(noticesDir, 'header.md'),
+];
+for (const p of noticesHeaderPaths) {
+  if (existsSync(p)) {
+    const { data } = matter(readFileSync(p, 'utf-8'));
+    if (data.header) {
+      noticesHeader = data.header;
+      break;
+    }
+  }
 }
 
 const allNotices = readEntries(noticesDir);

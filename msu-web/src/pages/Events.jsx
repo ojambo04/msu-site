@@ -25,14 +25,17 @@ const Events = () => {
   // Upcoming events are sorted chronologically ascending (closest upcoming first)
   const upcoming = events
     .filter(e => getEffectiveEventStatus(e) === 'upcoming')
-    .sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+    .sort((a, b) => (a.fromDate || a.date || '').localeCompare(b.fromDate || b.date || ''));
 
-  const ongoing  = events.filter(e => getEffectiveEventStatus(e) === 'ongoing');
+  // Ongoing events sorted by fromDate ascending
+  const ongoing = events
+    .filter(e => getEffectiveEventStatus(e) === 'ongoing')
+    .sort((a, b) => (a.fromDate || a.date || '').localeCompare(b.fromDate || b.date || ''));
 
   // Past events are sorted descending (most recent first)
-  const past     = events
+  const past = events
     .filter(e => getEffectiveEventStatus(e) === 'past')
-    .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+    .sort((a, b) => (b.toDate || b.fromDate || b.date || '').localeCompare(a.toDate || a.fromDate || a.date || ''));
 
   return (
     <div className="w-full flex flex-col items-center bg-[#f8fafc] dark:bg-zinc-950 min-h-screen fade-in">
@@ -40,6 +43,7 @@ const Events = () => {
       <HeroBanner 
         title={header?.title || "Events & Programs"} 
         subtitle={header?.subtitle} 
+        bannerImage={header?.bannerImage || header?.image}
       />
 
       {/* Main Navigation - Floating Bar */}

@@ -1,68 +1,81 @@
 {
   "header": {
     "title": "Events & Programs",
-    "subtitle": "Join us in our upcoming activities, cultural programs, and academic meets. Explore our past events."
+    "subtitle": "Join us in our upcoming activities, cultural programs, and academic meets. Explore our past events.",
+    "bannerImage": ""
   },
   "events": [
     {
-      "slug": "ongoing-village-library",
-      "hasBody": false,
-      "title": "Village Library Initiative",
-      "status": "ongoing",
-      "date": "Ongoing",
-      "location": "Various Constituent Units",
-      "snippet": "Collecting and distributing books to setup miniature libraries in remote villages to support primary education."
-    },
-    {
-      "slug": "ongoing-career-mentorship",
-      "hasBody": false,
-      "title": "Career Mentorship Program",
-      "status": "ongoing",
-      "date": "Current Academic Year",
-      "location": "Online / Hybrid",
-      "snippet": "Connecting senior professionals with college students for career guidance, resume building, and interview preparation."
-    },
-    {
-      "slug": "2026-09-10-general-assembly",
-      "hasBody": false,
-      "title": "Bi-Annual General Assembly",
+      "slug": "2025-06-05-afforestation-drive",
+      "hasBody": true,
+      "title": "Environmental Afforestation Drive",
       "status": "past",
-      "date": "2026-09-10",
-      "time": "9:00 AM",
-      "location": "Central HQ, Tadubi",
-      "snippet": "Gathering of all constituent unit presidents and secretaries to discuss the upcoming academic year's agenda."
-    },
-    {
-      "slug": "2026-08-14-literary-meet",
-      "hasBody": false,
-      "title": "Inter-School Literary Meet 2026",
-      "status": "past",
-      "date": "2026-08-14",
-      "time": "10:00 AM - 4:00 PM",
-      "location": "Mao Town Hall, Senapati",
-      "snippet": "Annual regional literary meet featuring debate, essay writing, and extempore speech competitions for high school students."
+      "fromDate": "2025-06-05",
+      "toDate": "2025-06-05",
+      "location": "Dzukou Valley Approach",
+      "snippet": "Mass tree plantation drive organized on World Environment Day with over 500 volunteers.",
+      "date": "2025-06-05"
     },
     {
       "slug": "2025-12-15-cultural-heritage-festival",
       "hasBody": true,
       "title": "MSU Cultural Heritage Festival 2025",
       "status": "past",
-      "date": "2025-12-15",
+      "fromDate": "2025-12-15",
+      "toDate": "2025-12-17",
       "location": "Pudunamei Village",
       "snippet": "A celebration of our ancestral traditions, folk songs, and indigenous crafts.",
       "youtubeId": "dQw4w9WgXcQ",
       "images": [
         "banner_abstract.png"
-      ]
+      ],
+      "date": "2025-12-15"
     },
     {
-      "slug": "2025-06-05-afforestation-drive",
-      "hasBody": true,
-      "title": "Environmental Afforestation Drive",
+      "slug": "2026-08-14-literary-meet",
+      "hasBody": false,
+      "title": "Inter-School Literary Meet 2026",
       "status": "past",
-      "date": "2025-06-05",
-      "location": "Dzukou Valley Approach",
-      "snippet": "Mass tree plantation drive organized on World Environment Day with over 500 volunteers."
+      "fromDate": "2026-08-14",
+      "toDate": "2026-08-15",
+      "time": "10:00 AM - 4:00 PM",
+      "location": "Mao Town Hall, Senapati",
+      "snippet": "Annual regional literary meet featuring debate, essay writing, and extempore speech competitions for high school students.",
+      "date": "2026-08-14"
+    },
+    {
+      "slug": "2026-09-10-general-assembly",
+      "hasBody": false,
+      "title": "Bi-Annual General Assembly",
+      "status": "upcoming",
+      "fromDate": "2026-12-10",
+      "toDate": "2026-12-11",
+      "time": "9:00 AM",
+      "location": "Central HQ, Tadubi",
+      "snippet": "Gathering of all constituent unit presidents and secretaries to discuss the upcoming academic year's agenda.",
+      "date": "2026-12-10"
+    },
+    {
+      "slug": "ongoing-career-mentorship",
+      "hasBody": false,
+      "title": "Career Mentorship Program",
+      "status": "ongoing",
+      "fromDate": "2026-10-01",
+      "toDate": "2026-12-31",
+      "location": "Online / Hybrid",
+      "snippet": "Connecting senior professionals with college students for career guidance, resume building, and interview preparation.",
+      "date": "2026-10-01"
+    },
+    {
+      "slug": "ongoing-village-library",
+      "hasBody": false,
+      "title": "Village Library Initiative",
+      "status": "ongoing",
+      "fromDate": "2026-11-01",
+      "toDate": "2026-11-30",
+      "location": "Various Constituent Units",
+      "snippet": "Collecting and distributing books to setup miniature libraries in remote villages to support primary education.",
+      "date": "2026-11-01"
     }
   ]
 }
