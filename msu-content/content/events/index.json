@@ -34,15 +34,23 @@
     },
     {
       "slug": "2026-08-14-literary-meet",
-      "hasBody": false,
+      "hasBody": true,
       "title": "Inter-School Literary Meet 2026",
+      "fromDate": "2026-08-14T00:00:00.000Z",
+      "toDate": "2026-08-14T00:00:00.000Z",
       "status": "past",
-      "fromDate": "2026-08-14",
-      "toDate": "2026-08-15",
       "time": "10:00 AM - 4:00 PM",
-      "location": "Mao Town Hall, Senapati",
-      "snippet": "Annual regional literary meet featuring debate, essay writing, and extempore speech competitions for high school students.",
-      "date": "2026-08-14"
+      "location": "ASUFII AUDITORIUM",
+      "snippet": "MSU organised annual Interschool literary meet 2026 featuring debate, essay writing, sketching, quartet, science and arts, extempore speech and cultural show competitions for high school students.",
+      "youtubeId": "",
+      "images": [
+        "/msu-content/images/1848.jpg",
+        "/msu-content/images/1854.jpg",
+        "/msu-content/images/1818.jpg",
+        "/msu-content/images/1821.jpg",
+        "/msu-content/images/1833.jpg"
+      ],
+      "date": "2026-08-14T00:00:00.000Z"
     },
     {
       "slug": "2026-09-10-general-assembly",
