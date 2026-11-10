@@ -1,16 +1,21 @@
 ---
-title: MSU Cultural Heritage Festival 2026
+title: MSU Cultural Regale 2024
+fromDate: 2024-12-27
+toDate: 2024-12-28
 status: past
-fromDate: 2026-05-01
 time: ''
-toDate: "2025-12-17"
-location: Pudunamei Village
+location: Asufii Auditorium Hall.
 snippet: A celebration of our ancestral traditions, folk songs, and indigenous crafts.
-youtubeId: tDNTTuBAgYU
+youtubeId: ''
 images:
-  - /msu-content/images/cultural_secretary.jpeg
+  - /msu-content/images/1866.jpg
+  - /msu-content/images/1872.jpg
+  - /msu-content/images/1857.jpg
+  - /msu-content/images/1863.jpg
 ---
 
-The MSU Cultural Heritage Festival 2025 was a resounding success, bringing together thousands of students and community members to celebrate the vibrant traditions of the Mao community. The three-day event featured traditional folk dances, indigenous sports, and a spectacular showcase of traditional attire.
+The Mao Students' Union (MSU) Cultural Regale 2024 concluded as a definitive success, convening thousands of students and community members to commemorate the rich cultural heritage of the Mao community.
 
-We were honored to host prominent cultural leaders and elders who shared their wisdom through storytelling sessions. The highlight of the festival was the grand finale musical performance, which seamlessly blended ancient folk melodies with modern instrumentation, symbolizing our commitment to 'Sacrifice and Progress'.
+​A primary objective of this initiative was the archival recording and preservation of traditional dances, folk songs, and indigenous games to ensure their transmission to future generations. The comprehensive two-day programme encompassed performances of these traditional arts, exhibitions of indigenous sports, and a distinguished presentation of cultural attire.
+
+​The organizing committee was privileged to host esteemed cultural leaders and community elders, who imparted their historical knowledge and wisdom through formal storytelling sessions. The culmination of the festival featured a grand musical finale that expertly integrated ancient folk melodies with contemporary instrumentation. This closing performance served as a poignant representation of the institution's guiding principle: "Sacrifice and Progress."
