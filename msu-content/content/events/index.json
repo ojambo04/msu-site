@@ -19,18 +19,21 @@
     {
       "slug": "2025-12-15-cultural-heritage-festival",
       "hasBody": true,
-      "title": "MSU Cultural Heritage Festival 2026",
+      "title": "MSU Cultural Regale 2024",
+      "fromDate": "2024-12-27T00:00:00.000Z",
+      "toDate": "2024-12-28T00:00:00.000Z",
       "status": "past",
-      "fromDate": "2026-05-01T00:00:00.000Z",
       "time": "",
-      "toDate": "2025-12-17",
-      "location": "Pudunamei Village",
+      "location": "Asufii Auditorium Hall.",
       "snippet": "A celebration of our ancestral traditions, folk songs, and indigenous crafts.",
-      "youtubeId": "tDNTTuBAgYU",
+      "youtubeId": "",
       "images": [
-        "/msu-content/images/cultural_secretary.jpeg"
+        "/msu-content/images/1866.jpg",
+        "/msu-content/images/1872.jpg",
+        "/msu-content/images/1857.jpg",
+        "/msu-content/images/1863.jpg"
       ],
-      "date": "2026-05-01T00:00:00.000Z"
+      "date": "2024-12-27T00:00:00.000Z"
     },
     {
       "slug": "2026-08-14-literary-meet",
