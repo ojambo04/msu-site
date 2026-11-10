@@ -19,17 +19,18 @@
     {
       "slug": "2025-12-15-cultural-heritage-festival",
       "hasBody": true,
-      "title": "MSU Cultural Heritage Festival 2025",
+      "title": "MSU Cultural Heritage Festival 2026",
       "status": "past",
-      "fromDate": "2025-12-15",
-      "toDate": "2025-12-17",
+      "fromDate": "2026-05-01T00:00:00.000Z",
+      "time": "",
+      "toDate": "2026-05-17",
       "location": "Pudunamei Village",
       "snippet": "A celebration of our ancestral traditions, folk songs, and indigenous crafts.",
-      "youtubeId": "dQw4w9WgXcQ",
+      "youtubeId": "tDNTTuBAgYU",
       "images": [
-        "banner_abstract.png"
+        "/msu-content/images/cultural_secretary.jpeg"
       ],
-      "date": "2025-12-15"
+      "date": "2026-05-01T00:00:00.000Z"
     },
     {
       "slug": "2026-08-14-literary-meet",
