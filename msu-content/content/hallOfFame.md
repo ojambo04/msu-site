@@ -20,7 +20,7 @@ hallOfFame:
       description: |-
         Cultural Regale 2024
         MSU sports meet 2025
-      image: /msu-content/images/2406.jpg
+      image: /msu-content/images/2413.jpg
     - name: S Hriiyio
       tenure: 2019-2023
       description: |-
