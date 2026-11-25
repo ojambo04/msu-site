@@ -10,7 +10,7 @@ hallOfFame:
     - name: Mariikho O Leriina
       tenure: 2019 - 2023
       description: |-
-        MSU Olympics
+        MSU Olympics 2023
         Makhel Heritage Project 
         MSU Conference
       image: /msu-content/images/2408.jpg
@@ -21,4 +21,11 @@ hallOfFame:
         Cultural Regale 2024
         MSU sports meet 2025
       image: /msu-content/images/2406.jpg
+    - name: S Hriiyio
+      tenure: 2019-2023
+      description: |-
+        MSU Olympics 2023
+        Makhel Heritage Project 
+        MSU Conference
+      image: ''
 ---
