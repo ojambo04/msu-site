@@ -11,3 +11,5 @@ images:
   - /msu-content/images/2199.jpg
   - /msu-content/images/2202.jpg
 ---
+
+The MSU Martyrs' Trophy 2026 provides a valuable platform for grassroots football, giving local players competitive match exposure on a quality turf ground. Beyond the sport itself, the tournament honors the memory of the community's martyrs and passes down important historical awareness to younger generations. By bringing together teams and supporters from across surrounding villages, it also strengthens community unity, promotes sportsmanship, and encourages positive, disciplined youth engagement.
