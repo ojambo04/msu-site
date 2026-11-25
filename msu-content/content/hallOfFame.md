@@ -1,13 +1,17 @@
 ---
 hallOfFame:
   presidents:
-    - name: Mr. P. Daili
-      tenure: 1972 - 1978
-      description: Instituted the Inter-School Literary Meet and led major advocacy campaigns for school infrastructure in rural Mao areas.
-      image: ''
+    - name: Matekho Pekosii
+      tenure: 2024 - 2025
+      description: |-
+        Cultural Regale 2024
+        MSU sports meet 2025
+      image: /msu-content/images/2403.jpg
   secretaries:
-    - name: Mr. A. Lokho
-      tenure: 1933 - 1938
-      description: Drafted the initial structural framework for the Union and served alongside the founding president.
-      image: ''
+    - name: Mr. Shuli Chakre
+      tenure: 2024 - 2025
+      description: |-
+        Cultural Regale 2024
+        MSU sports meet 2025
+      image: /msu-content/images/2406.jpg
 ---
