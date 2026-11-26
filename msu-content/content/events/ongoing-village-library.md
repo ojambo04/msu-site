@@ -19,11 +19,4 @@ images:
   - /msu-content/images/2486.jpg
 ---
 
-The 1st Scholarship Programme, 2026 by the Mao Students' Union (MSU) is a community-led initiative that awarded merit-based financial assistance to selected students from 13 private schools across the Mao area.
-
-Key Programme Details
-
-• Organizing Body: Implemented by the Mao Students' Union (MSU) and supported directly by the MSU Executive Committee.
-• Participating Schools: Covers 13 schools across the Mao area that are affiliated with the Mao Area Private Schools' Association (MAPSA).
-• Award Timeline: The inaugural 2026 scholarships were officially awarded in November 2026.
-• Core Objectives: Designed to recognize academic merit, reduce financial barriers for deserving students, raise awareness about educational funding opportunities, and foster a stronger culture of learning within the Mao community.
+The inaugural 2026 Scholarship Programme, instituted by the Mao Students' Union (MSU) with the direct backing of the MSU Executive Committee, is a community-driven initiative that formally conferred merit-based financial assistance in November 2026 upon selected students across 13 private schools in the Mao region affiliated with the Mao Area Private Schools' Association (MAPSA). Established to honour academic distinction, alleviate financial barriers for deserving scholars, broaden awareness of educational funding avenues, and cultivate a robust culture of academic pursuit within the Mao community, this milestone programme underscores a sustained commitment to regional educational advancement.
