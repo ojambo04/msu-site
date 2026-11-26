@@ -14,6 +14,10 @@ hallOfFame:
         Makhel Heritage Project 
         MSU Conference
       image: /msu-content/images/2411.jpg
+    - name: Mr. Lorho Kapani
+      tenure: '2019'
+      description: Convenor MSU 1st Edition Martyers' Trophy 2026
+      image: /msu-content/images/2458.jpg
   secretaries:
     - name: Mr. Shuli Chakre
       tenure: 2024 - 2025
