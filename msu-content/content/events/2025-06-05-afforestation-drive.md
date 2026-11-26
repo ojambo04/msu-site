@@ -10,6 +10,8 @@ youtubeId: ''
 images:
   - /msu-content/images/2473.jpg
   - /msu-content/images/2471.jpg
+  - /msu-content/images/2494.jpg
+  - /msu-content/images/2496.jpg
 ---
 
 Mao Students' Union Installs Dustbins and Awareness Signboards to Preserve Flora and Fauna
@@ -17,6 +19,8 @@ Mao Students' Union Installs Dustbins and Awareness Signboards to Preserve Flora
 Mao, 7th July 2016 : In a continued effort to promote environmental stewardship and protect the rich biodiversity of the region, the Mao Students' Union (MSU) successfully conducted an installation drive of dustbins and awareness signboards across  Mao Gate to Mount Esii route on 7th July 2026.
 
 The initiative aims to curb improper waste disposal, prevent plastic pollution, and sensitize both locals and visitors about the importance of preserving the fragile ecosystem, native flora, and wildlife of the Mao region.
+
+The drive was carried out with the support and assistance of the Senapati Divisional Forest Officer (DFO)  Mr. Shanngam IFS and the Mao Range Office, led by Range Officer Mrs. Chokhoni. By placing waste disposal bins and educational signage along the trail, the union and forest officials hope to encourage trekkers, visitors, and locals to maintain cleanliness and protect the natural ecosystem of Mount Esii.
 
 During the drive, volunteers of the union placed durable waste bins at strategic points frequented by travelers, trekkers, and residents. Alongside the bins, informative signboards bearing messages on waste management, anti-littering, and biodiversity conservation were erected to serve as constant reminders to keep the surroundings clean.
 
