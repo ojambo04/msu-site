@@ -1,12 +1,25 @@
 ---
-title: "Environmental Afforestation Drive"
-status: "past"
-fromDate: "2025-06-05"
-toDate: "2025-06-05"
-location: "Dzukou Valley Approach"
-snippet: "Mass tree plantation drive organized on World Environment Day with over 500 volunteers."
+title: MSU installs dustbins and awareness signboard
+fromDate: 2026-07-07
+toDate: 2026-07-07
+status: past
+time: ''
+location: Mount Esii approach road from Maogate
+snippet: Mao Students' Union Installs Dustbins and Awareness Signboards to Preserve Flora and Fauna at Maogate to Maount Esii Road.
+youtubeId: ''
+images:
+  - /msu-content/images/2473.jpg
+  - /msu-content/images/2471.jpg
 ---
 
-In our continued effort to protect the pristine environment of our ancestral lands, the MSU organized a massive afforestation drive along the approach to the beautiful Dzukou Valley.
+Mao Students' Union Installs Dustbins and Awareness Signboards to Preserve Flora and Fauna
 
-Over 500 student volunteers participated, successfully planting more than 2,000 saplings of indigenous tree species. This initiative not only contributed to ecological preservation but also fostered a strong sense of environmental stewardship among our youth.
+Mao, 7th July 2016 : In a continued effort to promote environmental stewardship and protect the rich biodiversity of the region, the Mao Students' Union (MSU) successfully conducted an installation drive of dustbins and awareness signboards across  Mao Gate to Mount Esii route on 7th July 2026.
+
+The initiative aims to curb improper waste disposal, prevent plastic pollution, and sensitize both locals and visitors about the importance of preserving the fragile ecosystem, native flora, and wildlife of the Mao region.
+
+During the drive, volunteers of the union placed durable waste bins at strategic points frequented by travelers, trekkers, and residents. Alongside the bins, informative signboards bearing messages on waste management, anti-littering, and biodiversity conservation were erected to serve as constant reminders to keep the surroundings clean.
+
+Speaking on the occasion, the MSU President Mr. Shuli Chakre emphasized that the natural beauty and ecological balance of the Mao area are vital assets that require collective responsibility. The union appealed to the general public, commuters, and tourists to make proper use of the installed dustbins and refrain from harming plants or disturbing wildlife.
+
+The Mao Students' Union reaffirmed its commitment to organizing similar green initiatives in the future to ensure a cleaner, healthier, and sustainable environment for generations to come.
