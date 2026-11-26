@@ -27,5 +27,5 @@ hallOfFame:
         MSU Olympics 2023
         Makhel Heritage Project 
         MSU Conference
-      image: ''
+      image: /msu-content/images/2454.jpg
 ---
