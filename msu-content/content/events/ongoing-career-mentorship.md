@@ -11,3 +11,7 @@ images:
   - /msu-content/images/2208.jpg
   - /msu-content/images/2205.jpg
 ---
+
+In compliance with the directives of the Naga Students' Federation (NSF), the MSU organised a mass public rally on 16th March 2026 at Mao to protest the compulsory singing and imposition of Vande Mataram at official functions and educational institutions.
+Students, youth leaders, and concerned citizens participated in large numbers, marching peacefully and raising slogans in solidarity with the federation's call. Addressing the gathering, speakers emphasised that the demonstration was not directed against any nation or community, but was a united stand to protect the people's religious beliefs, identity, and the secular character of society.  
+The rally concluded peacefully with a collective appeal to the concerned authorities to respect the faith and sentiments of the people and to withdraw the directive mandating Vande Mataram.
