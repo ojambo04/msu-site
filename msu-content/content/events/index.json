@@ -6,26 +6,7 @@
   },
   "events": [
     {
-      "slug": "2025-06-05-afforestation-drive",
-      "hasBody": true,
-      "title": "MSU installs dustbins and awareness signboard",
-      "fromDate": "2026-07-07T00:00:00.000Z",
-      "toDate": "2026-07-07T00:00:00.000Z",
-      "status": "past",
-      "time": "",
-      "location": "Mount Esii approach road from Maogate",
-      "snippet": "Mao Students' Union Installs Dustbins and Awareness Signboards to Preserve Flora and Fauna at Maogate to Maount Esii Road.",
-      "youtubeId": "",
-      "images": [
-        "/msu-content/images/2473.jpg",
-        "/msu-content/images/2471.jpg",
-        "/msu-content/images/2494.jpg",
-        "/msu-content/images/2496.jpg"
-      ],
-      "date": "2026-07-07T00:00:00.000Z"
-    },
-    {
-      "slug": "2025-12-15-cultural-heritage-festival",
+      "slug": "2024-12-27-msu-cultural-regale-2024",
       "hasBody": true,
       "title": "MSU Cultural Regale 2024",
       "fromDate": "2024-12-27T00:00:00.000Z",
@@ -44,7 +25,43 @@
       "date": "2024-12-27T00:00:00.000Z"
     },
     {
-      "slug": "2026-08-14-literary-meet",
+      "slug": "2026-03-16-mass-rally-against-the-imposition-of-vande-mataram",
+      "hasBody": true,
+      "title": "Mass Rally Against the imposition of Vande mataram",
+      "fromDate": "2026-03-16T00:00:00.000Z",
+      "toDate": "2026-03-16T00:00:00.000Z",
+      "status": "past",
+      "time": "8am",
+      "location": "Mao",
+      "snippet": "On March 16, 2026, the Naga Students' Federation (NSF) held a mass rally to protest the compulsory singing of Vande Mataram in schools and official functions. The Mao Students' Union held its rally in support with the NSF initiative to opposed the mandate because it conflicts with the religious faith and conscience of the Naga people, undermines constitutional secularism and indigenous cultural rights, and was imposed without local consultation.",
+      "youtubeId": "",
+      "images": [
+        "/msu-content/images/2208.jpg",
+        "/msu-content/images/2205.jpg"
+      ],
+      "date": "2026-03-16T00:00:00.000Z"
+    },
+    {
+      "slug": "2026-07-07-msu-installs-dustbins-and-awareness-signboard",
+      "hasBody": true,
+      "title": "MSU installs dustbins and awareness signboard",
+      "fromDate": "2026-07-07T00:00:00.000Z",
+      "toDate": "2026-07-07T00:00:00.000Z",
+      "status": "past",
+      "time": "",
+      "location": "Mount Esii approach road from Maogate",
+      "snippet": "Mao Students' Union Installs Dustbins and Awareness Signboards to Preserve Flora and Fauna at Maogate to Maount Esii Road.",
+      "youtubeId": "",
+      "images": [
+        "/msu-content/images/2473.jpg",
+        "/msu-content/images/2471.jpg",
+        "/msu-content/images/2494.jpg",
+        "/msu-content/images/2496.jpg"
+      ],
+      "date": "2026-07-07T00:00:00.000Z"
+    },
+    {
+      "slug": "2026-08-14-inter-school-literary-meet-2026",
       "hasBody": true,
       "title": "Inter-School Literary Meet 2026",
       "fromDate": "2026-08-14T00:00:00.000Z",
@@ -64,7 +81,7 @@
       "date": "2026-08-14T00:00:00.000Z"
     },
     {
-      "slug": "2026-09-10-general-assembly",
+      "slug": "2026-09-21-msu-martyars-trophy",
       "hasBody": true,
       "title": "MSU Martyars' Trophy",
       "fromDate": "2026-09-21T00:00:00.000Z",
@@ -92,24 +109,7 @@
       "date": "2026-09-21T00:00:00.000Z"
     },
     {
-      "slug": "ongoing-career-mentorship",
-      "hasBody": true,
-      "title": "Mass Rally Against the imposition of Vande mataram",
-      "fromDate": "2026-03-16T00:00:00.000Z",
-      "toDate": "2026-03-16T00:00:00.000Z",
-      "status": "past",
-      "time": "8am",
-      "location": "Mao",
-      "snippet": "On March 16, 2026, the Naga Students' Federation (NSF) held a mass rally to protest the compulsory singing of Vande Mataram in schools and official functions. The Mao Students' Union held its rally in support with the NSF initiative to opposed the mandate because it conflicts with the religious faith and conscience of the Naga people, undermines constitutional secularism and indigenous cultural rights, and was imposed without local consultation.",
-      "youtubeId": "",
-      "images": [
-        "/msu-content/images/2208.jpg",
-        "/msu-content/images/2205.jpg"
-      ],
-      "date": "2026-03-16T00:00:00.000Z"
-    },
-    {
-      "slug": "ongoing-village-library",
+      "slug": "2026-11-01-mao-students-union-scholarship",
       "hasBody": true,
       "title": "Mao Students' Union Scholarship",
       "fromDate": "2026-11-01T00:00:00.000Z",

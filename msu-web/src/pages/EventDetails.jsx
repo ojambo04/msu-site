@@ -2,9 +2,11 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useMarkdown } from '../hooks/useMarkdown';
 import { getImageUrl } from '../utils/getFileUrl';
-import { formatDate, formatEventDate } from '../utils/formatDate';
+import { getYoutubeEmbedUrl } from '../utils/getYoutubeEmbedUrl';
+import { formatEventDate } from '../utils/formatDate';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import ImageViewerGallery from '../components/ImageViewerGallery';
 
 const EventDetails = () => {
   const { slug } = useParams();
@@ -33,14 +35,15 @@ const EventDetails = () => {
   }
 
   const event = attributes;
+  const youtubeEmbedUrl = getYoutubeEmbedUrl(event.youtubeId);
 
   return (
     <div className="w-full flex flex-col items-center bg-[#f8fafc] dark:bg-zinc-950 min-h-screen pb-20 fade-in">
-      
+
       {/* Hero Header */}
       <div className="w-full bg-[#20387b] pt-16 pb-24 px-4 md:px-8 overflow-hidden z-0 shadow-inner relative">
         <div className="absolute inset-0 z-[-1] opacity-20 mix-blend-overlay">
-           <img src={getImageUrl('banner_abstract.png')} alt="Texture" className="w-full h-full object-cover" />
+          <img src={getImageUrl('banner_abstract.png')} alt="Texture" className="w-full h-full object-cover" />
         </div>
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <Link to="/events" state={{ tab: 'past' }} className="inline-flex items-center text-blue-200 hover:text-white transition-colors text-sm font-bold mb-8 group">
@@ -72,27 +75,29 @@ const EventDetails = () => {
       </div>
 
       {/* Main Content Area */}
-      <div className="w-full max-w-4xl mx-auto px-4 md:px-8 mt-[-50px] relative z-10 slide-up" style={{ animationDelay: '150ms' }}>
-        <div className="bg-white dark:bg-zinc-900 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] border border-slate-100 dark:border-zinc-800 p-8 md:p-14 mb-12">
-          
+      <div className="w-full max-w-5xl mx-auto px-4 md:px-8 mt-[-50px] relative z-10 slide-up" style={{ animationDelay: '150ms' }}>
+        <div className="bg-white dark:bg-zinc-900 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] border border-slate-100 dark:border-zinc-800 p-6 sm:p-10 md:p-14 mb-12">
+
           {/* Full writeup (markdown body) */}
-          <div className="prose prose-slate dark:prose-invert prose-lg max-w-none">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+          <div className="markdown-content max-w-none">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {content.replace(/[\u200B-\u200D\uFEFF]/g, '')}
+            </ReactMarkdown>
           </div>
 
         </div>
 
         {/* YouTube Video Section */}
-        {event.youtubeId && (
+        {youtubeEmbedUrl && (
           <div className="mb-14 fade-in" style={{ animationDelay: '300ms' }}>
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 font-serif border-l-4 border-[#20387b] pl-4">Video Highlights</h3>
             <div className="rounded-3xl overflow-hidden bg-slate-100 dark:bg-zinc-950 aspect-video shadow-lg border border-slate-200 dark:border-zinc-800">
-              <iframe 
+              <iframe
                 className="w-full h-full"
-                src={`https://www.youtube.com/embed/${event.youtubeId}`} 
-                title="YouTube video player" 
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                src={youtubeEmbedUrl}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
             </div>
@@ -101,15 +106,11 @@ const EventDetails = () => {
 
         {/* Image Gallery Section */}
         {event.images && event.images.length > 0 && (
-          <div className="fade-in" style={{ animationDelay: '400ms' }}>
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 font-serif border-l-4 border-amber-500 pl-4">Event Gallery</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {event.images.map((img, idx) => (
-                <div key={idx} className="rounded-2xl overflow-hidden aspect-video bg-slate-100 dark:bg-zinc-950 shadow-md border border-slate-200 dark:border-zinc-800 group">
-                  <img src={getImageUrl(img)} alt={`Gallery image ${idx + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 cursor-pointer" />
-                </div>
-              ))}
-            </div>
+          <div className="mb-14 fade-in" style={{ animationDelay: '400ms' }}>
+            <ImageViewerGallery
+              images={event.images}
+              title={event.title}
+            />
           </div>
         )}
       </div>

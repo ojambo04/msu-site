@@ -1,145 +1,148 @@
-import React from 'react';
-import { Phone, Mail, MapPin, User, Building2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { Mail, MapPin, Building2 } from 'lucide-react';
+import OfficerProfile from './OfficerProfile';
 
 const SubordinateBodies = ({ bodies = [] }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   if (!bodies || bodies.length === 0) {
     return (
-      <div className="w-full max-w-6xl mx-auto py-16 px-6 text-center bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200/80 dark:border-zinc-800">
+      <div className="w-full max-w-6xl mx-auto py-16 px-6 text-center bg-white dark:bg-zinc-900 rounded-3xl border border-slate-200/80 dark:border-zinc-800">
         <p className="text-sm font-semibold text-slate-800 dark:text-zinc-200">No subordinate bodies listed yet</p>
         <p className="text-xs text-slate-400 dark:text-zinc-500 mt-1">Details will appear here once configured in the CMS.</p>
       </div>
     );
   }
 
+  const safeIndex = activeIndex < bodies.length ? activeIndex : 0;
+  const activeBody = bodies[safeIndex];
+
   return (
     <div className="w-full max-w-6xl mx-auto py-12 px-4 slide-up">
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4 border-b border-slate-200/80 dark:border-zinc-800 pb-6">
-        <div>
-          <span className="text-[11px] font-bold tracking-widest text-slate-400 dark:text-zinc-500 uppercase">
-            Apex Regional Leadership
-          </span>
-          <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white font-serif mt-1">
-            4 Subordinate Bodies
-          </h2>
-          <p className="text-slate-500 dark:text-zinc-400 text-sm mt-1 max-w-2xl">
-            Official executive directory of the four apex subordinate bodies of the Mao Students' Union across Imphal, Senapati, Kohima, and Dimapur.
-          </p>
-        </div>
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-slate-50/90 to-blue-50/60 dark:from-zinc-900 dark:via-zinc-900 dark:to-blue-950/30 border border-slate-200/90 dark:border-zinc-800 p-6 md:p-8 mb-8 shadow-[0_4px_20px_rgb(0,0,0,0.03)]">
+        <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#20387b] via-blue-600 to-amber-500"></div>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-5">
+          <div>
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase bg-blue-50 dark:bg-blue-950/70 text-[#20387b] dark:text-blue-300 border border-blue-200/60 dark:border-blue-800/60 mb-3">
+              <Building2 className="w-3.5 h-3.5 text-amber-500" />
+              Apex Regional Leadership
+            </span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white font-serif tracking-tight">
+              {bodies.length} Subordinate Bodies
+            </h2>
+            <p className="text-slate-600 dark:text-zinc-400 text-sm md:text-base mt-2 max-w-2xl leading-relaxed">
+              Official executive directory of the apex subordinate bodies of the Mao Students' Union. Select a body below to view its leadership.
+            </p>
+          </div>
 
-        <div className="text-xs font-medium text-slate-500 dark:text-zinc-400 shrink-0">
-          Showing <span className="font-semibold text-slate-900 dark:text-white">{bodies.length}</span> bodies
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-white/90 dark:bg-zinc-800/80 border border-slate-200/80 dark:border-zinc-700/80 shadow-sm text-xs md:text-sm font-medium text-slate-600 dark:text-zinc-300 shrink-0">
+            <span>Apex Bodies:</span>
+            <span className="font-bold text-[#20387b] dark:text-blue-300">{bodies.length}</span>
+          </div>
         </div>
       </div>
 
-      {/* Grid of 4 Bodies */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {bodies.map((body, index) => (
-          <div
-            key={index}
-            className="relative bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200/80 dark:border-zinc-800 shadow-[0_2px_8px_rgb(0,0,0,0.02)] hover:border-slate-300 dark:hover:border-zinc-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden group"
-          >
-            {/* Hairline top hover accent */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-[#20387b] dark:bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-            <div>
-              {/* Meta: Zone & Location */}
-              <div className="flex items-center justify-between gap-2 mb-2.5">
-                <span className="text-[10px] font-bold text-slate-500 dark:text-zinc-400 tracking-wider uppercase px-2.5 py-0.5 rounded-md bg-slate-100 dark:bg-zinc-800 border border-slate-200/50 dark:border-zinc-700/50">
-                  {body.zone || 'Apex Body'}
-                </span>
-
-                {body.location && (
-                  <span className="text-[11px] text-slate-400 dark:text-zinc-500 font-medium inline-flex items-center gap-1 truncate max-w-[180px]">
-                    <MapPin className="w-3.5 h-3.5 shrink-0 text-slate-400" />
-                    <span className="truncate">{body.location}</span>
-                  </span>
-                )}
-              </div>
-
-              {/* Body Title */}
-              <h3 className="text-lg font-bold font-serif text-slate-900 dark:text-white leading-snug group-hover:text-[#20387b] dark:group-hover:text-blue-400 transition-colors mb-2">
+      {/* Selector Strip */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+        {bodies.map((body, index) => {
+          const isSelected = index === safeIndex;
+          return (
+            <button
+              key={body.name || index}
+              type="button"
+              onClick={() => setActiveIndex(index)}
+              className={`text-left p-4 rounded-2xl border transition-all duration-200 cursor-pointer ${
+                isSelected
+                  ? 'bg-[#20387b] text-white border-[#20387b] shadow-lg shadow-blue-950/15'
+                  : 'bg-white dark:bg-zinc-900 text-slate-800 dark:text-zinc-200 border-slate-200/90 dark:border-zinc-800 hover:border-slate-300 dark:hover:border-zinc-700'
+              }`}
+            >
+              <span
+                className={`inline-block text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-full mb-2 ${
+                  isSelected
+                    ? 'bg-white/15 text-amber-300'
+                    : 'bg-blue-50 dark:bg-blue-950/60 text-[#20387b] dark:text-blue-300'
+                }`}
+              >
+                {body.zone || 'Apex Body'}
+              </span>
+              <h3 className="text-sm font-bold font-serif leading-snug line-clamp-2">
                 {body.name}
               </h3>
-
-              {/* Description */}
-                {body.description && (
-                  <p className="text-xs text-slate-500 dark:text-zinc-400 leading-relaxed mb-5">
-                    {body.description}
-                  </p>
-                )}
-
-                {/* 2-Column Leadership Contacts */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3.5 border-t border-slate-100 dark:border-zinc-800/80">
-                  {/* President */}
-                  <div className="flex flex-col justify-between">
-                    <span className="text-[9.5px] font-bold tracking-wider text-slate-400 dark:text-zinc-500 uppercase flex items-center gap-1 mb-1">
-                      <User className="w-2.5 h-2.5" />
-                      President
-                    </span>
-                    <p className="text-xs font-semibold text-slate-800 dark:text-zinc-200 truncate">
-                      {body.president || 'In Office'}
-                    </p>
-                    <div className="mt-1">
-                      {body.presidentPhone ? (
-                        <a
-                          href={`tel:${body.presidentPhone}`}
-                          className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600 dark:text-zinc-400 hover:text-[#20387b] dark:hover:text-blue-400 transition-colors"
-                          title={`Call President (${body.presidentPhone})`}
-                        >
-                          <Phone className="w-2.5 h-2.5 text-slate-400" />
-                          <span>{body.presidentPhone}</span>
-                        </a>
-                      ) : (
-                        <span className="text-[11px] text-slate-400 dark:text-zinc-600">—</span>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* General Secretary */}
-                  <div className="flex flex-col justify-between">
-                    <span className="text-[9.5px] font-bold tracking-wider text-slate-400 dark:text-zinc-500 uppercase flex items-center gap-1 mb-1">
-                      <User className="w-2.5 h-2.5" />
-                      Gen. Secretary
-                    </span>
-                    <p className="text-xs font-semibold text-slate-800 dark:text-zinc-200 truncate">
-                      {body.secretary || 'In Office'}
-                    </p>
-                    <div className="mt-1">
-                      {body.secretaryPhone ? (
-                        <a
-                          href={`tel:${body.secretaryPhone}`}
-                          className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600 dark:text-zinc-400 hover:text-[#20387b] dark:hover:text-blue-400 transition-colors"
-                          title={`Call Secretary (${body.secretaryPhone})`}
-                        >
-                          <Phone className="w-2.5 h-2.5 text-slate-400" />
-                          <span>{body.secretaryPhone}</span>
-                        </a>
-                      ) : (
-                        <span className="text-[11px] text-slate-400 dark:text-zinc-600">—</span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Email Footer Link */}
-              {body.email && (
-                <div className="mt-5 pt-3 border-t border-slate-100 dark:border-zinc-800/80 flex items-center justify-between text-[11px]">
-                  <span className="text-slate-400 dark:text-zinc-500">Official Email</span>
-                  <a
-                    href={`mailto:${body.email}`}
-                    className="inline-flex items-center gap-1 font-medium text-slate-600 dark:text-zinc-400 hover:text-[#20387b] dark:hover:text-blue-400 truncate max-w-[200px] transition-colors"
-                    title={body.email}
-                  >
-                    <Mail className="w-3 h-3 text-slate-400 shrink-0" />
-                    <span className="truncate">{body.email}</span>
-                  </a>
-                </div>
+              {body.location && (
+                <p
+                  className={`text-[11px] mt-1.5 flex items-center gap-1 truncate ${
+                    isSelected ? 'text-blue-100' : 'text-slate-400 dark:text-zinc-500'
+                  }`}
+                >
+                  <MapPin className="w-3 h-3 shrink-0" />
+                  <span className="truncate">{body.location}</span>
+                </p>
               )}
-            </div>
-          ))}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Spotlight Detail Card */}
+      <div
+        key={safeIndex}
+        className="relative bg-white dark:bg-zinc-900 rounded-3xl p-6 md:p-8 border border-slate-200/90 dark:border-zinc-800 shadow-[0_4px_24px_rgb(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgb(0,0,0,0.25)] overflow-hidden fade-in"
+      >
+        <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#20387b] via-blue-600 to-amber-500"></div>
+
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+          <span className="text-[11px] font-bold text-[#20387b] dark:text-blue-300 tracking-wider uppercase px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800/50">
+            {activeBody.zone || 'Apex Body'}
+          </span>
+
+          {activeBody.location && (
+            <span className="text-xs md:text-sm text-slate-500 dark:text-zinc-400 font-medium inline-flex items-center gap-1.5">
+              <MapPin className="w-3.5 h-3.5 shrink-0 text-amber-500" />
+              <span>{activeBody.location}</span>
+            </span>
+          )}
         </div>
+
+        <h3 className="text-xl md:text-2xl font-bold font-serif text-slate-900 dark:text-white leading-snug mb-2">
+          {activeBody.name}
+        </h3>
+
+        {activeBody.description && (
+          <p className="text-sm text-slate-600 dark:text-zinc-400 leading-relaxed mb-6 max-w-3xl">
+            {activeBody.description}
+          </p>
+        )}
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-5 border-t border-slate-100 dark:border-zinc-800/80">
+          <OfficerProfile
+            role="President"
+            name={activeBody.president}
+            phone={activeBody.presidentPhone}
+            image={activeBody.presidentImage}
+          />
+          <OfficerProfile
+            role="Gen. Secretary"
+            name={activeBody.secretary}
+            phone={activeBody.secretaryPhone}
+            image={activeBody.secretaryImage}
+          />
+        </div>
+
+        {activeBody.email && (
+          <div className="mt-6 pt-4 border-t border-slate-100 dark:border-zinc-800/80 flex flex-wrap items-center justify-between gap-2 text-xs md:text-sm">
+            <span className="text-slate-400 dark:text-zinc-500 font-medium">Official Email</span>
+            <a
+              href={`mailto:${activeBody.email}`}
+              className="inline-flex items-center gap-1.5 font-semibold text-slate-700 dark:text-zinc-300 hover:text-[#20387b] dark:hover:text-blue-400 transition-colors"
+            >
+              <Mail className="w-4 h-4 text-amber-500 shrink-0" />
+              <span>{activeBody.email}</span>
+            </a>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

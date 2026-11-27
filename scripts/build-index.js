@@ -157,5 +157,41 @@ writeIndex(join(noticesDir, 'index.json'), {
   notices: allNotices,
 });
 
+// ─── Leadership Tenures ──────────────────────────────────────────────────────
+
+const leadershipDir = join(contentRoot, 'leadership');
+
+let leadershipHeader = {
+  title: 'Executive Council',
+  subtitle: 'Central Executive Council leadership and office bearers.',
+};
+const leadershipHeaderPaths = [
+  join(contentRoot, 'leadership.md'),
+  join(leadershipDir, 'header.md'),
+];
+for (const p of leadershipHeaderPaths) {
+  if (existsSync(p)) {
+    const { data } = matter(readFileSync(p, 'utf-8'));
+    if (data.header) {
+      leadershipHeader = data.header;
+      break;
+    }
+  }
+}
+
+const allTenures = readEntries(leadershipDir).sort((a, b) => {
+  if (Boolean(a.isActive) !== Boolean(b.isActive)) {
+    return a.isActive ? -1 : 1;
+  }
+  const ta = String(a.tenure || a.slug || '');
+  const tb = String(b.tenure || b.slug || '');
+  return tb.localeCompare(ta);
+});
+
+writeIndex(join(leadershipDir, 'index.json'), {
+  header: leadershipHeader,
+  tenures: allTenures,
+});
+
 console.log('[build-index] Done.');
 

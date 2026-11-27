@@ -1,9 +1,5 @@
 # yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
 
-# ─── Local development only ──────────────────────────────────────────────────
-# Lets you edit files locally without GitHub auth.
-local_backend: true
-
 backend:
   name: github
   repo: ojambo04/msu-site
@@ -174,11 +170,67 @@ collections:
   # ==========================================================================
   # 3. LEADERSHIP PAGE (/leadership)
   # ==========================================================================
+  - name: leadership_tenures
+    label: "Executive Council Tenures"
+    label_singular: "Executive Council Tenure"
+    folder: msu-content/content/leadership
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{tenure}}"
+    summary: "{{fields.tenure}}"
+    fields:
+      - { name: tenure, label: "Tenure (2-Year Term, e.g. 2026-2028)", widget: string }
+      - { name: isActive, label: "Active Executive Council", widget: boolean, default: false, hint: "Enable only for the currently serving 2-year Executive Council." }
+      - name: keyLeaders
+        label: "Top Key Leaders (President & Gen. Secy)"
+        widget: list
+        fields:
+          - { name: role, label: "Role / Designation", widget: string }
+          - { name: name, label: "Full Name", widget: string }
+          - { name: unit, label: "Unit / Office", widget: string }
+          - { name: phone, label: "Contact Phone", widget: string, required: false }
+          - { name: email, label: "Email Address", widget: string, required: false }
+          - { name: message, label: "Official Message", widget: text, required: false }
+          - name: image
+            label: "Leader Photo"
+            widget: image
+            media_folder: /msu-content/images
+            public_folder: /msu-content/images
+            choose_url: true
+            required: false
+      - name: officeBearers
+        label: "Executive Council & Office Bearers"
+        widget: list
+        fields:
+          - name: category
+            label: "Category"
+            widget: select
+            options:
+              - "Administration"
+              - "Education"
+              - "Women Cell"
+              - "Information"
+              - "Cultural"
+              - "Finance"
+              - "Assembly"
+          - { name: role, label: "Role / Designation", widget: string }
+          - { name: name, label: "Full Name", widget: string }
+          - { name: email, label: "Email", widget: string, required: false }
+          - { name: phone, label: "Phone", widget: string, required: false }
+          - name: image
+            label: "Officer Photo"
+            widget: image
+            media_folder: /msu-content/images
+            public_folder: /msu-content/images
+            choose_url: true
+            required: false
+
   - name: leadership
-    label: "Leadership Directory"
+    label: "Leadership Directory & Branches"
     files:
       - name: executive
-        label: "Executive Council & Office Bearers"
+        label: "Executive Council Page Header"
         file: msu-content/content/leadership.md
         fields:
           - name: header
@@ -189,49 +241,6 @@ collections:
               - { name: subtitle, label: "Subtitle", widget: text }
               - name: bannerImage
                 label: "Custom Banner Image (Optional)"
-                widget: image
-                media_folder: /msu-content/images
-                public_folder: /msu-content/images
-                choose_url: true
-                required: false
-          - name: keyLeaders
-            label: "Top Key Leaders (President & Gen. Secy)"
-            widget: list
-            fields:
-              - { name: role, label: "Role / Designation", widget: string }
-              - { name: name, label: "Full Name", widget: string }
-              - { name: unit, label: "Unit / Office", widget: string }
-              - { name: phone, label: "Contact Phone", widget: string, required: false }
-              - { name: email, label: "Email Address", widget: string, required: false }
-              - { name: message, label: "Official Message", widget: text, required: false }
-              - name: image
-                label: "Leader Photo"
-                widget: image
-                media_folder: /msu-content/images
-                public_folder: /msu-content/images
-                choose_url: true
-                required: false
-          - name: officeBearers
-            label: "Executive Council & Office Bearers"
-            widget: list
-            fields:
-              - name: category
-                label: "Category"
-                widget: select
-                options:
-                  - "Administration"
-                  - "Education"
-                  - "Women Cell"
-                  - "Information"
-                  - "Cultural"
-                  - "Finance"
-                  - "Assembly"
-              - { name: role, label: "Role / Designation", widget: string }
-              - { name: name, label: "Full Name", widget: string }
-              - { name: email, label: "Email", widget: string, required: false }
-              - { name: phone, label: "Phone", widget: string, required: false }
-              - name: image
-                label: "Officer Photo"
                 widget: image
                 media_folder: /msu-content/images
                 public_folder: /msu-content/images
@@ -266,8 +275,22 @@ collections:
               - { name: location, label: "Town / City / Location", widget: string, required: false }
               - { name: email, label: "Unit Email Address", widget: string, required: false }
               - { name: president, label: "President Name", widget: string, required: false }
+              - name: presidentImage
+                label: "President Photo (Optional)"
+                widget: image
+                media_folder: /msu-content/images
+                public_folder: /msu-content/images
+                choose_url: true
+                required: false
               - { name: presidentPhone, label: "President Phone Number", widget: string, required: false }
               - { name: secretary, label: "Secretary Name", widget: string, required: false }
+              - name: secretaryImage
+                label: "Secretary Photo (Optional)"
+                widget: image
+                media_folder: /msu-content/images
+                public_folder: /msu-content/images
+                choose_url: true
+                required: false
               - { name: secretaryPhone, label: "Secretary Phone Number", widget: string, required: false }
 
       - name: subordinateBodies
@@ -299,8 +322,22 @@ collections:
               - { name: description, label: "Description / Purpose", widget: text, required: false }
               - { name: email, label: "Email Address", widget: string, required: false }
               - { name: president, label: "President Name", widget: string, required: false }
+              - name: presidentImage
+                label: "President Photo (Optional)"
+                widget: image
+                media_folder: /msu-content/images
+                public_folder: /msu-content/images
+                choose_url: true
+                required: false
               - { name: presidentPhone, label: "President Phone Number", widget: string, required: false }
               - { name: secretary, label: "Secretary Name", widget: string, required: false }
+              - name: secretaryImage
+                label: "Secretary Photo (Optional)"
+                widget: image
+                media_folder: /msu-content/images
+                public_folder: /msu-content/images
+                choose_url: true
+                required: false
               - { name: secretaryPhone, label: "Secretary Phone Number", widget: string, required: false }
 
   # ==========================================================================
@@ -320,10 +357,9 @@ collections:
         label: "Category"
         widget: select
         options:
-          - "Events & Tournaments"
+          - "Events"
           - "Official Circular"
           - "Press Release"
-          - "Scholarship"
           - "General"
       - { name: urgent,      label: "Mark as Urgent",  widget: boolean, default: false }
       - { name: date,        label: "Date", widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }

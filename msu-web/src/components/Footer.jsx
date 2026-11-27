@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useMarkdown } from '../hooks/useMarkdown';
+import { getFileUrl, openPdfInNewTab } from '../utils/getFileUrl';
 
 const Footer = () => {
+  const { attributes: aboutData } = useMarkdown('about.md');
+  const constitutionPath = aboutData?.header?.constitutionPdf || 'constitution.pdf';
+  const constitutionPdf = getFileUrl(constitutionPath);
+
   return (
     <footer className="mt-auto flex flex-col w-full">
       {/* Top Tier */}
@@ -35,7 +41,17 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-bold mb-6 text-sm tracking-widest uppercase">Student Resources</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">📥</span> MSU Constitution PDF</a></li>
+              <li>
+                <a
+                  href={constitutionPdf}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => openPdfInNewTab(e, constitutionPath)}
+                  className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"
+                >
+                  <span className="text-xs">📄</span> MSU Constitution PDF
+                </a>
+              </li>
               <li><Link to="/students#scholarships" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">›</span> MSU Scholarship Scheme</Link></li>
               <li><Link to="/about#hall-of-fame" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">›</span> Past Presidents Hall of Fame</Link></li>
               <li><Link to="/leadership#units" className="text-sm text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-2"><span className="text-xs">›</span> 27 Constituent Units Directory</Link></li>

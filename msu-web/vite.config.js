@@ -73,6 +73,19 @@ function contentSyncPlugin() {
       sync()
     },
     configureServer(server) {
+      // Serve public/admin/index.html for /admin and /admin/ in Vite dev server
+      server.middlewares.use((req, res, next) => {
+        if (req.url === '/admin') {
+          res.writeHead(302, { Location: '/admin/' })
+          res.end()
+          return
+        }
+        if (req.url === '/admin/' || req.url?.startsWith('/admin/?')) {
+          req.url = '/admin/index.html'
+        }
+        next()
+      })
+
       // Watch msu-content for changes in content, files, or images
       watcher = watch(msuRoot, { recursive: true }, (_, filename) => {
         if (!filename) return

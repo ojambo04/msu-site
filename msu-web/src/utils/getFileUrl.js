@@ -31,6 +31,46 @@ export const getFileUrl = (filePath) => {
 };
 
 /**
+ * Opens a PDF in a new browser tab for inline reading instead of forcing download.
+ * In production, GitHub Raw serves PDFs with headers that trigger downloads, so we
+ * fetch the file as an application/pdf Blob and load it into the new tab.
+ */
+export const openPdfInNewTab = async (e, filePath) => {
+  const url = getFileUrl(filePath);
+  if (!url || url === '#') return;
+
+  if (!import.meta.env.PROD && url.startsWith('/')) {
+    return;
+  }
+
+  e?.preventDefault?.();
+  const newTab = window.open('', '_blank');
+  if (newTab) {
+    newTab.document.title = 'Loading PDF...';
+    newTab.document.body.innerHTML =
+      '<p style="font-family:sans-serif;padding:24px;color:#334155;">Loading PDF...</p>';
+  }
+
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const buffer = await res.arrayBuffer();
+    const blobUrl = URL.createObjectURL(new Blob([buffer], { type: 'application/pdf' }));
+    if (newTab) {
+      newTab.location.replace(blobUrl);
+    } else {
+      window.open(blobUrl, '_blank', 'noopener,noreferrer');
+    }
+  } catch {
+    if (newTab) {
+      newTab.location.replace(url);
+    } else {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+  }
+};
+
+/**
  * Returns the correct URL for an image stored in msu-content/images/.
  *
  * Supports:

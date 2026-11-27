@@ -5,39 +5,5 @@
     "subtitle": "Verify official circulars, download press kits, access event schedules, and stay informed on scholarship notifications.",
     "bannerImage": ""
   },
-  "notices": [
-    {
-      "slug": "2026-08-04-literary-meet-notification",
-      "hasBody": false,
-      "ref": "MSU/PRESS/2026/08-01",
-      "category": "Events & Tournaments",
-      "urgent": true,
-      "date": "2026-08-04T00:00:00.000Z",
-      "title": "2",
-      "snippet": "2",
-      "file": ""
-    },
-    {
-      "slug": "2026-06-10-general-assembly-notice",
-      "hasBody": false,
-      "ref": "MSU/CIR/2026/06-10",
-      "category": "Official Circular",
-      "urgent": false,
-      "date": "2026-06-10T00:00:00.000Z",
-      "title": "1",
-      "snippet": "1",
-      "file": ""
-    },
-    {
-      "slug": "2026-05-22-press-statement",
-      "hasBody": false,
-      "ref": "MSU/PR/2026/05-22",
-      "category": "Press Release",
-      "urgent": false,
-      "date": "2026-05-22T00:00:00.000Z",
-      "title": "3",
-      "snippet": "3",
-      "file": ""
-    }
-  ]
+  "notices": []
 }

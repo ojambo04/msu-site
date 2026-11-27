@@ -6,6 +6,7 @@ on:
     paths:
       - 'msu-content/content/events/**'
       - 'msu-content/content/notices/**'
+      - 'msu-content/content/leadership/**'
       - 'msu-web/**'
       - 'scripts/**'
       - '.github/workflows/deploy.yml'
@@ -43,6 +44,7 @@ jobs:
             content:
               - 'msu-content/content/events/**'
               - 'msu-content/content/notices/**'
+              - 'msu-content/content/leadership/**'
               - 'scripts/**'
             web:
               - 'msu-web/**'
@@ -72,7 +74,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add msu-content/content/events/index.json msu-content/content/notices/index.json
+          git add msu-content/content/events/index.json msu-content/content/notices/index.json msu-content/content/leadership/index.json
           git diff --cached --quiet || git commit -m "chore: rebuild content indexes [skip ci]"
           git push
 
