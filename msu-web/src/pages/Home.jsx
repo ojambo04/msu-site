@@ -50,12 +50,12 @@ const Home = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-              <a href={homeData?.hero?.primaryButton?.link || "/students"} className="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-[#0f172a] font-bold py-3.5 px-8 rounded-full transition-colors flex items-center justify-center gap-2 shadow-lg">
+              <Link to={homeData?.hero?.primaryButton?.link || "/students"} className="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-[#0f172a] font-bold py-3.5 px-8 rounded-full transition-colors flex items-center justify-center gap-2 shadow-lg">
                 <span className="text-lg">{homeData?.hero?.primaryButton?.icon || '🎓'}</span> {homeData?.hero?.primaryButton?.text || 'Explore Scholarships & Services'}
-              </a>
-              <a href={homeData?.hero?.secondaryButton?.link || "/about"} className="w-full sm:w-auto bg-transparent hover:bg-white/10 text-white font-bold py-3.5 px-8 rounded-full border border-amber-500 hover:border-amber-400 transition-colors flex items-center justify-center gap-2">
+              </Link>
+              <Link to={homeData?.hero?.secondaryButton?.link || "/about"} className="w-full sm:w-auto bg-transparent hover:bg-white/10 text-white font-bold py-3.5 px-8 rounded-full border border-amber-500 hover:border-amber-400 transition-colors flex items-center justify-center gap-2">
                 <span className="text-amber-500">{homeData?.hero?.secondaryButton?.icon || '📖'}</span> {homeData?.hero?.secondaryButton?.text || 'Read Union History & Constitution'}
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -107,15 +107,15 @@ const Home = () => {
             <p className="text-slate-600 dark:text-zinc-400 font-medium">{homeData?.features?.[0]?.description || 'Meet the Executive Council and Constituent Units leading our union forward.'}</p>
           </NavLink>
 
-          <NavLink to={homeData?.features?.[1]?.link || "/students"} className="bg-white dark:bg-zinc-900 p-8 rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.05)] hover:shadow-[0_10px_40px_rgb(0,0,0,0.1)] hover:-translate-y-2 transition-all duration-300 border border-slate-100 dark:border-zinc-800 group relative overflow-hidden flex flex-col items-center text-center">
+          <NavLink to={homeData?.features?.[1]?.link || "/events?tab=past"} state={{ tab: 'past' }} className="bg-white dark:bg-zinc-900 p-8 rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.05)] hover:shadow-[0_10px_40px_rgb(0,0,0,0.1)] hover:-translate-y-2 transition-all duration-300 border border-slate-100 dark:border-zinc-800 group relative overflow-hidden flex flex-col items-center text-center">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-500 to-amber-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div className="w-16 h-16 bg-slate-50 dark:bg-zinc-800 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-amber-500 transition-colors duration-300 shadow-sm border border-slate-100 dark:border-zinc-700">
               <svg className="w-8 h-8 text-amber-500 group-hover:text-white transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
             </div>
-            <h3 className="text-2xl font-bold text-[#152759] dark:text-white mb-3 font-serif group-hover:text-amber-500 transition-colors duration-300">{homeData?.features?.[1]?.title || "Student's Corner"}</h3>
-            <p className="text-slate-600 dark:text-zinc-400 font-medium">{homeData?.features?.[1]?.description || 'Access scholarships, important downloads, and resources for students.'}</p>
+            <h3 className="text-2xl font-bold text-[#152759] dark:text-white mb-3 font-serif group-hover:text-amber-500 transition-colors duration-300">{homeData?.features?.[1]?.title || 'Events & Programs'}</h3>
+            <p className="text-slate-600 dark:text-zinc-400 font-medium">{homeData?.features?.[1]?.description || 'Explore past events, cultural festivals, literary meets, and community programs.'}</p>
           </NavLink>
 
           <NavLink to={homeData?.features?.[2]?.link || "/notices"} className="bg-white dark:bg-zinc-900 p-8 rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.05)] hover:shadow-[0_10px_40px_rgb(0,0,0,0.1)] hover:-translate-y-2 transition-all duration-300 border border-slate-100 dark:border-zinc-800 group relative overflow-hidden flex flex-col items-center text-center">

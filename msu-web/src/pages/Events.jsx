@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useContentIndex } from '../hooks/useContentIndex';
 import { getEffectiveEventStatus } from '../utils/eventStatus';
@@ -6,10 +6,25 @@ import EventList from '../components/EventList';
 import TabNavigation from '../components/TabNavigation';
 import HeroBanner from '../components/HeroBanner';
 
+const validTabs = new Set(['upcoming', 'ongoing', 'past']);
+
+const resolveTab = (location) => {
+  const queryTab = new URLSearchParams(location.search).get('tab');
+  if (queryTab && validTabs.has(queryTab)) return queryTab;
+  const hash = location.hash?.replace('#', '');
+  if (hash && validTabs.has(hash)) return hash;
+  if (location.state?.tab && validTabs.has(location.state.tab)) return location.state.tab;
+  return 'upcoming';
+};
+
 const Events = () => {
   const { data, loading } = useContentIndex('events');
   const location = useLocation();
-  const [activeTab, setActiveTab] = useState(location.state?.tab || 'upcoming');
+  const [activeTab, setActiveTab] = useState(() => resolveTab(location));
+
+  useEffect(() => {
+    setActiveTab(resolveTab(location));
+  }, [location]);
 
   if (loading) {
     return (
